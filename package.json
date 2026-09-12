@@ -1,0 +1,13 @@
+{
+  "name": "sowjus-comfort-wear",
+  "version": "1.0.0",
+  "description": "Sowjus Comfort Wear website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

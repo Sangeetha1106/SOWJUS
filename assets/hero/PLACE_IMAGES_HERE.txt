@@ -1,0 +1,2 @@
+Place hero images here.
+Recommended: JPG or WEBP, optimized for web (under 300KB each).

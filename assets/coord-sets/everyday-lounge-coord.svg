@@ -1,0 +1,16 @@
+<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="product illustration">
+  <defs>
+    <linearGradient id="grad-everyday-lounge-coord" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFE3D0"/>
+      <stop offset="100%" stop-color="#F7E3E8"/>
+    </linearGradient>
+    <clipPath id="clip-everyday-lounge-coord"><path d="M32 10 L20 22 L26 30 L32 24 V46 H68 V24 L74 30 L80 22 L68 10 C68 16 60 20 50 20 C40 20 32 16 32 10 Z M34 54 H66 L64 108 L54 108 L51 70 L48 108 L38 108 Z"/></clipPath>
+  </defs>
+  <rect x="0" y="0" width="100" height="120" fill="none"/>
+  <g clip-path="url(#clip-everyday-lounge-coord)">
+    <rect x="0" y="0" width="100" height="120" fill="url(#grad-everyday-lounge-coord)"/>
+    
+  </g>
+  <path d="M32 10 L20 22 L26 30 L32 24 V46 H68 V24 L74 30 L80 22 L68 10 C68 16 60 20 50 20 C40 20 32 16 32 10 Z M34 54 H66 L64 108 L54 108 L51 70 L48 108 L38 108 Z" fill="none" stroke="#591C30" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+</svg>

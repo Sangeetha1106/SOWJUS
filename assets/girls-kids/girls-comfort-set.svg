@@ -1,0 +1,16 @@
+<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="product illustration">
+  <defs>
+    <linearGradient id="grad-girls-comfort-set" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7E3E8"/>
+      <stop offset="100%" stop-color="#EFE3D0"/>
+    </linearGradient>
+    <clipPath id="clip-girls-comfort-set"><path d="M38 8 L28 18 L33 26 L38 20 V30 C24 34 18 50 18 66 L20 100 H62 L64 66 C64 50 58 34 44 30 V20 L49 26 L54 18 L44 8 C44 13 41 16 41 16 C41 16 38 13 38 8 Z"/></clipPath>
+  </defs>
+  <rect x="0" y="0" width="100" height="120" fill="none"/>
+  <g clip-path="url(#clip-girls-comfort-set)">
+    <rect x="0" y="0" width="100" height="120" fill="url(#grad-girls-comfort-set)"/>
+    
+  </g>
+  <path d="M38 8 L28 18 L33 26 L38 20 V30 C24 34 18 50 18 66 L20 100 H62 L64 66 C64 50 58 34 44 30 V20 L49 26 L54 18 L44 8 C44 13 41 16 41 16 C41 16 38 13 38 8 Z" fill="none" stroke="#591C30" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="41" cy="46" r="3.4" fill="#C98A93" stroke="#591C30" stroke-width="1"/>
+</svg>

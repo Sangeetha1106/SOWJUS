@@ -1,0 +1,16 @@
+<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="product illustration">
+  <defs>
+    <linearGradient id="grad-customized-nighty" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EDE1CD"/>
+      <stop offset="100%" stop-color="#ede1cd"/>
+    </linearGradient>
+    <clipPath id="clip-customized-nighty"><path d="M40 6 L28 16 L33 25 L40 19 V32 C22 38 14 58 14 84 L18 108 H76 L80 84 C80 58 72 38 54 32 V19 L61 25 L66 16 L54 6 C54 12 50 16 47 16 C44 16 40 12 40 6 Z"/></clipPath>
+  </defs>
+  <rect x="0" y="0" width="100" height="120" fill="none"/>
+  <g clip-path="url(#clip-customized-nighty)">
+    <rect x="0" y="0" width="100" height="120" fill="url(#grad-customized-nighty)"/>
+    
+  </g>
+  <path d="M40 6 L28 16 L33 25 L40 19 V32 C22 38 14 58 14 84 L18 108 H76 L80 84 C80 58 72 38 54 32 V19 L61 25 L66 16 L54 6 C54 12 50 16 47 16 C44 16 40 12 40 6 Z" fill="none" stroke="#591C30" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+</svg>
