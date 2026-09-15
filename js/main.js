@@ -100,7 +100,6 @@ function productCardHTML(product){
   <article class="product-card reveal">
     <a href="product-details.html?id=${product.id}" class="pc-image-link" aria-label="View ${product.name}">
       ${artFrameHTML(product)}
-      <span class="pc-offer-badge">BUY 2 GET 100 OFF</span>
     </a>
     <div class="pc-body">
       <h3 class="pc-name"><a href="product-details.html?id=${product.id}">${product.name}</a></h3>
