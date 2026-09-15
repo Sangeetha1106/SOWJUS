@@ -185,10 +185,10 @@ function renderProductDetails(){
     sizesBlock.style.display = "none";
   }
 
-  // Render Colors as selectable chips
+  // Render Colors as selectable chips (if present in DOM)
   const coloursBlock = document.getElementById("pd-colours-block");
   const coloursEl = document.getElementById("pd-colours");
-  if(product.colours && product.colours.length){
+  if(coloursEl && product.colours && product.colours.length){
     coloursEl.innerHTML = product.colours.map((c, idx) => `
       <button class="color-chip ${idx === 0 ? 'active' : ''}" data-color="${c}">${c}</button>
     `).join("");
@@ -242,7 +242,6 @@ function renderProductDetails(){
     const msg = `Hi Sowju's Comfort Wear, I would like to order / enquire about ${product.name} (SKU: ${product.sku || 'NTY'}).\n` +
       `Price: ${priceText}\n` +
       `Size: ${selectedSize}\n` +
-      `Color: ${selectedColor}\n` +
       `Quantity: ${currentQty}\n` +
       `Please share availability and order confirmation details.`;
 
