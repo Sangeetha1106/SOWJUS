@@ -63,11 +63,13 @@
 
 <section class="page-header">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a> / <a href="women.html">Women</a> / <span id="pd-breadcrumb-name">Product</span></div>
+    <div class="breadcrumb" id="pd-breadcrumb">
+      <a href="index.html">Home</a> / <a href="women.html">Women</a> / <span id="pd-breadcrumb-name">Product</span>
+    </div>
   </div>
 </section>
 
-<section style="padding-top:0;">
+<section style="padding-top:30px;">
   <div class="container">
 
     <div id="pd-not-found" class="empty-state" style="display:none;">
@@ -77,14 +79,24 @@
     </div>
 
     <div id="pd-wrap" class="pd-grid">
-      <div id="pd-art" class="pd-art"></div>
+      <!-- LEFT: IMAGE GALLERY -->
+      <div class="pd-gallery-container">
+        <div id="pd-main-art" class="pd-main-art"></div>
+        <div id="pd-thumbnails" class="pd-thumbnails"></div>
+      </div>
+
+      <!-- RIGHT: PRODUCT INFORMATION -->
       <div class="pd-info">
         <span class="pc-cat" id="pd-category"></span>
         <h1 id="pd-name"></h1>
-        <p id="pd-description"></p>
-        <div class="pd-price">Price on Enquiry</div>
+        <p id="pd-description" class="pd-intro-text"></p>
 
-        <div class="pd-block">
+        <div class="pd-price-wrap">
+          <span class="pd-price-label">Price:</span>
+          <span class="pd-price">Price on Enquiry</span>
+        </div>
+
+        <div class="pd-block" id="pd-sizes-block">
           <h4>Available Sizes</h4>
           <div class="swatch-row" id="pd-sizes"></div>
         </div>
@@ -94,14 +106,14 @@
           <div class="swatch-row" id="pd-colours"></div>
         </div>
 
-        <div class="pd-block">
-          <h4>Product Features</h4>
+        <div class="pd-block" id="pd-features-block">
+          <h4>Product Highlights</h4>
           <ul class="feature-list" id="pd-features"></ul>
         </div>
 
         <div class="pd-actions">
-          <a id="pd-enquire-btn" class="btn btn-whatsapp" target="_blank" rel="noopener">Enquire Now</a>
-          <a href="contact.html" class="btn btn-outline">Ask a Question</a>
+          <a id="pd-enquire-btn" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">Enquire Now</a>
+          <a id="pd-whatsapp-btn" class="btn btn-outline btn-lg" target="_blank" rel="noopener">WhatsApp Us</a>
         </div>
       </div>
     </div>

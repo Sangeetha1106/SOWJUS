@@ -39,6 +39,7 @@ const PRODUCTS = [
   {
     id: "floral-cotton-nighty",
     image: "assets/nighties/image.png",
+    images: ["assets/nighties/image.png"],
     pattern: "floral",
     name: "Floral Cotton Nighty",
     category: "nighties",
@@ -53,6 +54,7 @@ const PRODUCTS = [
   {
     id: "printed-cotton-nighty",
     image: "assets/nighties/image copy.png",
+    images: ["assets/nighties/image copy.png"],
     pattern: "dots",
     name: "Printed Cotton Nighty",
     category: "nighties",
@@ -67,6 +69,7 @@ const PRODUCTS = [
   {
     id: "soft-comfort-nighty",
     image: "assets/nighties/image copy 2.png",
+    images: ["assets/nighties/image copy 2.png"],
     pattern: "plain",
     name: "Soft Comfort Nighty",
     category: "nighties",
@@ -81,6 +84,7 @@ const PRODUCTS = [
   {
     id: "elegant-printed-nighty",
     image: "assets/nighties/image copy 3.png",
+    images: ["assets/nighties/image copy 3.png"],
     pattern: "floral",
     name: "Elegant Printed Nighty",
     category: "nighties",
@@ -95,6 +99,7 @@ const PRODUCTS = [
   {
     id: "floral-night-dress",
     image: "assets/nighties/image copy 6.png",
+    images: ["assets/nighties/image copy 6.png"],
     pattern: "floral",
     name: "Floral Night Dress",
     category: "nighties",
@@ -109,6 +114,7 @@ const PRODUCTS = [
   {
     id: "everyday-cotton-nightwear",
     image: "assets/nighties/image copy 5.png",
+    images: ["assets/nighties/image copy 5.png"],
     pattern: "plain",
     name: "Everyday Cotton Nightwear",
     category: "nighties",
@@ -125,6 +131,7 @@ const PRODUCTS = [
   {
     id: "floral-coord-set",
     image: "assets/coord-sets/floral-coord-set.png",
+    images: ["assets/coord-sets/floral-coord-set.png"],
     pattern: "floral",
     name: "Floral Co-ord Set",
     category: "coord-sets",
@@ -139,6 +146,7 @@ const PRODUCTS = [
   {
     id: "printed-comfort-coord",
     image: "assets/coord-sets/printed-comfort-coord.png",
+    images: ["assets/coord-sets/printed-comfort-coord.png"],
     pattern: "dots",
     name: "Printed Comfort Co-ord",
     category: "coord-sets",
@@ -153,6 +161,7 @@ const PRODUCTS = [
   {
     id: "soft-cotton-coord",
     image: "assets/coord-sets/image.png",
+    images: ["assets/coord-sets/image.png"],
     pattern: "plain",
     name: "Soft Cotton Co-ord",
     category: "coord-sets",
@@ -167,6 +176,7 @@ const PRODUCTS = [
   {
     id: "everyday-lounge-coord",
     image: "assets/coord-sets/image copy.png",
+    images: ["assets/coord-sets/image copy.png"],
     pattern: "plain",
     name: "Everyday Lounge Co-ord",
     category: "coord-sets",
@@ -181,6 +191,7 @@ const PRODUCTS = [
   {
     id: "casual-home-coord",
     image: "assets/coord-sets/casual-home-coord.png",
+    images: ["assets/coord-sets/casual-home-coord.png"],
     pattern: "stripes",
     name: "Casual Home Co-ord",
     category: "coord-sets",
@@ -197,6 +208,7 @@ const PRODUCTS = [
   {
     id: "customized-nighty",
     image: "assets/customized/customized-nighty.png",
+    images: ["assets/customized/customized-nighty.png"],
     pattern: "plain",
     name: "Customized Nighty",
     category: "customized-nighties",
@@ -212,6 +224,7 @@ const PRODUCTS = [
   {
     id: "customized-designer-nighty",
     image: "assets/customized/customized-nighty-2.png",
+    images: ["assets/customized/customized-nighty-2.png"],
     pattern: "floral",
     name: "Customized Designer Nighty",
     category: "customized-nighties",
@@ -227,6 +240,7 @@ const PRODUCTS = [
   {
     id: "customized-pleated-nighty",
     image: "assets/customized/customized-nighty-3.png",
+    images: ["assets/customized/customized-nighty-3.png"],
     pattern: "pleated",
     name: "Customized Pleated Nighty",
     category: "customized-nighties",
@@ -244,6 +258,7 @@ const PRODUCTS = [
   {
     id: "customized-coord-set",
     image: "assets/customized/customized-coord-set.png",
+    images: ["assets/customized/customized-coord-set.png"],
     pattern: "plain",
     name: "Customized Co-ord Set",
     category: "customized-coord-sets",
@@ -259,6 +274,7 @@ const PRODUCTS = [
   {
     id: "customized-printed-coord",
     image: "assets/customized/customized-coord-set-2.png",
+    images: ["assets/customized/customized-coord-set-2.png"],
     pattern: "dots",
     name: "Customized Printed Co-ord",
     category: "customized-coord-sets",
@@ -274,6 +290,7 @@ const PRODUCTS = [
   {
     id: "customized-lounge-coord",
     image: "assets/customized/customized-coord-set-3.png",
+    images: ["assets/customized/customized-coord-set-3.png"],
     pattern: "plain",
     name: "Customized Lounge Twin-Set",
     category: "customized-coord-sets",
@@ -291,6 +308,7 @@ const PRODUCTS = [
   {
     id: "girls-floral-nighty",
     image: "assets/girls-kids/girls-floral-nighty.png",
+    images: ["assets/girls-kids/girls-floral-nighty.png"],
     pattern: "floral",
     name: "Girls' Floral Nighty",
     category: "girls-nightwear",
@@ -305,6 +323,7 @@ const PRODUCTS = [
   {
     id: "girls-printed-nighty",
     image: "assets/girls-kids/girls-printed-nighty.png",
+    images: ["assets/girls-kids/girls-printed-nighty.png"],
     pattern: "floral",
     name: "Girls' Printed Nighty",
     category: "girls-nightwear",
@@ -319,6 +338,7 @@ const PRODUCTS = [
   {
     id: "girls-comfort-set",
     image: "assets/girls-kids/girls-comfort-set.png",
+    images: ["assets/girls-kids/girls-comfort-set.png"],
     pattern: "plain",
     name: "Girls' Comfort Set",
     category: "girls-comfort-wear",
@@ -333,6 +353,7 @@ const PRODUCTS = [
   {
     id: "girls-coord-set",
     image: "assets/girls-kids/girls-coord-set.png",
+    images: ["assets/girls-kids/girls-coord-set.png"],
     pattern: "dots",
     name: "Girls' Co-ord Set",
     category: "girls-comfort-wear",
