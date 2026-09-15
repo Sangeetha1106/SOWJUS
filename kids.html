@@ -140,20 +140,26 @@
     "girls-comfort-wear": "assets/girls-kids/banner-girls-comfort.png"
   };
 
+  const KIDS_SLUG_MAP = {
+    "girls-nightwear": "Girls' Nightwear",
+    "Girls' Nightwear": "Girls' Nightwear",
+    "girls-comfort-wear": "Girls' Comfort Wear",
+    "girls-comfort": "Girls' Comfort Wear",
+    "Girls' Comfort Wear": "Girls' Comfort Wear"
+  };
+
   const params = new URLSearchParams(window.location.search);
   const rawCat = params.get("category") || params.get("cat");
   const titleEl = document.getElementById("page-title");
   const pageImgEl = document.getElementById("page-img");
 
-  let selectedCategory = rawCat;
-  if(selectedCategory === "girls-comfort") selectedCategory = "girls-comfort-wear";
-
+  let selectedCategory = rawCat ? (KIDS_SLUG_MAP[rawCat] || rawCat) : null;
   let baseProducts = [];
 
   if(selectedCategory && CATEGORY_LABELS[selectedCategory]){
     if(titleEl) titleEl.textContent = CATEGORY_LABELS[selectedCategory];
     if(pageImgEl){
-      pageImgEl.src = KIDS_BANNER_IMAGES[selectedCategory] || "assets/girls-kids/banner-girls-nightwear.png";
+      pageImgEl.src = KIDS_BANNER_IMAGES[rawCat] || KIDS_BANNER_IMAGES[selectedCategory] || "assets/girls-kids/banner-girls-nightwear.png";
       pageImgEl.style.display = "block";
     }
     // STRICT CATEGORY FILTERING — ONLY PRODUCTS MATCHING THE EXACT CATEGORY

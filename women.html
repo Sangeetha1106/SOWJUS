@@ -145,26 +145,31 @@
 <script src="js/cart.js"></script>
 <script src="js/main.js"></script>
 <script>
-  const WOMEN_CATS = ["nighties", "coord-sets", "customized-nighties", "customized-coord-sets"];
+  const WOMEN_CATS = ["Nighties", "Co-ord Sets", "Customized Nighties", "Customized Co-ord Sets"];
   const params = new URLSearchParams(window.location.search);
   const rawCat = params.get("category") || params.get("cat");
   const searchQuery = params.get("q");
   const titleEl = document.getElementById("page-title");
 
   const SLUG_MAP = {
-    "nighties": "nighties",
-    "Nighties": "nighties",
-    "coord-sets": "coord-sets",
-    "Co-ord Sets": "coord-sets",
-    "customized-nighties": "customized-nighties",
-    "customized-nighty": "customized-nighties",
-    "Customized Nighties": "customized-nighties",
-    "customized-coord-sets": "customized-coord-sets",
-    "customized-coord": "customized-coord-sets",
-    "Customized Co-ord Sets": "customized-coord-sets"
+    "nighties": "Nighties",
+    "Nighties": "Nighties",
+    "coord-sets": "Co-ord Sets",
+    "coord": "Co-ord Sets",
+    "Co-ord Sets": "Co-ord Sets",
+    "customized-nighties": "Customized Nighties",
+    "customized-nighty": "Customized Nighties",
+    "Customized Nighties": "Customized Nighties",
+    "customized-coord-sets": "Customized Co-ord Sets",
+    "customized-coord": "Customized Co-ord Sets",
+    "Customized Co-ord Sets": "Customized Co-ord Sets"
   };
 
-  let selectedCategory = rawCat ? (SLUG_MAP[rawCat] || rawCat) : null;
+  let selectedCategory = rawCat ? (SLUG_MAP[rawCat] || SLUG_MAP[decodeURIComponent(rawCat)] || rawCat) : null;
+  if (selectedCategory && SLUG_MAP[selectedCategory]) {
+    selectedCategory = SLUG_MAP[selectedCategory];
+  }
+
   let selectedSize = "all";
 
   // Update Page Title
@@ -178,12 +183,13 @@
 
   function getBaseCategoryProducts(){
     if(selectedCategory && selectedCategory !== "all"){
-      // STRICT CATEGORY FILTERING — ONLY PRODUCTS BELONGING TO THIS EXACT CATEGORY
-      return PRODUCTS.filter(p => p.category === selectedCategory);
+      // EXACT CATEGORY FILTERING — ONLY PRODUCTS BELONGING TO THIS EXACT CATEGORY
+      const filtered = PRODUCTS.filter(product => product.category === selectedCategory);
+      return filtered;
     } else if(searchQuery){
       return searchProducts(searchQuery);
     } else {
-      return PRODUCTS.filter(p => WOMEN_CATS.includes(p.category));
+      return PRODUCTS.filter(product => WOMEN_CATS.includes(product.category));
     }
   }
 
