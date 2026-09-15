@@ -132,27 +132,27 @@
 <script>
   const KIDS_BANNER_IMAGES = {
     "girls-nightwear": "assets/girls-kids/banner-girls-nightwear.png",
-    "girls-comfort-wear": "assets/girls-kids/banner-girls-comfort.png",
-    "girls-comfort": "assets/girls-kids/banner-girls-comfort.png",
-    "girls-coord": "assets/girls-kids/girls-coord-set.png"
+    "girls-comfort-wear": "assets/girls-kids/banner-girls-comfort.png"
   };
 
   const params = new URLSearchParams(window.location.search);
-  const cat = params.get("category") || params.get("cat");
+  const rawCat = params.get("category") || params.get("cat");
   const titleEl = document.getElementById("page-title");
   const pageImgEl = document.getElementById("page-img");
 
+  let selectedCategory = rawCat;
+  if(selectedCategory === "girls-comfort") selectedCategory = "girls-comfort-wear";
+
   let baseProducts = [];
 
-  if(cat && CATEGORY_LABELS[cat]){
-    if(titleEl) titleEl.textContent = CATEGORY_LABELS[cat];
+  if(selectedCategory && CATEGORY_LABELS[selectedCategory]){
+    if(titleEl) titleEl.textContent = CATEGORY_LABELS[selectedCategory];
     if(pageImgEl){
-      pageImgEl.src = KIDS_BANNER_IMAGES[cat] || "assets/girls-kids/banner-girls-nightwear.png";
+      pageImgEl.src = KIDS_BANNER_IMAGES[selectedCategory] || "assets/girls-kids/banner-girls-nightwear.png";
       pageImgEl.style.display = "block";
     }
-    let targetCat = cat;
-    if(cat === "girls-comfort-wear") targetCat = "girls-comfort";
-    baseProducts = PRODUCTS.filter(p => p.category === targetCat || p.category === cat);
+    // STRICT CATEGORY FILTERING — ONLY PRODUCTS MATCHING THE EXACT CATEGORY
+    baseProducts = PRODUCTS.filter(p => p.category === selectedCategory);
   } else {
     if(titleEl) titleEl.textContent = "Girls' Kids Collection";
     baseProducts = getProductsBySection("girls");
@@ -170,7 +170,7 @@
     } else if(sortVal === "name-desc"){
       list.sort((a,b) => b.name.localeCompare(a.name));
     }
-    renderProductGrid("kids-grid", list);
+    renderProductGrid("kids-grid", list, "No products available in this category.");
   }
 
   document.getElementById("kids-search")?.addEventListener("input", applyKidsFilters);

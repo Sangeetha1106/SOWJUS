@@ -23,13 +23,9 @@ const CATEGORY_LABELS = {
   "nighties": "Nighties",
   "coord-sets": "Co-ord Sets",
   "customized-nighties": "Customized Nighties",
-  "customized-nighty": "Customized Nighties",
   "customized-coord-sets": "Customized Co-ord Sets",
-  "customized-coord": "Customized Co-ord Sets",
   "girls-nightwear": "Girls' Nightwear",
-  "girls-comfort-wear": "Girls' Comfort Wear",
-  "girls-comfort": "Girls' Comfort Wear",
-  "girls-coord": "Girls' Co-ord Sets"
+  "girls-comfort-wear": "Girls' Comfort Wear"
 };
 
 const PRODUCTS = [
@@ -197,7 +193,7 @@ const PRODUCTS = [
     image: "assets/customized/customized-nighty.png",
     pattern: "plain",
     name: "Customized Nighty",
-    category: "customized-nighty",
+    category: "customized-nighties",
     section: "women",
     art: 2, icon: "dress",
     sizes: ["Made to your size"],
@@ -212,7 +208,7 @@ const PRODUCTS = [
     image: "assets/customized/customized-nighty-2.png",
     pattern: "floral",
     name: "Customized Designer Nighty",
-    category: "customized-nighty",
+    category: "customized-nighties",
     section: "women",
     art: 1, icon: "dress",
     sizes: ["Made to your size"],
@@ -227,7 +223,7 @@ const PRODUCTS = [
     image: "assets/customized/customized-nighty-3.png",
     pattern: "pleated",
     name: "Customized Pleated Nighty",
-    category: "customized-nighty",
+    category: "customized-nighties",
     section: "women",
     art: 4, icon: "dress",
     sizes: ["Made to your size"],
@@ -244,7 +240,7 @@ const PRODUCTS = [
     image: "assets/customized/customized-coord-set.png",
     pattern: "plain",
     name: "Customized Co-ord Set",
-    category: "customized-coord",
+    category: "customized-coord-sets",
     section: "women",
     art: 3, icon: "coord",
     sizes: ["Made to your size"],
@@ -259,7 +255,7 @@ const PRODUCTS = [
     image: "assets/customized/customized-coord-set-2.png",
     pattern: "dots",
     name: "Customized Printed Co-ord",
-    category: "customized-coord",
+    category: "customized-coord-sets",
     section: "women",
     art: 5, icon: "coord",
     sizes: ["Made to your size"],
@@ -274,7 +270,7 @@ const PRODUCTS = [
     image: "assets/customized/customized-coord-set-3.png",
     pattern: "plain",
     name: "Customized Lounge Twin-Set",
-    category: "customized-coord",
+    category: "customized-coord-sets",
     section: "women",
     art: 2, icon: "coord",
     sizes: ["Made to your size"],
@@ -301,11 +297,25 @@ const PRODUCTS = [
     isNew: true
   },
   {
+    id: "girls-printed-nighty",
+    image: "assets/girls-kids/girls-printed-nighty.png",
+    pattern: "floral",
+    name: "Girls' Printed Nighty",
+    category: "girls-nightwear",
+    section: "girls",
+    art: 2, icon: "kids-dress",
+    sizes: ["4-5Y","6-7Y","8-9Y","10-11Y"],
+    colours: ["Rose Print","Cream"],
+    description: "A lightweight printed nighty designed for little girls' comfortable, restful nights.",
+    features: ["Lightweight cotton","Fun all-over print","Easy care fabric","Comfortable everyday fit"],
+    isNew: false
+  },
+  {
     id: "girls-comfort-set",
     image: "assets/girls-kids/girls-comfort-set.png",
     pattern: "plain",
     name: "Girls' Comfort Set",
-    category: "girls-comfort",
+    category: "girls-comfort-wear",
     section: "girls",
     art: 5, icon: "kids-dress",
     sizes: ["3-4Y","5-6Y","7-8Y","9-10Y"],
@@ -319,7 +329,7 @@ const PRODUCTS = [
     image: "assets/girls-kids/girls-coord-set.png",
     pattern: "dots",
     name: "Girls' Co-ord Set",
-    category: "girls-coord",
+    category: "girls-comfort-wear",
     section: "girls",
     art: 1, icon: "kids-coord",
     sizes: ["2-3Y","4-5Y","6-7Y","8-9Y"],
@@ -327,20 +337,6 @@ const PRODUCTS = [
     description: "A matching top-and-bottom set for little girls, made for comfortable everyday wear at home.",
     features: ["Matching two-piece set","Soft cotton blend","Easy to move in","Simple, cute styling"],
     isNew: true
-  },
-  {
-    id: "girls-printed-nighty",
-    image: "assets/girls-kids/girls-printed-nighty.png",
-    pattern: "floral",
-    name: "Girls' Printed Nighty",
-    category: "girls-nightwear",
-    section: "girls",
-    art: 2, icon: "kids-dress",
-    sizes: ["4-5Y","6-7Y","8-9Y","10-11Y"],
-    colours: ["Rose Print","Cream"],
-    description: "A lightweight printed nighty designed for little girls' comfortable, restful nights.",
-    features: ["Lightweight cotton","Fun all-over print","Easy care fabric","Comfortable everyday fit"],
-    isNew: false
   }
 ];
 
@@ -366,11 +362,13 @@ function getRelatedProducts(product, limit){
   return PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, limit || 3);
 }
 
-function searchProducts(term){
+function searchProducts(term, cat){
   term = (term || "").trim().toLowerCase();
-  if(!term) return [];
-  return PRODUCTS.filter(p =>
+  let list = PRODUCTS;
+  if(cat) list = list.filter(p => p.category === cat);
+  if(!term) return list;
+  return list.filter(p =>
     p.name.toLowerCase().includes(term) ||
-    CATEGORY_LABELS[p.category].toLowerCase().includes(term)
+    (CATEGORY_LABELS[p.category] && CATEGORY_LABELS[p.category].toLowerCase().includes(term))
   );
 }

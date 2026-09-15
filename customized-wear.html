@@ -171,23 +171,25 @@
     "Customized Nighty": {
       title: "Customized Nighties",
       image: "assets/customized/banner-nighties.png",
-      slug: "customized-nighty"
+      slug: "customized-nighties",
+      formVal: "Customized Nighty"
     },
     "Customized Co-ord Set": {
       title: "Customized Co-ord Sets",
       image: "assets/customized/banner-coord-sets.png",
-      slug: "customized-coord"
+      slug: "customized-coord-sets",
+      formVal: "Customized Co-ord Set"
     },
     "customized-nighties": {
       title: "Customized Nighties",
       image: "assets/customized/banner-nighties.png",
-      slug: "customized-nighty",
+      slug: "customized-nighties",
       formVal: "Customized Nighty"
     },
     "customized-coord-sets": {
       title: "Customized Co-ord Sets",
       image: "assets/customized/banner-coord-sets.png",
-      slug: "customized-coord",
+      slug: "customized-coord-sets",
       formVal: "Customized Co-ord Set"
     }
   };
@@ -212,7 +214,7 @@
     const sel = document.getElementById("c-type");
     if(sel){ for(const opt of sel.options){ if(opt.value === formVal){ sel.value = formVal; } } }
 
-    renderProductGrid("custom-grid", PRODUCTS.filter(p => p.category === info.slug));
+    renderProductGrid("custom-grid", PRODUCTS.filter(p => p.category === info.slug), "No products available in this category.");
   } else {
     renderProductGrid("custom-grid", PRODUCTS.filter(p => p.customized));
   }
