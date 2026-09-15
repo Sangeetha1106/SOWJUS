@@ -233,27 +233,19 @@ function renderProductDetails(){
 
   // --- Dynamic WhatsApp Link Builder ---
   function updateWhatsAppLink(){
-    const priceText = product.price || "Rs. 699.00";
-    const msg = `Hi Sowju's Comfort Wear, I would like to order / enquire about ${product.name} (SKU: ${product.sku || 'NTY'}).\n` +
+    const priceText = product.price || "Price on Enquiry";
+    const msg = `Hi Sowju's Comfort Wear, I am interested in ${product.name} (SKU: ${product.sku || 'NTY'}).\n` +
       `Price: ${priceText}\n` +
       `Size: ${selectedSize}\n` +
       `Color: ${selectedColor}\n` +
       `Quantity: ${currentQty}\n` +
-      `Please share availability and order confirmation details.`;
+      `Please share availability and details.`;
 
     const enquireBtn = document.getElementById("pd-enquire-btn");
     if(enquireBtn) enquireBtn.href = buildWhatsAppLink(msg);
-  }
 
-  // Add to Cart / Enquire handler
-  const addToCartBtn = document.getElementById("pd-add-to-cart-btn");
-  if(addToCartBtn){
-    addToCartBtn.addEventListener("click", () => {
-      const enquireBtn = document.getElementById("pd-enquire-btn");
-      if(enquireBtn && enquireBtn.href){
-        window.open(enquireBtn.href, "_blank");
-      }
-    });
+    const enquireNowBtn = document.getElementById("pd-enquire-now-btn");
+    if(enquireNowBtn) enquireNowBtn.href = buildWhatsAppLink(msg);
   }
 
   // Initial Link Update
