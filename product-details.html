@@ -87,24 +87,40 @@
 
       <!-- RIGHT: PRODUCT INFORMATION -->
       <div class="pd-info">
-        <span class="pc-cat" id="pd-category"></span>
         <h1 id="pd-name"></h1>
-        <p id="pd-description" class="pd-intro-text"></p>
+        <div class="pd-sku-bar">
+          <span class="pd-sku">SKU: <span id="pd-sku-val">NTY-0101-FLR</span></span>
+        </div>
+        <div class="pd-stock-bar">
+          <span class="stock-dot"></span> In stock
+        </div>
 
-        <div class="pd-price-wrap">
-          <span class="pd-price-label">Price:</span>
-          <span class="pd-price">Price on Enquiry</span>
+        <div class="pd-price-row">
+          <span class="pd-price" id="pd-price-val">Rs. 699.00</span>
         </div>
 
         <div class="pd-block" id="pd-sizes-block">
-          <h4>Available Sizes</h4>
-          <div class="swatch-row" id="pd-sizes"></div>
+          <div class="size-head-row">
+            <span class="label-title">Size: <b id="pd-selected-size-label">M</b></span>
+          </div>
+          <div class="swatch-row-box" id="pd-sizes"></div>
         </div>
 
         <div class="pd-block" id="pd-colours-block">
-          <h4>Available Colours</h4>
-          <div class="swatch-row" id="pd-colours"></div>
+          <span class="label-title">Color: <b id="pd-selected-color-label">Default</b></span>
+          <div class="swatch-row-color" id="pd-colours"></div>
         </div>
+
+        <div class="pd-block">
+          <span class="label-title">Quantity</span>
+          <div class="quantity-selector">
+            <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">-</button>
+            <input type="text" id="qty-input" value="1" readonly aria-label="Quantity">
+            <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <p id="pd-description" class="pd-intro-text"></p>
 
         <div class="pd-block" id="pd-features-block">
           <h4>Product Highlights</h4>
@@ -112,8 +128,7 @@
         </div>
 
         <div class="pd-actions">
-          <a id="pd-enquire-btn" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">Enquire Now</a>
-          <a id="pd-whatsapp-btn" class="btn btn-outline btn-lg" target="_blank" rel="noopener">WhatsApp Us</a>
+          <a id="pd-enquire-btn" class="btn btn-whatsapp btn-lg btn-block" target="_blank" rel="noopener">Enquire on WhatsApp</a>
         </div>
       </div>
     </div>

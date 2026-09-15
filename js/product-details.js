@@ -82,28 +82,89 @@ function renderProductDetails(){
   }
 
   // --- Product Information Fields ---
-  document.getElementById("pd-category").textContent = CATEGORY_LABELS[product.category] || product.category;
+  const skuEl = document.getElementById("pd-sku-val");
+  if(skuEl) skuEl.textContent = product.sku || `NTY-0101-${(product.id || 'N').slice(0,3).toUpperCase()}`;
+
+  const priceEl = document.getElementById("pd-price-val");
+  if(priceEl) priceEl.textContent = product.price || "Rs. 699.00";
+
   document.getElementById("pd-name").textContent = product.name;
   document.getElementById("pd-description").textContent = product.description;
 
+  // Selected State
+  let selectedSize = (product.sizes && product.sizes.length) ? product.sizes[0] : "Free Size";
+  let selectedColor = (product.colours && product.colours.length) ? product.colours[0] : "Default";
+  let currentQty = 1;
+
+  const sizeLabelEl = document.getElementById("pd-selected-size-label");
+  if(sizeLabelEl) sizeLabelEl.textContent = selectedSize;
+
+  const colorLabelEl = document.getElementById("pd-selected-color-label");
+  if(colorLabelEl) colorLabelEl.textContent = selectedColor;
+
+  // Render Sizes as selectable boxes
   const sizesBlock = document.getElementById("pd-sizes-block");
   const sizesEl = document.getElementById("pd-sizes");
   if(product.sizes && product.sizes.length){
-    sizesEl.innerHTML = product.sizes.map(s => `<span class="size-pill">${s}</span>`).join("");
+    sizesEl.innerHTML = product.sizes.map((s, idx) => `
+      <button class="swatch-btn ${idx === 0 ? 'active' : ''}" data-size="${s}">${s}</button>
+    `).join("");
+    sizesEl.querySelectorAll(".swatch-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        sizesEl.querySelectorAll(".swatch-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedSize = btn.getAttribute("data-size");
+        if(sizeLabelEl) sizeLabelEl.textContent = selectedSize;
+        updateWhatsAppLink();
+      });
+    });
     if(sizesBlock) sizesBlock.style.display = "block";
   } else if(sizesBlock){
     sizesBlock.style.display = "none";
   }
 
+  // Render Colors as selectable chips
   const coloursBlock = document.getElementById("pd-colours-block");
   const coloursEl = document.getElementById("pd-colours");
   if(product.colours && product.colours.length){
-    coloursEl.innerHTML = product.colours.map(c => `<span class="size-pill">${c}</span>`).join("");
+    coloursEl.innerHTML = product.colours.map((c, idx) => `
+      <button class="color-chip ${idx === 0 ? 'active' : ''}" data-color="${c}">${c}</button>
+    `).join("");
+    coloursEl.querySelectorAll(".color-chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        coloursEl.querySelectorAll(".color-chip").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedColor = btn.getAttribute("data-color");
+        if(colorLabelEl) colorLabelEl.textContent = selectedColor;
+        updateWhatsAppLink();
+      });
+    });
     if(coloursBlock) coloursBlock.style.display = "block";
   } else if(coloursBlock){
     coloursBlock.style.display = "none";
   }
 
+  // Quantity Selector Controls (+ / -)
+  const qtyInput = document.getElementById("qty-input");
+  const qtyMinus = document.getElementById("qty-minus");
+  const qtyPlus = document.getElementById("qty-plus");
+
+  if(qtyMinus && qtyPlus && qtyInput){
+    qtyMinus.addEventListener("click", () => {
+      if(currentQty > 1){
+        currentQty--;
+        qtyInput.value = currentQty;
+        updateWhatsAppLink();
+      }
+    });
+    qtyPlus.addEventListener("click", () => {
+      currentQty++;
+      qtyInput.value = currentQty;
+      updateWhatsAppLink();
+    });
+  }
+
+  // Highlights
   const featuresBlock = document.getElementById("pd-features-block");
   const featuresEl = document.getElementById("pd-features");
   if(product.features && product.features.length){
@@ -113,13 +174,22 @@ function renderProductDetails(){
     featuresBlock.style.display = "none";
   }
 
-  // --- WhatsApp Action Buttons ---
-  const whatsappMsg = buildWhatsAppLink(enquiryMessageFor(product));
-  const enquireBtn = document.getElementById("pd-enquire-btn");
-  if(enquireBtn) enquireBtn.href = whatsappMsg;
+  // --- Dynamic WhatsApp Link Builder ---
+  function updateWhatsAppLink(){
+    const priceText = product.price || "Rs. 699.00";
+    const msg = `Hi Sowju's Comfort Wear, I would like to order / enquire about ${product.name} (SKU: ${product.sku || 'NTY'}).\n` +
+      `Price: ${priceText}\n` +
+      `Size: ${selectedSize}\n` +
+      `Color: ${selectedColor}\n` +
+      `Quantity: ${currentQty}\n` +
+      `Please share availability and order confirmation details.`;
 
-  const whatsappBtn = document.getElementById("pd-whatsapp-btn");
-  if(whatsappBtn) whatsappBtn.href = whatsappMsg;
+    const enquireBtn = document.getElementById("pd-enquire-btn");
+    if(enquireBtn) enquireBtn.href = buildWhatsAppLink(msg);
+  }
+
+  // Initial Link Update
+  updateWhatsAppLink();
 
   // --- Related Products (STRICTLY FROM THE SAME EXACT CATEGORY ONLY) ---
   const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);

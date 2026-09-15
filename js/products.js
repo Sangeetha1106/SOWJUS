@@ -38,6 +38,8 @@ const PRODUCTS = [
   // ---------------- WOMEN — NIGHTIES ----------------
   {
     id: "floral-cotton-nighty",
+    sku: "NTY-0101-FLR",
+    price: "Rs. 699.00",
     image: "assets/nighties/image.png",
     images: ["assets/nighties/image.png"],
     pattern: "floral",
@@ -53,6 +55,8 @@ const PRODUCTS = [
   },
   {
     id: "printed-cotton-nighty",
+    sku: "NTY-0102-PRT",
+    price: "Rs. 649.00",
     image: "assets/nighties/image copy.png",
     images: ["assets/nighties/image copy.png"],
     pattern: "dots",
@@ -68,6 +72,8 @@ const PRODUCTS = [
   },
   {
     id: "soft-comfort-nighty",
+    sku: "NTY-0103-SFT",
+    price: "Rs. 799.00",
     image: "assets/nighties/image copy 2.png",
     images: ["assets/nighties/image copy 2.png"],
     pattern: "plain",
@@ -83,6 +89,8 @@ const PRODUCTS = [
   },
   {
     id: "elegant-printed-nighty",
+    sku: "NTY-0104-ELG",
+    price: "Rs. 749.00",
     image: "assets/nighties/image copy 3.png",
     images: ["assets/nighties/image copy 3.png"],
     pattern: "floral",
@@ -98,6 +106,8 @@ const PRODUCTS = [
   },
   {
     id: "floral-night-dress",
+    sku: "NTY-0105-FLD",
+    price: "Rs. 899.00",
     image: "assets/nighties/image copy 6.png",
     images: ["assets/nighties/image copy 6.png"],
     pattern: "floral",
@@ -113,6 +123,8 @@ const PRODUCTS = [
   },
   {
     id: "everyday-cotton-nightwear",
+    sku: "NTY-0106-EVD",
+    price: "Rs. 599.00",
     image: "assets/nighties/image copy 5.png",
     images: ["assets/nighties/image copy 5.png"],
     pattern: "plain",
@@ -130,6 +142,8 @@ const PRODUCTS = [
   // ---------------- WOMEN — CO-ORD SETS ----------------
   {
     id: "floral-coord-set",
+    sku: "CRD-0201-FLR",
+    price: "Rs. 899.00",
     image: "assets/coord-sets/floral-coord-set.png",
     images: ["assets/coord-sets/floral-coord-set.png"],
     pattern: "floral",
@@ -145,6 +159,8 @@ const PRODUCTS = [
   },
   {
     id: "printed-comfort-coord",
+    sku: "CRD-0202-PRT",
+    price: "Rs. 849.00",
     image: "assets/coord-sets/printed-comfort-coord.png",
     images: ["assets/coord-sets/printed-comfort-coord.png"],
     pattern: "dots",
@@ -160,6 +176,8 @@ const PRODUCTS = [
   },
   {
     id: "soft-cotton-coord",
+    sku: "CRD-0203-SFT",
+    price: "Rs. 949.00",
     image: "assets/coord-sets/image.png",
     images: ["assets/coord-sets/image.png"],
     pattern: "plain",
@@ -175,6 +193,8 @@ const PRODUCTS = [
   },
   {
     id: "everyday-lounge-coord",
+    sku: "CRD-0204-LNG",
+    price: "Rs. 899.00",
     image: "assets/coord-sets/image copy.png",
     images: ["assets/coord-sets/image copy.png"],
     pattern: "plain",
@@ -190,6 +210,8 @@ const PRODUCTS = [
   },
   {
     id: "casual-home-coord",
+    sku: "CRD-0205-CSL",
+    price: "Rs. 799.00",
     image: "assets/coord-sets/casual-home-coord.png",
     images: ["assets/coord-sets/casual-home-coord.png"],
     pattern: "stripes",
@@ -207,6 +229,8 @@ const PRODUCTS = [
   // ---------------- CUSTOMIZED NIGHTIES ----------------
   {
     id: "customized-nighty",
+    sku: "CST-0301-NGT",
+    price: "Rs. 999.00",
     image: "assets/customized/customized-nighty.png",
     images: ["assets/customized/customized-nighty.png"],
     pattern: "plain",
@@ -223,6 +247,8 @@ const PRODUCTS = [
   },
   {
     id: "customized-designer-nighty",
+    sku: "CST-0302-DSG",
+    price: "Rs. 1099.00",
     image: "assets/customized/customized-nighty-2.png",
     images: ["assets/customized/customized-nighty-2.png"],
     pattern: "floral",
@@ -239,6 +265,8 @@ const PRODUCTS = [
   },
   {
     id: "customized-pleated-nighty",
+    sku: "CST-0303-PLT",
+    price: "Rs. 949.00",
     image: "assets/customized/customized-nighty-3.png",
     images: ["assets/customized/customized-nighty-3.png"],
     pattern: "pleated",
@@ -257,6 +285,8 @@ const PRODUCTS = [
   // ---------------- CUSTOMIZED CO-ORD SETS ----------------
   {
     id: "customized-coord-set",
+    sku: "CST-0401-CRD",
+    price: "Rs. 1199.00",
     image: "assets/customized/customized-coord-set.png",
     images: ["assets/customized/customized-coord-set.png"],
     pattern: "plain",
@@ -273,6 +303,8 @@ const PRODUCTS = [
   },
   {
     id: "customized-printed-coord",
+    sku: "CST-0402-PRT",
+    price: "Rs. 1149.00",
     image: "assets/customized/customized-coord-set-2.png",
     images: ["assets/customized/customized-coord-set-2.png"],
     pattern: "dots",
@@ -289,6 +321,8 @@ const PRODUCTS = [
   },
   {
     id: "customized-lounge-coord",
+    sku: "CST-0403-LNG",
+    price: "Rs. 1249.00",
     image: "assets/customized/customized-coord-set-3.png",
     images: ["assets/customized/customized-coord-set-3.png"],
     pattern: "plain",
@@ -307,6 +341,8 @@ const PRODUCTS = [
   // ---------------- GIRLS KIDS (GIRLS ONLY) ----------------
   {
     id: "girls-floral-nighty",
+    sku: "KID-0501-FLR",
+    price: "Rs. 499.00",
     image: "assets/girls-kids/girls-floral-nighty.png",
     images: ["assets/girls-kids/girls-floral-nighty.png"],
     pattern: "floral",
@@ -322,6 +358,8 @@ const PRODUCTS = [
   },
   {
     id: "girls-printed-nighty",
+    sku: "KID-0502-PRT",
+    price: "Rs. 449.00",
     image: "assets/girls-kids/girls-printed-nighty.png",
     images: ["assets/girls-kids/girls-printed-nighty.png"],
     pattern: "floral",
@@ -337,6 +375,8 @@ const PRODUCTS = [
   },
   {
     id: "girls-comfort-set",
+    sku: "KID-0503-CMF",
+    price: "Rs. 549.00",
     image: "assets/girls-kids/girls-comfort-set.png",
     images: ["assets/girls-kids/girls-comfort-set.png"],
     pattern: "plain",
@@ -352,6 +392,8 @@ const PRODUCTS = [
   },
   {
     id: "girls-coord-set",
+    sku: "KID-0504-CRD",
+    price: "Rs. 599.00",
     image: "assets/girls-kids/girls-coord-set.png",
     images: ["assets/girls-kids/girls-coord-set.png"],
     pattern: "dots",
