@@ -41,7 +41,12 @@ const PRODUCTS = [
     sku: "NTY-0101-FLR",
     price: "Rs. 699.00",
     image: "assets/nighties/image.png",
-    images: ["assets/nighties/image.png"],
+    images: [
+      "assets/nighties/image.png",
+      "assets/nighties/image copy.png",
+      "assets/nighties/image copy 2.png",
+      "assets/nighties/image copy 3.png"
+    ],
     pattern: "floral",
     name: "Floral Cotton Nighty",
     category: "nighties",
@@ -58,7 +63,12 @@ const PRODUCTS = [
     sku: "NTY-0102-PRT",
     price: "Rs. 649.00",
     image: "assets/nighties/image copy.png",
-    images: ["assets/nighties/image copy.png"],
+    images: [
+      "assets/nighties/image copy.png",
+      "assets/nighties/image copy 2.png",
+      "assets/nighties/image copy 3.png",
+      "assets/nighties/image copy 5.png"
+    ],
     pattern: "dots",
     name: "Printed Cotton Nighty",
     category: "nighties",
@@ -75,7 +85,12 @@ const PRODUCTS = [
     sku: "NTY-0103-SFT",
     price: "Rs. 799.00",
     image: "assets/nighties/image copy 2.png",
-    images: ["assets/nighties/image copy 2.png"],
+    images: [
+      "assets/nighties/image copy 2.png",
+      "assets/nighties/image copy 3.png",
+      "assets/nighties/image copy 5.png",
+      "assets/nighties/image copy 6.png"
+    ],
     pattern: "plain",
     name: "Soft Comfort Nighty",
     category: "nighties",
@@ -92,7 +107,12 @@ const PRODUCTS = [
     sku: "NTY-0104-ELG",
     price: "Rs. 749.00",
     image: "assets/nighties/image copy 3.png",
-    images: ["assets/nighties/image copy 3.png"],
+    images: [
+      "assets/nighties/image copy 3.png",
+      "assets/nighties/image copy 5.png",
+      "assets/nighties/image copy 6.png",
+      "assets/nighties/image.png"
+    ],
     pattern: "floral",
     name: "Elegant Printed Nighty",
     category: "nighties",
@@ -109,7 +129,12 @@ const PRODUCTS = [
     sku: "NTY-0105-FLD",
     price: "Rs. 899.00",
     image: "assets/nighties/image copy 6.png",
-    images: ["assets/nighties/image copy 6.png"],
+    images: [
+      "assets/nighties/image copy 6.png",
+      "assets/nighties/image copy 5.png",
+      "assets/nighties/image copy 3.png",
+      "assets/nighties/image copy 2.png"
+    ],
     pattern: "floral",
     name: "Floral Night Dress",
     category: "nighties",
@@ -126,7 +151,12 @@ const PRODUCTS = [
     sku: "NTY-0106-EVD",
     price: "Rs. 599.00",
     image: "assets/nighties/image copy 5.png",
-    images: ["assets/nighties/image copy 5.png"],
+    images: [
+      "assets/nighties/image copy 5.png",
+      "assets/nighties/image copy 6.png",
+      "assets/nighties/image copy 3.png",
+      "assets/nighties/image copy.png"
+    ],
     pattern: "plain",
     name: "Everyday Cotton Nightwear",
     category: "nighties",
@@ -145,7 +175,12 @@ const PRODUCTS = [
     sku: "CRD-0201-FLR",
     price: "Rs. 899.00",
     image: "assets/coord-sets/floral-coord-set.png",
-    images: ["assets/coord-sets/floral-coord-set.png"],
+    images: [
+      "assets/coord-sets/floral-coord-set.png",
+      "assets/coord-sets/printed-comfort-coord.png",
+      "assets/coord-sets/image.png",
+      "assets/coord-sets/image copy.png"
+    ],
     pattern: "floral",
     name: "Floral Co-ord Set",
     category: "coord-sets",
@@ -162,7 +197,12 @@ const PRODUCTS = [
     sku: "CRD-0202-PRT",
     price: "Rs. 849.00",
     image: "assets/coord-sets/printed-comfort-coord.png",
-    images: ["assets/coord-sets/printed-comfort-coord.png"],
+    images: [
+      "assets/coord-sets/printed-comfort-coord.png",
+      "assets/coord-sets/image.png",
+      "assets/coord-sets/image copy.png",
+      "assets/coord-sets/casual-home-coord.png"
+    ],
     pattern: "dots",
     name: "Printed Comfort Co-ord",
     category: "coord-sets",
@@ -179,7 +219,12 @@ const PRODUCTS = [
     sku: "CRD-0203-SFT",
     price: "Rs. 949.00",
     image: "assets/coord-sets/image.png",
-    images: ["assets/coord-sets/image.png"],
+    images: [
+      "assets/coord-sets/image.png",
+      "assets/coord-sets/image copy.png",
+      "assets/coord-sets/casual-home-coord.png",
+      "assets/coord-sets/floral-coord-set.png"
+    ],
     pattern: "plain",
     name: "Soft Cotton Co-ord",
     category: "coord-sets",
@@ -196,7 +241,12 @@ const PRODUCTS = [
     sku: "CRD-0204-LNG",
     price: "Rs. 899.00",
     image: "assets/coord-sets/image copy.png",
-    images: ["assets/coord-sets/image copy.png"],
+    images: [
+      "assets/coord-sets/image copy.png",
+      "assets/coord-sets/casual-home-coord.png",
+      "assets/coord-sets/floral-coord-set.png",
+      "assets/coord-sets/printed-comfort-coord.png"
+    ],
     pattern: "plain",
     name: "Everyday Lounge Co-ord",
     category: "coord-sets",
@@ -213,7 +263,12 @@ const PRODUCTS = [
     sku: "CRD-0205-CSL",
     price: "Rs. 799.00",
     image: "assets/coord-sets/casual-home-coord.png",
-    images: ["assets/coord-sets/casual-home-coord.png"],
+    images: [
+      "assets/coord-sets/casual-home-coord.png",
+      "assets/coord-sets/floral-coord-set.png",
+      "assets/coord-sets/printed-comfort-coord.png",
+      "assets/coord-sets/image.png"
+    ],
     pattern: "stripes",
     name: "Casual Home Co-ord",
     category: "coord-sets",
@@ -232,7 +287,12 @@ const PRODUCTS = [
     sku: "CST-0301-NGT",
     price: "Rs. 999.00",
     image: "assets/customized/customized-nighty.png",
-    images: ["assets/customized/customized-nighty.png"],
+    images: [
+      "assets/customized/customized-nighty.png",
+      "assets/customized/customized-nighty-2.png",
+      "assets/customized/customized-nighty-3.png",
+      "assets/customized/banner-nighties.png"
+    ],
     pattern: "plain",
     name: "Customized Nighty",
     category: "customized-nighties",
@@ -250,7 +310,12 @@ const PRODUCTS = [
     sku: "CST-0302-DSG",
     price: "Rs. 1099.00",
     image: "assets/customized/customized-nighty-2.png",
-    images: ["assets/customized/customized-nighty-2.png"],
+    images: [
+      "assets/customized/customized-nighty-2.png",
+      "assets/customized/customized-nighty-3.png",
+      "assets/customized/banner-nighties.png",
+      "assets/customized/customized-nighty.png"
+    ],
     pattern: "floral",
     name: "Customized Designer Nighty",
     category: "customized-nighties",
@@ -268,7 +333,12 @@ const PRODUCTS = [
     sku: "CST-0303-PLT",
     price: "Rs. 949.00",
     image: "assets/customized/customized-nighty-3.png",
-    images: ["assets/customized/customized-nighty-3.png"],
+    images: [
+      "assets/customized/customized-nighty-3.png",
+      "assets/customized/banner-nighties.png",
+      "assets/customized/customized-nighty.png",
+      "assets/customized/customized-nighty-2.png"
+    ],
     pattern: "pleated",
     name: "Customized Pleated Nighty",
     category: "customized-nighties",
@@ -288,7 +358,12 @@ const PRODUCTS = [
     sku: "CST-0401-CRD",
     price: "Rs. 1199.00",
     image: "assets/customized/customized-coord-set.png",
-    images: ["assets/customized/customized-coord-set.png"],
+    images: [
+      "assets/customized/customized-coord-set.png",
+      "assets/customized/customized-coord-set-2.png",
+      "assets/customized/customized-coord-set-3.png",
+      "assets/customized/banner-coord-sets.png"
+    ],
     pattern: "plain",
     name: "Customized Co-ord Set",
     category: "customized-coord-sets",
@@ -306,7 +381,12 @@ const PRODUCTS = [
     sku: "CST-0402-PRT",
     price: "Rs. 1149.00",
     image: "assets/customized/customized-coord-set-2.png",
-    images: ["assets/customized/customized-coord-set-2.png"],
+    images: [
+      "assets/customized/customized-coord-set-2.png",
+      "assets/customized/customized-coord-set-3.png",
+      "assets/customized/banner-coord-sets.png",
+      "assets/customized/customized-coord-set.png"
+    ],
     pattern: "dots",
     name: "Customized Printed Co-ord",
     category: "customized-coord-sets",
@@ -324,7 +404,12 @@ const PRODUCTS = [
     sku: "CST-0403-LNG",
     price: "Rs. 1249.00",
     image: "assets/customized/customized-coord-set-3.png",
-    images: ["assets/customized/customized-coord-set-3.png"],
+    images: [
+      "assets/customized/customized-coord-set-3.png",
+      "assets/customized/banner-coord-sets.png",
+      "assets/customized/customized-coord-set.png",
+      "assets/customized/customized-coord-set-2.png"
+    ],
     pattern: "plain",
     name: "Customized Lounge Twin-Set",
     category: "customized-coord-sets",
@@ -344,7 +429,12 @@ const PRODUCTS = [
     sku: "KID-0501-FLR",
     price: "Rs. 499.00",
     image: "assets/girls-kids/girls-floral-nighty.png",
-    images: ["assets/girls-kids/girls-floral-nighty.png"],
+    images: [
+      "assets/girls-kids/girls-floral-nighty.png",
+      "assets/girls-kids/girls-printed-nighty.png",
+      "assets/girls-kids/banner-girls-nightwear.png",
+      "assets/girls-kids/girls-comfort-set.png"
+    ],
     pattern: "floral",
     name: "Girls' Floral Nighty",
     category: "girls-nightwear",
@@ -361,7 +451,12 @@ const PRODUCTS = [
     sku: "KID-0502-PRT",
     price: "Rs. 449.00",
     image: "assets/girls-kids/girls-printed-nighty.png",
-    images: ["assets/girls-kids/girls-printed-nighty.png"],
+    images: [
+      "assets/girls-kids/girls-printed-nighty.png",
+      "assets/girls-kids/banner-girls-nightwear.png",
+      "assets/girls-kids/girls-floral-nighty.png",
+      "assets/girls-kids/girls-coord-set.png"
+    ],
     pattern: "floral",
     name: "Girls' Printed Nighty",
     category: "girls-nightwear",
@@ -378,7 +473,12 @@ const PRODUCTS = [
     sku: "KID-0503-CMF",
     price: "Rs. 549.00",
     image: "assets/girls-kids/girls-comfort-set.png",
-    images: ["assets/girls-kids/girls-comfort-set.png"],
+    images: [
+      "assets/girls-kids/girls-comfort-set.png",
+      "assets/girls-kids/girls-coord-set.png",
+      "assets/girls-kids/banner-girls-comfort.png",
+      "assets/girls-kids/girls-floral-nighty.png"
+    ],
     pattern: "plain",
     name: "Girls' Comfort Set",
     category: "girls-comfort-wear",
@@ -395,7 +495,12 @@ const PRODUCTS = [
     sku: "KID-0504-CRD",
     price: "Rs. 599.00",
     image: "assets/girls-kids/girls-coord-set.png",
-    images: ["assets/girls-kids/girls-coord-set.png"],
+    images: [
+      "assets/girls-kids/girls-coord-set.png",
+      "assets/girls-kids/banner-girls-comfort.png",
+      "assets/girls-kids/girls-comfort-set.png",
+      "assets/girls-kids/girls-printed-nighty.png"
+    ],
     pattern: "dots",
     name: "Girls' Co-ord Set",
     category: "girls-comfort-wear",

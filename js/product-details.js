@@ -44,35 +44,56 @@ function renderProductDetails(){
 
   const mainArtContainer = document.getElementById("pd-main-art");
   const thumbsContainer = document.getElementById("pd-thumbnails");
+  let currentImageIndex = 0;
 
-  function renderMainImage(imgSrc){
+  function updateGalleryView(index){
+    if(galleryImages.length === 0) return;
+    currentImageIndex = (index + galleryImages.length) % galleryImages.length;
+    const imgSrc = galleryImages[currentImageIndex];
+
     if(mainArtContainer){
-      if(imgSrc){
-        mainArtContainer.innerHTML = `<div class="art-frame art-${product.art || 1} pd-main-frame"><img src="${imgSrc}" alt="${product.name}"></div>`;
-      } else {
-        mainArtContainer.innerHTML = artFrameHTML(product, "pd-main-frame");
-      }
+      mainArtContainer.innerHTML = `
+        <div class="art-frame art-${product.art || 1} pd-main-frame">
+          <img src="${imgSrc}" alt="${product.name} view ${currentImageIndex + 1}">
+          ${galleryImages.length > 1 ? `
+            <button class="gallery-nav prev" id="pd-prev-btn" aria-label="Previous view">&#10094;</button>
+            <button class="gallery-nav next" id="pd-next-btn" aria-label="Next view">&#10095;</button>
+            <div class="gallery-counter">${currentImageIndex + 1} / ${galleryImages.length}</div>
+          ` : ''}
+        </div>
+      `;
+
+      const prevBtn = document.getElementById("pd-prev-btn");
+      const nextBtn = document.getElementById("pd-next-btn");
+      if(prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); updateGalleryView(currentImageIndex - 1); });
+      if(nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); updateGalleryView(currentImageIndex + 1); });
+    }
+
+    if(thumbsContainer){
+      thumbsContainer.querySelectorAll(".thumb-btn").forEach((btn, idx) => {
+        if(idx === currentImageIndex){
+          btn.classList.add("active");
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          btn.classList.remove("active");
+        }
+      });
     }
   }
 
-  // Initial main image
-  renderMainImage(galleryImages[0] || null);
-
-  // Render Thumbnails if more than 1 image exists for this product
+  // Render Thumbnails
   if(thumbsContainer){
     if(galleryImages.length > 1){
       thumbsContainer.innerHTML = galleryImages.map((img, idx) => `
-        <button class="thumb-btn ${idx === 0 ? 'active' : ''}" data-src="${img}">
-          <img src="${img}" alt="${product.name} view ${idx + 1}">
+        <button class="thumb-btn ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+          <img src="${img}" alt="${product.name} thumbnail ${idx + 1}">
         </button>
       `).join("");
 
       thumbsContainer.querySelectorAll(".thumb-btn").forEach(btn => {
         btn.addEventListener("click", () => {
-          thumbsContainer.querySelectorAll(".thumb-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          const src = btn.getAttribute("data-src");
-          renderMainImage(src);
+          const idx = parseInt(btn.getAttribute("data-index"), 10);
+          updateGalleryView(idx);
         });
       });
       thumbsContainer.style.display = "flex";
@@ -80,6 +101,9 @@ function renderProductDetails(){
       thumbsContainer.style.display = "none";
     }
   }
+
+  // Initial gallery view render
+  updateGalleryView(0);
 
   // --- Product Information Fields ---
   const skuEl = document.getElementById("pd-sku-val");

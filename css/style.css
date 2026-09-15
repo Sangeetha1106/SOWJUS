@@ -676,15 +676,44 @@ section{ padding: 78px 0; }
 
 .pd-gallery-container{ display:flex; flex-direction:column; gap:16px; width:100%; }
 .pd-main-art{ width:100%; border-radius: var(--radius-m); overflow:hidden; }
-.pd-main-frame{ width:100%; height:460px; display:flex; align-items:center; justify-content:center; background:#ffffff; border:1px solid var(--line-purple); border-radius: var(--radius-m); }
+.pd-main-frame{ 
+  width:100%; height:460px; display:flex; align-items:center; justify-content:center; 
+  background:#ffffff; border:1px solid var(--line-purple); border-radius: var(--radius-m); 
+  position: relative; overflow: hidden;
+}
 .pd-main-frame img{ width:100%; height:100%; object-fit:contain; object-position:center; padding:16px; transition: transform .3s ease; }
 
-.pd-thumbnails{ display:flex; gap:12px; flex-wrap:wrap; margin-top:4px; }
+.gallery-nav{
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(4px);
+  border: 1px solid var(--line-purple); color: var(--plum-deep);
+  font-size: 1.1rem; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transition: all .2s ease; z-index: 5;
+}
+.gallery-nav:hover{
+  background: var(--maroon-deep); color: #ffffff; border-color: var(--maroon-deep);
+  transform: translateY(-50%) scale(1.08);
+}
+.gallery-nav.prev{ left: 12px; }
+.gallery-nav.next{ right: 12px; }
+
+.gallery-counter{
+  position: absolute; bottom: 12px; right: 14px;
+  background: rgba(42, 9, 21, 0.75); color: #FFFDF9;
+  font-size: .75rem; font-weight: 600; padding: 4px 10px;
+  border-radius: 999px; backdrop-filter: blur(4px);
+  letter-spacing: .05em; z-index: 5;
+}
+
+.pd-thumbnails{ display:flex; gap:12px; flex-wrap:wrap; margin-top:4px; overflow-x: auto; padding-bottom: 4px; }
 .thumb-btn{
   width: 76px; height: 86px; border-radius: var(--radius-s);
   border: 2px solid var(--line-purple); background: #ffffff;
   padding: 4px; cursor: pointer; transition: all .2s ease;
-  overflow: hidden; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .thumb-btn img{ width:100%; height:100%; object-fit:contain; }
 .thumb-btn:hover, .thumb-btn.active{ border-color: var(--maroon); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(60,14,31,0.12); }
