@@ -6,7 +6,16 @@
 
 function renderProductDetails(){
   const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
+  let id = params.get("id");
+  if (!id) {
+    // Fallback: check if id was passed in path or hash
+    const pathParts = window.location.pathname.split('/');
+    const lastPart = pathParts[pathParts.length - 1];
+    if (lastPart && lastPart !== "product-details" && lastPart !== "product-details.html") {
+      id = lastPart;
+    }
+  }
+
   const product = id ? getProductById(id) : null;
   const wrap = document.getElementById("pd-wrap");
   const notFound = document.getElementById("pd-not-found");
@@ -16,6 +25,7 @@ function renderProductDetails(){
     if(notFound) notFound.style.display = "block";
     return;
   }
+  if(wrap) wrap.style.display = "grid";
   if(notFound) notFound.style.display = "none";
 
   document.title = `${product.name} — Sowju's Comfort Wear`;
@@ -210,6 +220,17 @@ function renderProductDetails(){
 
     const enquireBtn = document.getElementById("pd-enquire-btn");
     if(enquireBtn) enquireBtn.href = buildWhatsAppLink(msg);
+  }
+
+  // Add to Cart / Enquire handler
+  const addToCartBtn = document.getElementById("pd-add-to-cart-btn");
+  if(addToCartBtn){
+    addToCartBtn.addEventListener("click", () => {
+      const enquireBtn = document.getElementById("pd-enquire-btn");
+      if(enquireBtn && enquireBtn.href){
+        window.open(enquireBtn.href, "_blank");
+      }
+    });
   }
 
   // Initial Link Update
