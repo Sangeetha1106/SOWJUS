@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/product-details", "destination": "/product-details.html" },
+    { "source": "/women", "destination": "/women.html" },
+    { "source": "/kids", "destination": "/kids.html" },
+    { "source": "/nighties", "destination": "/nighties.html" },
+    { "source": "/coord-sets", "destination": "/coord-sets.html" },
+    { "source": "/customized-wear", "destination": "/customized-wear.html" },
+    { "source": "/new-arrivals", "destination": "/new-arrivals.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/contact", "destination": "/contact.html" }
+  ]
+}
