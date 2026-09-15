@@ -39,7 +39,12 @@ function renderProductDetails(){
     }
   }
 
-  const product = id ? getProductById(id) : null;
+  let product = id ? getProductById(id) : null;
+  if(!product && !id && typeof PRODUCTS !== "undefined" && PRODUCTS.length > 0){
+    // Default fallback to first product if user opens /product-details without any query param
+    product = PRODUCTS[0];
+  }
+
   const wrap = document.getElementById("pd-wrap");
   const notFound = document.getElementById("pd-not-found");
 
