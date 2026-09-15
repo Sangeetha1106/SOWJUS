@@ -95,21 +95,15 @@ function artFrameHTML(product, extraClass){
 
 /* ---------------- product card + category card templates ---------------- */
 function productCardHTML(product){
-  const priceLine = `<div class="pc-price">Price on Enquiry</div>`;
   return `
   <article class="product-card reveal">
-    <a href="product-details.html?id=${product.id}" aria-label="View ${product.name}">
+    <a href="product-details.html?id=${product.id}" class="pc-image-link" aria-label="View ${product.name}">
       ${artFrameHTML(product)}
     </a>
     <div class="pc-body">
-      <span class="pc-cat">${CATEGORY_LABELS[product.category]}</span>
-      <h3 class="pc-name">${product.name}</h3>
-      <p class="pc-desc">${product.description}</p>
-      <span class="pc-sizes"><b>Sizes:</b> ${product.sizes.join(", ")}</span>
-      ${priceLine}
+      <h3 class="pc-name"><a href="product-details.html?id=${product.id}">${product.name}</a></h3>
       <div class="pc-actions">
-        <a class="btn btn-ghost btn-sm" href="product-details.html?id=${product.id}">View Details</a>
-        <a class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener" href="${buildWhatsAppLink(enquiryMessageFor(product))}">Enquire Now</a>
+        <a class="btn btn-outline btn-sm btn-block" href="product-details.html?id=${product.id}">View Details</a>
       </div>
     </div>
   </article>`;
