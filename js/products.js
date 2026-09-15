@@ -20,6 +20,12 @@
    ========================================================= */
 
 const CATEGORY_LABELS = {
+  "Nighties": "Nighties",
+  "Co-ord Sets": "Co-ord Sets",
+  "Customized Nighties": "Customized Nighties",
+  "Customized Co-ord Sets": "Customized Co-ord Sets",
+  "Girls' Nightwear": "Girls' Nightwear",
+  "Girls' Comfort Wear": "Girls' Comfort Wear",
   "nighties": "Nighties",
   "coord-sets": "Co-ord Sets",
   "customized-nighties": "Customized Nighties",

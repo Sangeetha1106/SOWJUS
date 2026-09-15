@@ -146,16 +146,26 @@
   const searchQuery = params.get("q");
   const titleEl = document.getElementById("page-title");
 
-  // Normalize category parameter
-  let selectedCategory = rawCat;
-  if(selectedCategory === "customized-nighty") selectedCategory = "customized-nighties";
-  if(selectedCategory === "customized-coord") selectedCategory = "customized-coord-sets";
+  // Category slug/string map normalization
+  const SLUG_MAP = {
+    "nighties": "nighties",
+    "Nighties": "nighties",
+    "coord-sets": "coord-sets",
+    "Co-ord Sets": "coord-sets",
+    "customized-nighties": "customized-nighties",
+    "customized-nighty": "customized-nighties",
+    "Customized Nighties": "customized-nighties",
+    "customized-coord-sets": "customized-coord-sets",
+    "customized-coord": "customized-coord-sets",
+    "Customized Co-ord Sets": "customized-coord-sets"
+  };
 
+  let selectedCategory = rawCat ? (SLUG_MAP[rawCat] || rawCat) : null;
   let baseProducts = [];
 
   if(selectedCategory && CATEGORY_LABELS[selectedCategory]){
     if(titleEl) titleEl.textContent = CATEGORY_LABELS[selectedCategory];
-    // STRICT CATEGORY FILTERING — ONLY PRODUCTS MATCHING THE EXACT CATEGORY
+    // STRICT EXACT CATEGORY FILTERING — SHOW ONLY PRODUCTS BELONGING TO THIS CATEGORY
     baseProducts = PRODUCTS.filter(p => p.category === selectedCategory);
   } else if(searchQuery){
     if(titleEl) titleEl.textContent = `Search: "${searchQuery}"`;
