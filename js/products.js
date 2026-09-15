@@ -548,3 +548,17 @@ function searchProducts(term, cat){
     (CATEGORY_LABELS[p.category] && CATEGORY_LABELS[p.category].toLowerCase().includes(term))
   );
 }
+
+function parsePrice(priceStr){
+  if(typeof priceStr === "number") return priceStr;
+  if(!priceStr) return 0;
+  const numStr = String(priceStr).replace(/[^0-9.]/g, "");
+  const num = parseFloat(numStr);
+  return isNaN(num) ? 0 : num;
+}
+
+function formatPrice(amount){
+  const num = typeof amount === "number" ? amount : parsePrice(amount);
+  return "Rs. " + num.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+

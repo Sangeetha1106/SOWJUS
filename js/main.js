@@ -199,4 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
   observeReveals();
   setFooterYear();
+  if (typeof updateNavbarCartBadge === "function") {
+    updateNavbarCartBadge();
+  }
 });

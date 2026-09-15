@@ -253,11 +253,25 @@ function renderProductDetails(){
   const addToCartBtn = document.getElementById("pd-add-to-cart-btn");
   if(addToCartBtn){
     addToCartBtn.addEventListener("click", () => {
-      const enquireBtn = document.getElementById("pd-enquire-btn");
-      if(enquireBtn && enquireBtn.href){
-        window.open(enquireBtn.href, "_blank");
+      if(typeof addToCart === "function"){
+        addToCart(product.id, currentQty, selectedSize);
+        showToast(`Added ${product.name} (Qty: ${currentQty}) to your cart!`);
       }
     });
+  }
+
+  function showToast(message) {
+    let toast = document.querySelector(".cart-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "cart-toast";
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span>${message}</span>`;
+    toast.classList.add("show");
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
   }
 
   // Initial Link Update

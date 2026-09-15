@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Details — Sowju's Comfort Wear</title>
-<meta name="description" content="Product details — Price on Enquiry. Enquire directly on WhatsApp, no online payment.">
+<title>Shopping Cart — Sowju's Comfort Wear</title>
+<meta name="description" content="View your shopping cart items, update quantities, and proceed to checkout at Sowju's Comfort Wear.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -67,75 +67,64 @@
 
 <section class="page-header">
   <div class="container">
-    <div class="breadcrumb" id="pd-breadcrumb">
-      <a href="index.html">Home</a> / <a href="women.html">Women</a> / <span id="pd-breadcrumb-name">Product</span>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> / <span>Shopping Cart</span>
     </div>
+    <h1 style="margin-top:10px;">Your Shopping Cart</h1>
   </div>
 </section>
 
-<section style="padding-top:30px;">
+<section class="cart-section">
   <div class="container">
 
-    <div id="pd-not-found" class="empty-state" style="display:none;">
-      <h3>We couldn't find that product</h3>
-      <p>It may have been moved or removed. Browse the full collection instead.</p>
-      <a href="women.html" class="btn btn-primary" style="margin-top:16px;">Browse Women's Collection</a>
+    <!-- Empty Cart View -->
+    <div id="cart-empty" class="empty-cart-wrap" style="display:none;">
+      <div class="empty-cart-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </div>
+      <h2>Your cart is empty</h2>
+      <p style="color:#666; margin:10px 0 24px;">Explore our comfortable collection and find something you love.</p>
+      <a href="women.html" class="btn btn-primary btn-lg">Continue Shopping</a>
     </div>
 
-    <div id="pd-wrap" class="pd-grid">
-      <!-- LEFT: IMAGE GALLERY -->
-      <div class="pd-gallery-container">
-        <div id="pd-main-art" class="pd-main-art"></div>
-        <div id="pd-thumbnails" class="pd-thumbnails"></div>
+    <!-- Filled Cart View -->
+    <div id="cart-content" class="cart-layout" style="display:none;">
+      <div class="cart-table-card">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body">
+            <!-- Rows rendered dynamically by JS -->
+          </tbody>
+        </table>
       </div>
 
-      <!-- RIGHT: PRODUCT INFORMATION -->
-      <div class="pd-info">
-        <h1 id="pd-name"></h1>
-        <div class="pd-sku-bar">
-          <span class="pd-sku">SKU: <span id="pd-sku-val">NTY-0101-FLR</span></span>
+      <div class="cart-summary-card">
+        <h3>Cart Summary</h3>
+        <div class="summary-row">
+          <span>Total Items:</span>
+          <span id="summary-items-count">0</span>
         </div>
-        <div class="pd-price-row">
-          <span class="pd-price" id="pd-price-val">Rs. 699.00</span>
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="summary-subtotal">Rs. 0.00</span>
         </div>
-
-        <div class="pd-block" id="pd-sizes-block">
-          <div class="size-head-row">
-            <span class="label-title">Size: <b id="pd-selected-size-label">M</b></span>
-          </div>
-          <div class="swatch-row-box" id="pd-sizes"></div>
+        <div class="summary-row total-row">
+          <span>Cart Total:</span>
+          <span id="summary-grand-total">Rs. 0.00</span>
         </div>
-
-        <div class="pd-block">
-          <span class="label-title">Quantity</span>
-          <div class="quantity-selector">
-            <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">-</button>
-            <input type="text" id="qty-input" value="1" readonly aria-label="Quantity">
-            <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
-          </div>
-        </div>
-
-        <p id="pd-description" class="pd-intro-text"></p>
-
-        <div class="pd-block" id="pd-features-block">
-          <h4>Product Highlights</h4>
-          <ul class="feature-list" id="pd-features"></ul>
-        </div>
-
-        <div class="pd-actions" style="display:flex; flex-direction:column; gap:12px;">
-          <button id="pd-add-to-cart-btn" class="btn btn-primary btn-lg btn-block">Add to Cart</button>
-          <a id="pd-enquire-btn" class="btn btn-whatsapp btn-lg btn-block" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+        <div class="cart-actions">
+          <a href="checkout.html" class="btn btn-primary btn-lg btn-block">Proceed to Checkout</a>
+          <a href="women.html" class="btn btn-ghost btn-block">Continue Shopping</a>
         </div>
       </div>
-    </div>
-
-    <div id="pd-related-section" style="margin-top:80px;">
-      <div class="stitch-divider"></div>
-      <div class="section-head reveal">
-        <span class="tag">You May Also Like</span>
-        <h2>Explore More Styles</h2>
-      </div>
-      <div class="product-grid" id="pd-related-grid"></div>
     </div>
 
   </div>
@@ -152,9 +141,10 @@
     </div>
     <div>
       <h4>Shop</h4>
-      <a href="nighties.html">Nighties</a>
-      <a href="coord-sets.html">Co-ord Sets</a>
-      <a href="customized-wear.html">Customized Wear</a>
+      <a href="women.html?category=nighties">Nighties</a>
+      <a href="women.html?category=coord-sets">Co-ord Sets</a>
+      <a href="women.html?category=customized-nighties">Customized Nighties</a>
+      <a href="women.html?category=customized-coord-sets">Customized Co-ord Sets</a>
       <a href="kids.html">Girls' Kids Collection</a>
       <a href="new-arrivals.html">New Arrivals</a>
     </div>
@@ -182,6 +172,89 @@
 <script src="js/products.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/main.js"></script>
-<script src="js/product-details.js"></script>
+<script>
+function renderCartPage() {
+  const cart = getCart();
+  const emptyEl = document.getElementById("cart-empty");
+  const contentEl = document.getElementById("cart-content");
+  const tbody = document.getElementById("cart-items-body");
+
+  if (!cart || cart.length === 0) {
+    if (emptyEl) emptyEl.style.display = "block";
+    if (contentEl) contentEl.style.display = "none";
+    return;
+  }
+
+  if (emptyEl) emptyEl.style.display = "none";
+  if (contentEl) contentEl.style.display = "grid";
+
+  let bodyHTML = "";
+  let subtotalSum = 0;
+
+  cart.forEach((item, index) => {
+    const product = getProductById(item.productId);
+    if (!product) return;
+
+    const unitPriceNum = parsePrice(product.price);
+    const itemSubtotal = unitPriceNum * item.quantity;
+    subtotalSum += itemSubtotal;
+
+    const imgSrc = product.image || (product.images && product.images[0]) || 'assets/logo/logo.png';
+
+    bodyHTML += `
+      <tr>
+        <td>
+          <div class="cart-item-info">
+            <img src="${imgSrc}" alt="${product.name}" class="cart-item-thumb">
+            <div class="cart-item-details">
+              <h4><a href="product-details.html?id=${product.id}">${product.name}</a></h4>
+              <div class="cart-meta">Size: <strong>${item.size || 'Free Size'}</strong></div>
+            </div>
+          </div>
+        </td>
+        <td style="font-weight:600; color:var(--maroon-deep);">${formatPrice(unitPriceNum)}</td>
+        <td>
+          <div class="cart-qty-ctrl">
+            <button onclick="handleQtyChange(${index}, ${item.quantity - 1})" aria-label="Decrease quantity">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="handleQtyChange(${index}, ${item.quantity + 1})" aria-label="Increase quantity">+</button>
+          </div>
+        </td>
+        <td style="font-weight:700; color:var(--maroon);">${formatPrice(itemSubtotal)}</td>
+        <td>
+          <button class="btn-remove-item" onclick="handleRemoveItem(${index})">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            Remove
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  if (tbody) tbody.innerHTML = bodyHTML;
+
+  const count = getCartCount();
+  const countEl = document.getElementById("summary-items-count");
+  const subtotalEl = document.getElementById("summary-subtotal");
+  const grandTotalEl = document.getElementById("summary-grand-total");
+
+  if (countEl) countEl.textContent = count;
+  if (subtotalEl) subtotalEl.textContent = formatPrice(subtotalSum);
+  if (grandTotalEl) grandTotalEl.textContent = formatPrice(subtotalSum);
+}
+
+function handleQtyChange(index, newQty) {
+  if (newQty < 1) return;
+  updateCartItemQuantity(index, newQty);
+  renderCartPage();
+}
+
+function handleRemoveItem(index) {
+  removeCartItem(index);
+  renderCartPage();
+}
+
+document.addEventListener("DOMContentLoaded", renderCartPage);
+</script>
 </body>
 </html>
