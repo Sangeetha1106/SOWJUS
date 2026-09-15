@@ -70,6 +70,20 @@
 
 <section style="padding-top:24px;">
   <div class="container">
+    <div class="catalogue-toolbar">
+      <div class="field-group">
+        <label for="kids-search">Search:</label>
+        <input type="search" id="kids-search" placeholder="Search girls' collection..." aria-label="Search collection">
+      </div>
+      <div class="field-group">
+        <label for="kids-sort">Sort By:</label>
+        <select id="kids-sort" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="name-asc">Name: A to Z</option>
+          <option value="name-desc">Name: Z to A</option>
+        </select>
+      </div>
+    </div>
     <div class="product-grid" id="kids-grid"></div>
   </div>
 </section>
@@ -85,9 +99,10 @@
     </div>
     <div>
       <h4>Shop</h4>
-      <a href="nighties.html">Nighties</a>
-      <a href="coord-sets.html">Co-ord Sets</a>
-      <a href="customized-wear.html">Customized Wear</a>
+      <a href="women.html?category=nighties">Nighties</a>
+      <a href="women.html?category=coord-sets">Co-ord Sets</a>
+      <a href="women.html?category=customized-nighties">Customized Nighties</a>
+      <a href="women.html?category=customized-coord-sets">Customized Co-ord Sets</a>
       <a href="kids.html">Girls' Kids Collection</a>
       <a href="new-arrivals.html">New Arrivals</a>
     </div>
@@ -127,6 +142,8 @@
   const titleEl = document.getElementById("page-title");
   const pageImgEl = document.getElementById("page-img");
 
+  let baseProducts = [];
+
   if(cat && CATEGORY_LABELS[cat]){
     if(titleEl) titleEl.textContent = CATEGORY_LABELS[cat];
     if(pageImgEl){
@@ -135,11 +152,31 @@
     }
     let targetCat = cat;
     if(cat === "girls-comfort-wear") targetCat = "girls-comfort";
-    renderProductGrid("kids-grid", PRODUCTS.filter(p => p.category === targetCat || p.category === cat));
+    baseProducts = PRODUCTS.filter(p => p.category === targetCat || p.category === cat);
   } else {
     if(titleEl) titleEl.textContent = "Girls' Kids Collection";
-    renderProductGrid("kids-grid", getProductsBySection("girls"));
+    baseProducts = getProductsBySection("girls");
   }
+
+  function applyKidsFilters(){
+    let list = [...baseProducts];
+    const term = (document.getElementById("kids-search")?.value || "").trim().toLowerCase();
+    if(term){
+      list = list.filter(p => p.name.toLowerCase().includes(term) || (p.description && p.description.toLowerCase().includes(term)));
+    }
+    const sortVal = document.getElementById("kids-sort")?.value || "featured";
+    if(sortVal === "name-asc"){
+      list.sort((a,b) => a.name.localeCompare(b.name));
+    } else if(sortVal === "name-desc"){
+      list.sort((a,b) => b.name.localeCompare(a.name));
+    }
+    renderProductGrid("kids-grid", list);
+  }
+
+  document.getElementById("kids-search")?.addEventListener("input", applyKidsFilters);
+  document.getElementById("kids-sort")?.addEventListener("change", applyKidsFilters);
+
+  applyKidsFilters();
 </script>
 </body>
 </html>

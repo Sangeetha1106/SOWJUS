@@ -69,6 +69,31 @@
 
 <section style="padding-top:24px;">
   <div class="container">
+    <div class="catalogue-toolbar">
+      <div class="field-group">
+        <label for="women-search">Search:</label>
+        <input type="search" id="women-search" placeholder="Search in collection..." aria-label="Search collection">
+      </div>
+      <div class="field-group">
+        <label>Size:</label>
+        <div class="chip-row" id="size-filter">
+          <button class="chip active" data-size="all">All</button>
+          <button class="chip" data-size="S">S</button>
+          <button class="chip" data-size="M">M</button>
+          <button class="chip" data-size="L">L</button>
+          <button class="chip" data-size="XL">XL</button>
+          <button class="chip" data-size="XXL">XXL</button>
+        </div>
+      </div>
+      <div class="field-group">
+        <label for="sort-select">Sort By:</label>
+        <select id="sort-select" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="name-asc">Name: A to Z</option>
+          <option value="name-desc">Name: Z to A</option>
+        </select>
+      </div>
+    </div>
     <div class="product-grid" id="women-grid"></div>
   </div>
 </section>
@@ -119,24 +144,68 @@
   const params = new URLSearchParams(window.location.search);
   const categoryParam = params.get("category") || params.get("cat");
   const searchQuery = params.get("q");
-
   const titleEl = document.getElementById("page-title");
+
+  let baseProducts = [];
 
   if(searchQuery){
     if(titleEl) titleEl.textContent = `Search: "${searchQuery}"`;
-    renderProductGrid("women-grid", searchProducts(searchQuery));
+    baseProducts = searchProducts(searchQuery);
+    const searchInput = document.getElementById("women-search");
+    if(searchInput) searchInput.value = searchQuery;
   } else if(categoryParam && CATEGORY_LABELS[categoryParam]){
     if(titleEl) titleEl.textContent = CATEGORY_LABELS[categoryParam];
-    
     let targetCat = categoryParam;
     if(categoryParam === "customized-nighties") targetCat = "customized-nighty";
     if(categoryParam === "customized-coord-sets") targetCat = "customized-coord";
-    
-    renderProductGrid("women-grid", PRODUCTS.filter(p => p.category === targetCat || p.category === categoryParam));
+    baseProducts = PRODUCTS.filter(p => p.category === targetCat || p.category === categoryParam);
   } else {
     if(titleEl) titleEl.textContent = "Women's Collection";
-    renderProductGrid("women-grid", PRODUCTS.filter(p => WOMEN_CATS.includes(p.category)));
+    baseProducts = PRODUCTS.filter(p => WOMEN_CATS.includes(p.category));
   }
+
+  let selectedSize = "all";
+
+  function applyFiltersAndSort(){
+    let list = [...baseProducts];
+    
+    // Live Search input filter
+    const term = (document.getElementById("women-search")?.value || "").trim().toLowerCase();
+    if(term){
+      list = list.filter(p => p.name.toLowerCase().includes(term) || (p.description && p.description.toLowerCase().includes(term)));
+    }
+
+    // Size filter chip
+    if(selectedSize !== "all"){
+      list = list.filter(p => p.sizes && p.sizes.some(s => s.toLowerCase().includes(selectedSize.toLowerCase())));
+    }
+
+    // Sort
+    const sortVal = document.getElementById("sort-select")?.value || "featured";
+    if(sortVal === "name-asc"){
+      list.sort((a,b) => a.name.localeCompare(b.name));
+    } else if(sortVal === "name-desc"){
+      list.sort((a,b) => b.name.localeCompare(a.name));
+    }
+
+    renderProductGrid("women-grid", list);
+  }
+
+  // Event Listeners
+  document.getElementById("women-search")?.addEventListener("input", applyFiltersAndSort);
+  document.getElementById("sort-select")?.addEventListener("change", applyFiltersAndSort);
+
+  document.querySelectorAll("#size-filter .chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#size-filter .chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      selectedSize = btn.getAttribute("data-size");
+      applyFiltersAndSort();
+    });
+  });
+
+  // Initial Render
+  applyFiltersAndSort();
 </script>
 </body>
 </html>
