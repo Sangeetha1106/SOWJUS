@@ -517,7 +517,9 @@ const PRODUCTS = [
 /* ---------------- helpers used across pages ---------------- */
 
 function getProductById(id){
-  return PRODUCTS.find(p => p.id === id);
+  if(!id) return null;
+  const cleanId = String(id).trim().toLowerCase();
+  return PRODUCTS.find(p => p.id.toLowerCase() === cleanId || p.id === id);
 }
 
 function getProductsByCategory(cat){

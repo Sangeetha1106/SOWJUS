@@ -5,17 +5,28 @@
    ========================================================= */
 
 function renderProductDetails(){
-  // Extract product ID from URL query string (?id=...) or path
-  const params = new URLSearchParams(window.location.search);
-  let id = params.get("id");
+  // Extract product ID from URL query string (?id=...), URLSearchParams, hash, or path
+  const urlObj = new URL(window.location.href);
+  let id = urlObj.searchParams.get("id");
   
   if (!id) {
-    // Check if parameter was passed without key or alternate query name
-    for (const [key, val] of params.entries()) {
-      if (key && !val && getProductById(key)) {
+    // Check all query parameters in case URL formatted as ?product-id or ?id
+    for (const [key, val] of urlObj.searchParams.entries()) {
+      if (val && getProductById(val)) {
+        id = val;
+        break;
+      }
+      if (key && getProductById(key)) {
         id = key;
         break;
       }
+    }
+  }
+
+  if (!id && window.location.hash) {
+    const hashId = window.location.hash.replace('#', '').trim();
+    if (getProductById(hashId)) {
+      id = hashId;
     }
   }
   
