@@ -14,31 +14,29 @@
 <header class="navbar">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-mark">S</span>
-      <span>Sowju's Comfort Wear<br><small>COMFORT FOR EVERY MOMENT</small></span>
+      <img src="assets/logo/logo.png" alt="Sowju's Comfort Wear Logo" class="brand-logo">
+      <span>Sowju's Comfort Wear</span>
     </a>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li class="has-dropdown">
+        <li class="has-dropdown active">
           <a href="women.html">Women</a>
           <ul class="dropdown">
-            <li><a href="nighties.html">Nighties</a></li>
-            <li><a href="coord-sets.html">Co-ord Sets</a></li>
-            <li><a href="customized-wear.html?type=Customized%20Nighty">Customized Nighties</a></li>
-            <li><a href="customized-wear.html?type=Customized%20Co-ord%20Set">Customized Co-ord Sets</a></li>
+            <li><a href="women.html?category=nighties">Nighties</a></li>
+            <li><a href="women.html?category=coord-sets">Co-ord Sets</a></li>
+            <li><a href="women.html?category=customized-nighties">Customized Nighties</a></li>
+            <li><a href="women.html?category=customized-coord-sets">Customized Co-ord Sets</a></li>
           </ul>
         </li>
         <li class="has-dropdown">
           <a href="kids.html">Kids</a>
           <ul class="dropdown">
-            <li><a href="kids.html?cat=girls-nightwear">Girls' Nightwear</a></li>
-            <li><a href="kids.html?cat=girls-comfort">Girls' Comfort Wear</a></li>
-            <li><a href="kids.html?cat=girls-coord">Girls' Co-ord Sets</a></li>
+            <li><a href="kids.html?category=girls-nightwear">Girls' Nightwear</a></li>
+            <li><a href="kids.html?category=girls-comfort-wear">Girls' Comfort Wear</a></li>
           </ul>
         </li>
         <li><a href="new-arrivals.html">New Arrivals</a></li>
-        <li class="active"><a href="customized-wear.html">Customized Wear</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -64,20 +62,14 @@
 <div class="overlay-dim"></div>
 
 <section class="page-header">
-  <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a> / Customized Wear</div>
-    <h1>Customize Your Comfort</h1>
-    <p>Made just for you — share your preferred size, colour and design, and we'll get in touch on WhatsApp with the details.</p>
+  <div class="container page-header-wrap">
+    <img id="page-img" class="page-header-img" src="assets/customized/customized-nighty.png" alt="Customized Category" style="display:none;">
+    <h1 id="page-title">Customized Wear</h1>
   </div>
 </section>
 
-<section style="padding-top:0;">
+<section style="padding-top:24px;">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="tag">Made Just for You</span>
-      <h2>Customized Nighties &amp; Co-ord Sets</h2>
-      <p>Explore customized nighties and co-ord sets designed around your preferred style, colour and requirements.</p>
-    </div>
     <div class="product-grid" id="custom-grid"></div>
   </div>
 </section>
@@ -136,7 +128,10 @@
 <footer>
   <div class="container footer-top">
     <div class="footer-brand">
-      <a href="index.html" class="brand"><span class="brand-mark">S</span><span>Sowju's Comfort Wear</span></a>
+      <a href="index.html" class="brand">
+        <img src="assets/logo/logo.png" alt="Sowju's Comfort Wear Logo" class="brand-logo">
+        <span>Sowju's Comfort Wear</span>
+      </a>
       <p>Comfortable, stylish and affordable everyday wear for women and girls — nighties, co-ord sets and customized pieces.</p>
     </div>
     <div>
@@ -165,20 +160,61 @@
 </footer>
 
 <a class="wa-float" target="_blank" rel="noopener" href="https://wa.me/919789672893?text=Hi%20Sowju's%20Comfort%20Wear%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products." aria-label="Chat on WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.5C8.4 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.285-.143-1.689-.834-1.95-.929-.262-.095-.453-.143-.644.143-.19.285-.737.929-.904 1.119-.167.19-.333.214-.618.071-.285-.143-1.205-.444-2.296-1.416-.848-.757-1.421-1.692-1.587-1.977-.166-.285-.018-.439.125-.581.129-.128.285-.333.428-.5.143-.167.19-.285.285-.476.095-.19.048-.357-.024-.5-.071-.143-.644-1.552-.882-2.122-.231-.555-.466-.48-.644-.489-.167-.008-.357-.01-.548-.01s-.5.071-.762.357c-.262.285-1 1.023-1 2.498 0 1.475 1.071 2.898 1.219 3.099.148.202 2.109 3.221 5.11 4.516.714.309 1.272.494 1.706.632.717.228 1.369.196 1.884.119.574-.086 1.689-.69 1.927-1.356.238-.667.238-1.238.167-1.356-.07-.119-.261-.19-.546-.333z"/></svg>
 </a>
 
 <script src="js/products.js"></script>
 <script src="js/main.js"></script>
 <script src="js/enquiry.js"></script>
 <script>
-  renderProductGrid("custom-grid", PRODUCTS.filter(p => p.customized));
+  const CUSTOM_CATEGORY_INFO = {
+    "Customized Nighty": {
+      title: "Customized Nighties",
+      image: "assets/customized/banner-nighties.png",
+      slug: "customized-nighty"
+    },
+    "Customized Co-ord Set": {
+      title: "Customized Co-ord Sets",
+      image: "assets/customized/banner-coord-sets.png",
+      slug: "customized-coord"
+    },
+    "customized-nighties": {
+      title: "Customized Nighties",
+      image: "assets/customized/banner-nighties.png",
+      slug: "customized-nighty",
+      formVal: "Customized Nighty"
+    },
+    "customized-coord-sets": {
+      title: "Customized Co-ord Sets",
+      image: "assets/customized/banner-coord-sets.png",
+      slug: "customized-coord",
+      formVal: "Customized Co-ord Set"
+    }
+  };
 
   const params = new URLSearchParams(window.location.search);
-  const type = params.get("type");
-  if(type){
+  const key = params.get("category") || params.get("cat") || params.get("type");
+  const pageTitleEl = document.getElementById("page-title");
+  const pageImgEl = document.getElementById("page-img");
+
+  if(key && CUSTOM_CATEGORY_INFO[key]){
+    const info = CUSTOM_CATEGORY_INFO[key];
+    
+    if(pageTitleEl){
+      pageTitleEl.textContent = info.title;
+    }
+    if(pageImgEl){
+      pageImgEl.src = info.image;
+      pageImgEl.style.display = "block";
+    }
+
+    const formVal = info.formVal || key;
     const sel = document.getElementById("c-type");
-    for(const opt of sel.options){ if(opt.value === type){ sel.value = type; } }
+    if(sel){ for(const opt of sel.options){ if(opt.value === formVal){ sel.value = formVal; } } }
+
+    renderProductGrid("custom-grid", PRODUCTS.filter(p => p.category === info.slug));
+  } else {
+    renderProductGrid("custom-grid", PRODUCTS.filter(p => p.customized));
   }
 </script>
 </body>

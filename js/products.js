@@ -20,20 +20,23 @@
    ========================================================= */
 
 const CATEGORY_LABELS = {
-  "nighties": "Women's Nighties",
-  "coord-sets": "Women's Co-ord Sets",
-  "customized-nighty": "Customized Nighty",
-  "customized-coord": "Customized Co-ord Set",
+  "nighties": "Nighties",
+  "coord-sets": "Co-ord Sets",
+  "customized-nighties": "Customized Nighties",
+  "customized-nighty": "Customized Nighties",
+  "customized-coord-sets": "Customized Co-ord Sets",
+  "customized-coord": "Customized Co-ord Sets",
   "girls-nightwear": "Girls' Nightwear",
+  "girls-comfort-wear": "Girls' Comfort Wear",
   "girls-comfort": "Girls' Comfort Wear",
-  "girls-coord": "Girls' Co-ord Set"
+  "girls-coord": "Girls' Co-ord Sets"
 };
 
 const PRODUCTS = [
   // ---------------- WOMEN — NIGHTIES ----------------
   {
     id: "floral-cotton-nighty",
-    image: "assets/nighties/floral-cotton-nighty.png",
+    image: "assets/nighties/image.png",
     pattern: "floral",
     name: "Floral Cotton Nighty",
     category: "nighties",
@@ -47,7 +50,7 @@ const PRODUCTS = [
   },
   {
     id: "printed-cotton-nighty",
-    image: "assets/nighties/printed-cotton-nighty.png",
+    image: "assets/nighties/image copy.png",
     pattern: "dots",
     name: "Printed Cotton Nighty",
     category: "nighties",
@@ -61,7 +64,7 @@ const PRODUCTS = [
   },
   {
     id: "soft-comfort-nighty",
-    image: "assets/nighties/soft-comfort-nighty.png",
+    image: "assets/nighties/image copy 2.png",
     pattern: "plain",
     name: "Soft Comfort Nighty",
     category: "nighties",
@@ -75,7 +78,7 @@ const PRODUCTS = [
   },
   {
     id: "elegant-printed-nighty",
-    image: "assets/nighties/elegant-printed-nighty.png",
+    image: "assets/nighties/image copy 3.png",
     pattern: "floral",
     name: "Elegant Printed Nighty",
     category: "nighties",
@@ -89,7 +92,7 @@ const PRODUCTS = [
   },
   {
     id: "floral-night-dress",
-    image: "assets/nighties/floral-night-dress.png",
+    image: "assets/nighties/image copy 6.png",
     pattern: "floral",
     name: "Floral Night Dress",
     category: "nighties",
@@ -103,7 +106,7 @@ const PRODUCTS = [
   },
   {
     id: "everyday-cotton-nightwear",
-    image: "assets/nighties/everyday-cotton-nightwear.png",
+    image: "assets/nighties/image copy 5.png",
     pattern: "plain",
     name: "Everyday Cotton Nightwear",
     category: "nighties",
@@ -147,7 +150,7 @@ const PRODUCTS = [
   },
   {
     id: "soft-cotton-coord",
-    image: "assets/coord-sets/soft-cotton-coord.png",
+    image: "assets/coord-sets/image.png",
     pattern: "plain",
     name: "Soft Cotton Co-ord",
     category: "coord-sets",
@@ -161,7 +164,7 @@ const PRODUCTS = [
   },
   {
     id: "everyday-lounge-coord",
-    image: "assets/coord-sets/everyday-lounge-coord.png",
+    image: "assets/coord-sets/image copy.png",
     pattern: "plain",
     name: "Everyday Lounge Co-ord",
     category: "coord-sets",
@@ -188,7 +191,7 @@ const PRODUCTS = [
     isNew: false
   },
 
-  // ---------------- CUSTOMIZED ----------------
+  // ---------------- CUSTOMIZED NIGHTIES ----------------
   {
     id: "customized-nighty",
     image: "assets/customized/customized-nighty.png",
@@ -205,6 +208,38 @@ const PRODUCTS = [
     customized: true
   },
   {
+    id: "customized-designer-nighty",
+    image: "assets/customized/customized-nighty-2.png",
+    pattern: "floral",
+    name: "Customized Designer Nighty",
+    category: "customized-nighty",
+    section: "women",
+    art: 1, icon: "dress",
+    sizes: ["Made to your size"],
+    colours: ["Custom print & pattern"],
+    description: "Tailored designer nighty crafted with custom embroidery or specific neckline preferences.",
+    features: ["Custom embroidery & necklines","Breathable premium fabrics","Tailored to exact measurements","WhatsApp order assistance"],
+    isNew: true,
+    customized: true
+  },
+  {
+    id: "customized-pleated-nighty",
+    image: "assets/customized/customized-nighty-3.png",
+    pattern: "pleated",
+    name: "Customized Pleated Nighty",
+    category: "customized-nighty",
+    section: "women",
+    art: 4, icon: "dress",
+    sizes: ["Made to your size"],
+    colours: ["Pastel & Solid Shades"],
+    description: "Custom pleated cotton nighty designed for extra elegance and loose comfort.",
+    features: ["Pleated bust style","Custom sleeve lengths","Soft cotton weave","Direct WhatsApp consultation"],
+    isNew: false,
+    customized: true
+  },
+
+  // ---------------- CUSTOMIZED CO-ORD SETS ----------------
+  {
     id: "customized-coord-set",
     image: "assets/customized/customized-coord-set.png",
     pattern: "plain",
@@ -216,6 +251,36 @@ const PRODUCTS = [
     colours: ["Your preferred colour"],
     description: "A co-ord set designed to your preferred colour, print and fit. Tell us what you have in mind on WhatsApp.",
     features: ["Custom fit","Your preferred fabric & print","Personal styling notes welcome","Direct WhatsApp consultation"],
+    isNew: false,
+    customized: true
+  },
+  {
+    id: "customized-printed-coord",
+    image: "assets/customized/customized-coord-set-2.png",
+    pattern: "dots",
+    name: "Customized Printed Co-ord",
+    category: "customized-coord",
+    section: "women",
+    art: 5, icon: "coord",
+    sizes: ["Made to your size"],
+    colours: ["Custom printed options"],
+    description: "Tailored short-sleeve top and trousers set customized with your choice of print pattern.",
+    features: ["Tailored top & pants","Custom print selection","Elastic waist comfort","WhatsApp styling assistance"],
+    isNew: true,
+    customized: true
+  },
+  {
+    id: "customized-lounge-coord",
+    image: "assets/customized/customized-coord-set-3.png",
+    pattern: "plain",
+    name: "Customized Lounge Twin-Set",
+    category: "customized-coord",
+    section: "women",
+    art: 2, icon: "coord",
+    sizes: ["Made to your size"],
+    colours: ["Soft Pastel Tones"],
+    description: "Button-up lounge shirt and wide-leg trouser set made to your exact measurements.",
+    features: ["Button-down top option","Relaxed fit wide trousers","Breathable knit blend","Made to order"],
     isNew: false,
     customized: true
   },
