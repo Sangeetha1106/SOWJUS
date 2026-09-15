@@ -95,15 +95,17 @@ function artFrameHTML(product, extraClass){
 
 /* ---------------- product card + category card templates ---------------- */
 function productCardHTML(product){
+  const priceText = product.price || "Rs. 699.00";
   return `
   <article class="product-card reveal">
     <a href="product-details.html?id=${product.id}" class="pc-image-link" aria-label="View ${product.name}">
       ${artFrameHTML(product)}
+      <span class="pc-offer-badge">BUY 2 GET 100 OFF</span>
     </a>
     <div class="pc-body">
       <h3 class="pc-name"><a href="product-details.html?id=${product.id}">${product.name}</a></h3>
-      <div class="pc-actions">
-        <a class="btn btn-outline btn-sm btn-block" href="product-details.html?id=${product.id}">View Details</a>
+      <div class="pc-price-wrap">
+        <span class="pc-price">${priceText}</span>
       </div>
     </div>
   </article>`;
