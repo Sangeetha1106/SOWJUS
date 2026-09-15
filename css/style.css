@@ -192,16 +192,20 @@ section{ padding: 78px 0; }
   color:#fff; font-size: 1.1rem;
 }
 .brand .brand-logo{
-  height: 56px;
+  height: 64px;
   width: auto;
   object-fit: contain;
   border-radius: 50%;
-  box-shadow: 0 3px 10px rgba(124, 39, 67, 0.15);
-  transition: transform .25s ease;
+  background: #ffffff;
+  padding: 2px;
+  border: 1px solid rgba(124, 39, 67, 0.2);
+  box-shadow: 0 4px 12px rgba(60, 14, 31, 0.12);
+  transition: transform .25s ease, box-shadow .25s ease;
   flex-shrink: 0;
 }
 .brand:hover .brand-logo{
-  transform: scale(1.05);
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(60, 14, 31, 0.2);
 }
 .brand small{
   display:block;
