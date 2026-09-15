@@ -70,16 +70,6 @@
 <section style="padding-top:24px;">
   <div class="container">
     <div class="catalogue-toolbar">
-      <div class="field-group full-width" style="width:100%; border-bottom:1px solid var(--line-purple); padding-bottom:12px; margin-bottom:12px;">
-        <label>Category:</label>
-        <div class="chip-row" id="category-filter">
-          <button class="chip active" data-cat="all">All Women's</button>
-          <button class="chip" data-cat="nighties">Nighties</button>
-          <button class="chip" data-cat="coord-sets">Co-ord Sets</button>
-          <button class="chip" data-cat="customized-nighties">Customized Nighties</button>
-          <button class="chip" data-cat="customized-coord-sets">Customized Co-ord Sets</button>
-        </div>
-      </div>
       <div class="field-group">
         <label for="women-search">Search:</label>
         <input type="search" id="women-search" placeholder="Search in collection..." aria-label="Search collection">
@@ -169,26 +159,16 @@
     "Customized Co-ord Sets": "customized-coord-sets"
   };
 
-  let selectedCategory = rawCat ? (SLUG_MAP[rawCat] || rawCat) : "all";
+  let selectedCategory = rawCat ? (SLUG_MAP[rawCat] || rawCat) : null;
   let selectedSize = "all";
 
-  // Sync active state on category filter chips
-  function syncCategoryChips(){
-    document.querySelectorAll("#category-filter .chip").forEach(c => {
-      if(c.getAttribute("data-cat") === selectedCategory){
-        c.classList.add("active");
-      } else {
-        c.classList.remove("active");
-      }
-    });
-
-    if(selectedCategory !== "all" && CATEGORY_LABELS[selectedCategory]){
-      if(titleEl) titleEl.textContent = CATEGORY_LABELS[selectedCategory];
-    } else if(searchQuery){
-      if(titleEl) titleEl.textContent = `Search: "${searchQuery}"`;
-    } else {
-      if(titleEl) titleEl.textContent = "Women's Collection";
-    }
+  // Update Page Title
+  if(selectedCategory && CATEGORY_LABELS[selectedCategory]){
+    if(titleEl) titleEl.textContent = CATEGORY_LABELS[selectedCategory];
+  } else if(searchQuery){
+    if(titleEl) titleEl.textContent = `Search: "${searchQuery}"`;
+  } else {
+    if(titleEl) titleEl.textContent = "Women's Collection";
   }
 
   function getBaseCategoryProducts(){
@@ -227,15 +207,6 @@
     renderProductGrid("women-grid", list, "No products available in this category.");
   }
 
-  // Category filter click events
-  document.querySelectorAll("#category-filter .chip").forEach(btn => {
-    btn.addEventListener("click", () => {
-      selectedCategory = btn.getAttribute("data-cat");
-      syncCategoryChips();
-      applyFiltersAndSort();
-    });
-  });
-
   // Search & Sort listeners
   document.getElementById("women-search")?.addEventListener("input", applyFiltersAndSort);
   document.getElementById("sort-select")?.addEventListener("change", applyFiltersAndSort);
@@ -249,8 +220,7 @@
     });
   });
 
-  // Initial Sync & Render
-  syncCategoryChips();
+  // Initial Render
   applyFiltersAndSort();
 </script>
 </body>
