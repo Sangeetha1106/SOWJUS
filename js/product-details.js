@@ -245,13 +245,40 @@ function renderProductDetails(){
     const thumbsContainer = document.getElementById("pd-thumbnails");
     const carouselWrapper = document.querySelector(".pd-carousel-wrapper");
 
-    // Render Main Art Container
+    let activeProductIndex = thumbProducts.findIndex(p => p.id === product.id);
+    if (activeProductIndex === -1) activeProductIndex = 0;
+
+    // Render Main Art Container with Left & Right carousel buttons on the main image
     if (mainArtContainer) {
       mainArtContainer.innerHTML = `
         <div class="art-frame art-${product.art || 1} pd-main-frame">
           <img id="pd-main-img" src="${product.image}" alt="${product.name}">
+          ${thumbProducts.length > 1 ? `
+            <button class="gallery-nav prev" id="pd-main-prev-btn" type="button" aria-label="Previous product">&#10094;</button>
+            <button class="gallery-nav next" id="pd-main-next-btn" type="button" aria-label="Next product">&#10095;</button>
+            <div class="gallery-counter">${activeProductIndex + 1} / ${thumbProducts.length}</div>
+          ` : ''}
         </div>
       `;
+
+      const mainPrevBtn = document.getElementById("pd-main-prev-btn");
+      const mainNextBtn = document.getElementById("pd-main-next-btn");
+      if (mainPrevBtn) {
+        mainPrevBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const prevIndex = (activeProductIndex - 1 + thumbProducts.length) % thumbProducts.length;
+          loadActiveProduct(thumbProducts[prevIndex]);
+        });
+      }
+      if (mainNextBtn) {
+        mainNextBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const nextIndex = (activeProductIndex + 1) % thumbProducts.length;
+          loadActiveProduct(thumbProducts[nextIndex]);
+        });
+      }
     }
 
     // Render Category Product Thumbnails in Carousel
