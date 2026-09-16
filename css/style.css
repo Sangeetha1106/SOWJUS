@@ -770,15 +770,80 @@ section{ padding: 78px 0; }
   letter-spacing: .05em; z-index: 5;
 }
 
-.pd-thumbnails{ display:flex; gap:12px; flex-wrap:wrap; margin-top:4px; overflow-x: auto; padding-bottom: 4px; }
-.thumb-btn{
-  width: 76px; height: 86px; border-radius: var(--radius-s);
-  border: 2px solid var(--line-purple); background: #ffffff;
-  padding: 4px; cursor: pointer; transition: all .2s ease;
-  overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+.pd-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
 }
-.thumb-btn img{ width:100%; height:100%; object-fit:contain; }
-.thumb-btn:hover, .thumb-btn.active{ border-color: var(--maroon); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(60,14,31,0.12); }
+.pd-thumbnails-carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  padding: 4px 2px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.pd-thumbnails-carousel::-webkit-scrollbar {
+  display: none;
+}
+.pd-thumbnails-carousel .thumb-btn {
+  flex: 0 0 calc((100% - 30px) / 4);
+  width: calc((100% - 30px) / 4);
+  height: 96px;
+  border-radius: var(--radius-s);
+  border: 2px solid var(--line-purple);
+  background: #ffffff;
+  padding: 4px;
+  cursor: pointer;
+  transition: all .2s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+.pd-thumbnails-carousel .thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 2px;
+}
+.pd-thumbnails-carousel .thumb-btn:hover,
+.pd-thumbnails-carousel .thumb-btn.active {
+  border-color: var(--maroon);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(60,14,31,0.18);
+}
+.pd-carousel-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--line-purple);
+  color: var(--plum-deep);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all .2s ease;
+  z-index: 2;
+}
+.pd-carousel-btn:hover {
+  background: var(--maroon-deep);
+  color: #ffffff;
+  border-color: var(--maroon-deep);
+}
 
 .pd-info{ display:flex; flex-direction:column; gap:8px; }
 .pd-info h1{ font-family: var(--font-head); font-size: clamp(1.8rem, 2.8vw, 2.5rem); margin: 0 0 6px; color: var(--plum-deep); line-height: 1.25; }

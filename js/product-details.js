@@ -237,99 +237,71 @@ function renderProductDetails(){
     // Initial Link Update
     updateWhatsAppLink();
 
-    // --- Product Gallery Thumbnails & Carousel ---
-    // Extract images for THIS product only (max 1 main + 4 extra = 5 images max)
-    let galleryImages = [];
-    if (Array.isArray(product.images) && product.images.length > 0) {
-      galleryImages = Array.from(new Set(product.images.filter(Boolean)));
-    } else if (product.image) {
-      galleryImages = [product.image];
-    }
-    galleryImages = galleryImages.slice(0, 5);
-
-    let activeImageIndex = 0;
+    // --- Bottom 4-Item Product Thumbnail Carousel ---
+    const categoryProducts = getProductsByCategory(product.category);
+    const thumbProducts = (categoryProducts && categoryProducts.length > 0) ? categoryProducts : [product];
 
     const mainArtContainer = document.getElementById("pd-main-art");
     const thumbsContainer = document.getElementById("pd-thumbnails");
-
-    function updateGalleryView(index) {
-      if (index < 0 || index >= galleryImages.length) return;
-      activeImageIndex = index;
-      const currentSrc = galleryImages[activeImageIndex];
-
-      const mainImg = document.getElementById("pd-main-img");
-      if (mainImg) mainImg.src = currentSrc;
-
-      const counter = mainArtContainer ? mainArtContainer.querySelector(".gallery-counter") : null;
-      if (counter) counter.textContent = `${activeImageIndex + 1} / ${galleryImages.length}`;
-
-      if (thumbsContainer) {
-        thumbsContainer.querySelectorAll(".thumb-btn").forEach((btn, idx) => {
-          if (idx === activeImageIndex) {
-            btn.classList.add("active");
-          } else {
-            btn.classList.remove("active");
-          }
-        });
-      }
-    }
+    const carouselWrapper = document.querySelector(".pd-carousel-wrapper");
 
     // Render Main Art Container
     if (mainArtContainer) {
-      const initialSrc = galleryImages[0] || product.image;
       mainArtContainer.innerHTML = `
         <div class="art-frame art-${product.art || 1} pd-main-frame">
-          <img id="pd-main-img" src="${initialSrc}" alt="${product.name}">
-          ${galleryImages.length > 1 ? `
-            <button class="gallery-nav prev" id="pd-prev-btn" type="button" aria-label="Previous image">&#10094;</button>
-            <button class="gallery-nav next" id="pd-next-btn" type="button" aria-label="Next image">&#10095;</button>
-            <div class="gallery-counter">1 / ${galleryImages.length}</div>
-          ` : ''}
+          <img id="pd-main-img" src="${product.image}" alt="${product.name}">
         </div>
       `;
-
-      const prevBtn = document.getElementById("pd-prev-btn");
-      const nextBtn = document.getElementById("pd-next-btn");
-      if (prevBtn) {
-        prevBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          const prevIndex = (activeImageIndex - 1 + galleryImages.length) % galleryImages.length;
-          updateGalleryView(prevIndex);
-        });
-      }
-      if (nextBtn) {
-        nextBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          const nextIndex = (activeImageIndex + 1) % galleryImages.length;
-          updateGalleryView(nextIndex);
-        });
-      }
     }
 
-    // Render Product Gallery Thumbnails (Only if product has > 1 image)
+    // Render Category Product Thumbnails in Carousel
     if (thumbsContainer) {
-      if (galleryImages.length > 1) {
-        thumbsContainer.innerHTML = galleryImages.map((imgSrc, idx) => `
-          <button class="thumb-btn ${idx === 0 ? 'active' : ''}" type="button" data-img-index="${idx}" title="${product.name} View ${idx + 1}">
-            <img src="${imgSrc}" alt="${product.name} thumbnail ${idx + 1}">
+      if (thumbProducts.length > 1) {
+        thumbsContainer.innerHTML = thumbProducts.map(p => `
+          <button class="thumb-btn ${p.id === product.id ? 'active' : ''}" type="button" data-product-id="${p.id}" title="${p.name}">
+            <img src="${p.image}" alt="${p.name}">
           </button>
         `).join("");
 
         thumbsContainer.querySelectorAll(".thumb-btn").forEach(btn => {
           btn.addEventListener("click", (e) => {
             e.preventDefault();
-            const targetIdx = parseInt(btn.getAttribute("data-img-index"), 10);
-            if (!isNaN(targetIdx)) {
-              updateGalleryView(targetIdx);
+            const targetId = btn.getAttribute("data-product-id");
+            const targetProd = getProductById(targetId);
+            if (targetProd && targetProd.id !== product.id) {
+              loadActiveProduct(targetProd);
             }
           });
         });
-        thumbsContainer.style.display = "flex";
+
+        if (carouselWrapper) carouselWrapper.style.display = "flex";
+
+        // Auto-scroll active product into view inside the 4-item carousel
+        setTimeout(() => {
+          const activeBtn = thumbsContainer.querySelector(".thumb-btn.active");
+          if (activeBtn) {
+            activeBtn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+          }
+        }, 150);
       } else {
-        thumbsContainer.style.display = "none";
+        if (carouselWrapper) carouselWrapper.style.display = "none";
       }
+    }
+
+    // Carousel Left/Right navigation buttons
+    const prevNavBtn = document.getElementById("thumb-carousel-prev");
+    const nextNavBtn = document.getElementById("thumb-carousel-next");
+    if (prevNavBtn && thumbsContainer) {
+      prevNavBtn.onclick = (e) => {
+        e.preventDefault();
+        thumbsContainer.scrollBy({ left: -thumbsContainer.clientWidth, behavior: "smooth" });
+      };
+    }
+    if (nextNavBtn && thumbsContainer) {
+      nextNavBtn.onclick = (e) => {
+        e.preventDefault();
+        thumbsContainer.scrollBy({ left: thumbsContainer.clientWidth, behavior: "smooth" });
+      };
     }
 
     // --- Related Products (STRICTLY FROM THE SAME CATEGORY, EXCLUDING ACTIVE PRODUCT) ---
