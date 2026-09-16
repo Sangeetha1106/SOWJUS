@@ -66,7 +66,8 @@
 <div class="overlay-dim"></div>
 
 <section class="page-header">
-  <div class="container">
+  <div class="container page-header-wrap">
+    <img id="page-img" class="page-header-img" src="assets/customized/banner-nighties.png" alt="Category Logo">
     <h1 id="page-title">Women's Collection</h1>
   </div>
 </section>
@@ -226,6 +227,13 @@
     renderProductGrid("women-grid", list, "No products available in this category.");
   }
 
+  const categoryLogoMap = {
+    "Nighties": "assets/customized/banner-nighties.png",
+    "Customized Nighties": "assets/customized/banner-nighties.png",
+    "Co-ord Sets": "assets/customized/banner-coord-sets.png",
+    "Customized Co-ord Sets": "assets/customized/banner-coord-sets.png"
+  };
+
   function updateCategoryState(newCategory){
     selectedCategory = newCategory;
     const displayTitle = selectedCategory 
@@ -233,6 +241,14 @@
       : (searchQuery ? `Search: "${searchQuery}"` : "Nighties");
     if(titleEl) titleEl.textContent = displayTitle;
     document.title = `${displayTitle} — Sowju's Comfort Wear`;
+
+    const imgEl = document.getElementById("page-img");
+    if(imgEl) {
+      const logoSrc = categoryLogoMap[selectedCategory] || categoryLogoMap["Nighties"];
+      imgEl.src = logoSrc;
+      imgEl.style.display = "block";
+    }
+
     document.querySelectorAll("#category-filter .chip").forEach(c => {
       if(c.getAttribute("data-cat") === selectedCategory){
         c.classList.add("active");
