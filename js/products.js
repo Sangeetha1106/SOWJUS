@@ -48,13 +48,10 @@ var PRODUCTS = [
   {
     id: "floral-cotton-nighty",
     sku: "NTY-0101-FLR",
-    price: 699,
+    price: 399,
     image: "assets/nighties/image.png",
     images: [
-      "assets/nighties/image.png",
-      "assets/nighties/image copy.png",
-      "assets/nighties/image copy 2.png",
-      "assets/nighties/image copy 3.png"
+      "assets/nighties/image.png"
     ],
     pattern: "floral",
     name: "Floral Cotton Nighty",
@@ -70,13 +67,10 @@ var PRODUCTS = [
   {
     id: "printed-cotton-nighty",
     sku: "NTY-0102-PRT",
-    price: 649,
+    price: 349,
     image: "assets/nighties/image copy.png",
     images: [
-      "assets/nighties/image copy.png",
-      "assets/nighties/image.png",
-      "assets/nighties/image copy 2.png",
-      "assets/nighties/image copy 3.png"
+      "assets/nighties/image copy.png"
     ],
     pattern: "dots",
     name: "Printed Cotton Nighty",
@@ -92,13 +86,10 @@ var PRODUCTS = [
   {
     id: "soft-comfort-nighty",
     sku: "NTY-0103-SFT",
-    price: 799,
+    price: 449,
     image: "assets/nighties/image copy 2.png",
     images: [
-      "assets/nighties/image copy 2.png",
-      "assets/nighties/image.png",
-      "assets/nighties/image copy.png",
-      "assets/nighties/image copy 3.png"
+      "assets/nighties/image copy 2.png"
     ],
     pattern: "plain",
     name: "Soft Comfort Nighty",
@@ -114,13 +105,10 @@ var PRODUCTS = [
   {
     id: "elegant-printed-nighty",
     sku: "NTY-0104-ELG",
-    price: 749,
+    price: 429,
     image: "assets/nighties/image copy 3.png",
     images: [
-      "assets/nighties/image copy 3.png",
-      "assets/nighties/image.png",
-      "assets/nighties/image copy.png",
-      "assets/nighties/image copy 2.png"
+      "assets/nighties/image copy 3.png"
     ],
     pattern: "floral",
     name: "Elegant Printed Nighty",
@@ -134,21 +122,37 @@ var PRODUCTS = [
     isNew: false
   },
   {
+    id: "casual-floral-nighty",
+    sku: "NTY-0105-CSL",
+    price: 379,
+    image: "assets/nighties/image copy 4.png",
+    images: [
+      "assets/nighties/image copy 4.png"
+    ],
+    pattern: "floral",
+    name: "Casual Floral Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 5, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Lavender Print","Soft Blue"],
+    description: "A light, breezy floral print nighty with an easy A-line fit and comfortable round neckline.",
+    features: ["Breezy cotton blend","Easy A-line fit","Durable stitching","Soft neck binding"],
+    isNew: true
+  },
+  {
     id: "floral-night-dress",
-    sku: "NTY-0105-FLD",
-    price: 899,
+    sku: "NTY-0106-FLD",
+    price: 479,
     image: "assets/nighties/image copy 5.png",
     images: [
-      "assets/nighties/image copy 5.png",
-      "assets/nighties/image copy 6.png",
-      "assets/nighties/image.png",
-      "assets/nighties/image copy.png"
+      "assets/nighties/image copy 5.png"
     ],
     pattern: "floral",
     name: "Floral Night Dress",
     category: "Nighties",
     section: "women",
-    art: 5, icon: "dress",
+    art: 1, icon: "dress",
     sizes: ["S","M","L","XL","XXL"],
     colours: ["Cream","Blush Pink"],
     description: "A flowy night dress with a gentle floral motif, cut long for full coverage and comfort.",
@@ -157,25 +161,459 @@ var PRODUCTS = [
   },
   {
     id: "everyday-cotton-nightwear",
-    sku: "NTY-0106-EVD",
-    price: 599,
+    sku: "NTY-0107-EVD",
+    price: 329,
     image: "assets/nighties/image copy 6.png",
     images: [
-      "assets/nighties/image copy 6.png",
-      "assets/nighties/image copy 5.png",
-      "assets/nighties/image copy 2.png",
-      "assets/nighties/image copy 3.png"
+      "assets/nighties/image copy 6.png"
     ],
     pattern: "plain",
     name: "Everyday Cotton Nightwear",
     category: "Nighties",
     section: "women",
-    art: 1, icon: "dress",
+    art: 2, icon: "dress",
     sizes: ["S","M","L","XL"],
     colours: ["Beige","Rose"],
     description: "Our most everyday piece — simple, soft and dependable for daily comfort wear.",
     features: ["Pure cotton","Minimal, easy styling","Durable stitching","Fits true to size"],
     isNew: false
+  },
+  {
+    id: "printed-home-nighty",
+    sku: "NTY-0108-HOM",
+    price: 399,
+    image: "assets/nighties/image copy 7.png",
+    images: [
+      "assets/nighties/image copy 7.png"
+    ],
+    pattern: "dots",
+    name: "Printed Home Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 3, icon: "dress",
+    sizes: ["M","L","XL","XXL"],
+    colours: ["Navy Print","Teal Pattern"],
+    description: "Stay relaxed all day in this charming printed home nighty designed for maximum ventilation.",
+    features: ["Soft printed weave","Deep side pocket","Wrinkle-resistant","Comfort neckline"],
+    isNew: true
+  },
+  {
+    id: "comfort-fit-nighty",
+    sku: "NTY-0109-CMF",
+    price: 449,
+    image: "assets/nighties/image copy 8.png",
+    images: [
+      "assets/nighties/image copy 8.png"
+    ],
+    pattern: "plain",
+    name: "Comfort Fit Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 4, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Olive Green","Dusty Pink"],
+    description: "Ergonomically cut for complete freedom of movement during sleep or afternoon relaxation.",
+    features: ["Ergonomic fit","Ultra-soft fabric","Non-restrictive sleeves","Easy washing"],
+    isNew: false
+  },
+  {
+    id: "floral-printed-nighty",
+    sku: "NTY-0110-FPR",
+    price: 419,
+    image: "assets/nighties/image copy 9.png",
+    images: [
+      "assets/nighties/image copy 9.png"
+    ],
+    pattern: "floral",
+    name: "Floral Printed Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 5, icon: "dress",
+    sizes: ["S","M","L","XL"],
+    colours: ["Peach Floral","Sky Blue"],
+    description: "Featuring a vibrant floral pattern on soft cotton knit, perfect for summer nights.",
+    features: ["Vibrant print","Breathable knit cotton","Short flutter sleeve","Color-fast dye"],
+    isNew: true
+  },
+  {
+    id: "rose-pattern-nighty",
+    sku: "NTY-0111-RSE",
+    price: 459,
+    image: "assets/nighties/image copy 10.png",
+    images: [
+      "assets/nighties/image copy 10.png"
+    ],
+    pattern: "floral",
+    name: "Rose Pattern Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 1, icon: "dress",
+    sizes: ["M","L","XL","XXL"],
+    colours: ["Rose Red","Ivory"],
+    description: "Classic rose motifs printed over lightweight fabric with delicate neckline piping.",
+    features: ["Delicate piping trim","High grade cotton","Gentle drape","Pocket included"],
+    isNew: false
+  },
+  {
+    id: "classic-cotton-nighty",
+    sku: "NTY-0112-CLS",
+    price: 369,
+    image: "assets/nighties/image copy 11.png",
+    images: [
+      "assets/nighties/image copy 11.png"
+    ],
+    pattern: "plain",
+    name: "Classic Cotton Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 2, icon: "dress",
+    sizes: ["S","M","L","XL"],
+    colours: ["Aqua Blue","Light Gray"],
+    description: "Timeless design with traditional neck detail and effortless everyday comfort.",
+    features: ["Pure breathable cotton","Classic fit","Reinforced seams","Cool handfeel"],
+    isNew: false
+  },
+  {
+    id: "soft-floral-nighty",
+    sku: "NTY-0113-SFL",
+    price: 439,
+    image: "assets/nighties/image copy 12.png",
+    images: [
+      "assets/nighties/image copy 12.png"
+    ],
+    pattern: "floral",
+    name: "Soft Floral Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 3, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Lilac","Mint Green"],
+    description: "Subtle pastel floral prints give this comfortable nighty a serene, peaceful aesthetic.",
+    features: ["Pastel palette","Ultra-gentle texture","Ankle length","Shrink resistant"],
+    isNew: true
+  },
+  {
+    id: "breeze-comfort-nighty",
+    sku: "NTY-0114-BRZ",
+    price: 489,
+    image: "assets/nighties/image copy 13.png",
+    images: [
+      "assets/nighties/image copy 13.png"
+    ],
+    pattern: "plain",
+    name: "Breeze Comfort Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 4, icon: "dress",
+    sizes: ["M","L","XL","XXL"],
+    colours: ["Sky Blue","Coral Pink"],
+    description: "Ultra-light fabric designed to keep you feeling fresh and comfortable all night long.",
+    features: ["Airflow weave","Featherweight feel","Smooth inner seam","Quick dry"],
+    isNew: false
+  },
+  {
+    id: "pastel-printed-nighty",
+    sku: "NTY-0115-PST",
+    price: 389,
+    image: "assets/nighties/image copy 14.png",
+    images: [
+      "assets/nighties/image copy 14.png"
+    ],
+    pattern: "dots",
+    name: "Pastel Printed Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 5, icon: "dress",
+    sizes: ["S","M","L","XL"],
+    colours: ["Soft Yellow","Blush"],
+    description: "Delicate micro-prints on soft pastel cotton, styled for simple loungewear charm.",
+    features: ["Micro-dot print","Soft neckline","Standard length","Easy care"],
+    isNew: false
+  },
+  {
+    id: "traditional-floral-nighty",
+    sku: "NTY-0116-TRD",
+    price: 469,
+    image: "assets/nighties/image copy 15.png",
+    images: [
+      "assets/nighties/image copy 15.png"
+    ],
+    pattern: "floral",
+    name: "Traditional Floral Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 1, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Deep Red","Gold Pattern"],
+    description: "Rich traditional floral prints crafted into a comfortable, full-flared nighty.",
+    features: ["Full flare cut","Traditional print","Sturdy fabric","Side pocket"],
+    isNew: true
+  },
+  {
+    id: "cozy-cotton-nighty",
+    sku: "NTY-0117-CZY",
+    price: 359,
+    image: "assets/nighties/image copy 16.png",
+    images: [
+      "assets/nighties/image copy 16.png"
+    ],
+    pattern: "plain",
+    name: "Cozy Cotton Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 2, icon: "dress",
+    sizes: ["M","L","XL"],
+    colours: ["Warm Beige","Powder Blue"],
+    description: "Cozy and relaxed fit made with 100% natural cotton fibers for sensitive skin.",
+    features: ["Natural cotton","Zero irritation","Soft collar neck","Machine wash safe"],
+    isNew: false
+  },
+  {
+    id: "designer-printed-nighty",
+    sku: "NTY-0118-DSG",
+    price: 499,
+    image: "assets/nighties/image copy 17.png",
+    images: [
+      "assets/nighties/image copy 17.png"
+    ],
+    pattern: "floral",
+    name: "Designer Printed Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 3, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Navy Blue","Magenta"],
+    description: "Contemporary designer print featuring contrast neck borders and relaxed side slits.",
+    features: ["Contrast neck piping","Relaxed side slits","Premium cotton weave","Vibrant colors"],
+    isNew: true
+  },
+  {
+    id: "daily-comfort-nighty",
+    sku: "NTY-0119-DLY",
+    price: 349,
+    image: "assets/nighties/image copy 18.png",
+    images: [
+      "assets/nighties/image copy 18.png"
+    ],
+    pattern: "plain",
+    name: "Daily Comfort Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 4, icon: "dress",
+    sizes: ["S","M","L","XL"],
+    colours: ["Soft Purple","Cream"],
+    description: "Simple, soft, and easy to maintain — your go-to nighty for every evening.",
+    features: ["Lightweight feel","Easy slip-on design","Color stay fabric","Breathable"],
+    isNew: false
+  },
+  {
+    id: "blossom-floral-nighty",
+    sku: "NTY-0120-BLS",
+    price: 429,
+    image: "assets/nighties/image copy 19.png",
+    images: [
+      "assets/nighties/image copy 19.png"
+    ],
+    pattern: "floral",
+    name: "Blossom Floral Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 5, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Blossom Pink","White Floral"],
+    description: "Beautiful blossom flowers across soft cotton, combining graceful style with nighttime comfort.",
+    features: ["Floral print","Relaxed shoulder cut","Pocket detail","Durable cotton"],
+    isNew: true
+  },
+  {
+    id: "serene-cotton-nighty",
+    sku: "NTY-0121-SRN",
+    price: 479,
+    image: "assets/nighties/image copy 20.png",
+    images: [
+      "assets/nighties/image copy 20.png"
+    ],
+    pattern: "plain",
+    name: "Serene Cotton Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 1, icon: "dress",
+    sizes: ["M","L","XL","XXL"],
+    colours: ["Sea Green","Lavender"],
+    description: "Peaceful solid and printed tones for calm, comfortable sleep throughout the night.",
+    features: ["Calming color tones","Loose silhouette","Extra durability","Pre-shrunk fabric"],
+    isNew: false
+  },
+  {
+    id: "maroon-bloom-nighty",
+    sku: "NTY-0122-MRN",
+    price: 439,
+    image: "assets/nighties/image copy 21.png",
+    images: [
+      "assets/nighties/image copy 21.png"
+    ],
+    pattern: "floral",
+    name: "Maroon Bloom Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 2, icon: "dress",
+    sizes: ["S","M","L","XL"],
+    colours: ["Maroon","Wine Floral"],
+    description: "Deep maroon print with elegant leaf details and a comfortable wide neckline.",
+    features: ["Rich maroon shade","Wide neck comfort","Side pocket","Soft texture"],
+    isNew: true
+  },
+  {
+    id: "royal-printed-nighty",
+    sku: "NTY-0123-RYL",
+    price: 489,
+    image: "assets/nighties/image copy 22.png",
+    images: [
+      "assets/nighties/image copy 22.png"
+    ],
+    pattern: "dots",
+    name: "Royal Printed Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 3, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Royal Blue","Navy Dot"],
+    description: "Regal prints crafted on dark hues for a sleek yet cozy nightwear option.",
+    features: ["Royal blue palette","High tensile stitching","Breathable weave","Non-fading"],
+    isNew: false
+  },
+  {
+    id: "botanical-cotton-nighty",
+    sku: "NTY-0124-BTN",
+    price: 419,
+    image: "assets/nighties/image copy 23.png",
+    images: [
+      "assets/nighties/image copy 23.png"
+    ],
+    pattern: "floral",
+    name: "Botanical Cotton Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 4, icon: "dress",
+    sizes: ["M","L","XL"],
+    colours: ["Sage Green","Olive Floral"],
+    description: "Nature-inspired leaf and botanical motifs printed on soft, light cotton fabric.",
+    features: ["Botanical print","Natural feel","Standard size fit","Smooth finish"],
+    isNew: true
+  },
+  {
+    id: "lounge-comfort-nighty",
+    sku: "NTY-0125-LNG",
+    price: 369,
+    image: "assets/nighties/image copy 24.png",
+    images: [
+      "assets/nighties/image copy 24.png"
+    ],
+    pattern: "plain",
+    name: "Lounge Comfort Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 5, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Dusty Blue","Charcoal"],
+    description: "Perfect for morning coffee and late night reading, combining lounging ease with soft fabric.",
+    features: ["Loungewear cut","Free flowing sleeves","Lightweight fabric","Easy maintenance"],
+    isNew: false
+  },
+  {
+    id: "charming-floral-nighty",
+    sku: "NTY-0126-CHM",
+    price: 449,
+    image: "assets/nighties/image copy 25.png",
+    images: [
+      "assets/nighties/image copy 25.png"
+    ],
+    pattern: "floral",
+    name: "Charming Floral Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 1, icon: "dress",
+    sizes: ["S","M","L","XL"],
+    colours: ["Pink Charm","Peach"],
+    description: "Charming floral patterns on skin-friendly cotton, styled for ultimate nighttime relaxation.",
+    features: ["Charming aesthetic","Skin-friendly weave","Side slit for motion","Machine wash"],
+    isNew: true
+  },
+  {
+    id: "graceful-cotton-nighty",
+    sku: "NTY-0127-GRC",
+    price: 399,
+    image: "assets/nighties/image copy 26.png",
+    images: [
+      "assets/nighties/image copy 26.png"
+    ],
+    pattern: "plain",
+    name: "Graceful Cotton Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 2, icon: "dress",
+    sizes: ["M","L","XL","XXL"],
+    colours: ["Beige","Warm Taupe"],
+    description: "Graceful design with subtle contrast hem and comfortable round collar.",
+    features: ["Graceful drape","Contrast hem detail","100% cotton","Durable wear"],
+    isNew: false
+  },
+  {
+    id: "vintage-print-nighty",
+    sku: "NTY-0128-VNT",
+    price: 459,
+    image: "assets/nighties/image copy 27.png",
+    images: [
+      "assets/nighties/image copy 27.png"
+    ],
+    pattern: "dots",
+    name: "Vintage Print Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 3, icon: "dress",
+    sizes: ["S","M","L","XL"],
+    colours: ["Vintage Rust","Ivory Print"],
+    description: "Vintage-inspired print pattern offering classic beauty and all-night breathability.",
+    features: ["Vintage motif","Breathable weave","Sturdy neck border","Pocket included"],
+    isNew: true
+  },
+  {
+    id: "relax-fit-nighty",
+    sku: "NTY-0129-RLX",
+    price: 359,
+    image: "assets/nighties/image copy 28.png",
+    images: [
+      "assets/nighties/image copy 28.png"
+    ],
+    pattern: "plain",
+    name: "Relax Fit Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 4, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Soft Lilac","Slate Gray"],
+    description: "Unrestricted loose fit designed to maximize comfort during sleep.",
+    features: ["Loose relax fit","Light cotton blend","Easy wash and dry","Soft armhole seam"],
+    isNew: false
+  },
+  {
+    id: "delicate-floral-nighty",
+    sku: "NTY-0130-DLC",
+    price: 489,
+    image: "assets/nighties/image copy 29.png",
+    images: [
+      "assets/nighties/image copy 29.png"
+    ],
+    pattern: "floral",
+    name: "Delicate Floral Nighty",
+    category: "Nighties",
+    section: "women",
+    art: 5, icon: "dress",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Rose Gold","Soft Cream"],
+    description: "Finely detailed floral prints on premium cotton fabric for a luxurious touch at bedtime.",
+    features: ["Delicate print detail","Premium cotton touch","Ankle length flare","Color fastness guaranteed"],
+    isNew: true
   },
 
   // ---------------- WOMEN — CO-ORD SETS ----------------
