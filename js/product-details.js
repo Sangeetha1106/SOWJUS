@@ -237,62 +237,92 @@ function renderProductDetails(){
     // Initial Link Update
     updateWhatsAppLink();
 
-    // --- Category Product Thumbnails & Carousel ---
-    // Fetch all products in the same category so each thumbnail represents its own product
-    const categoryProducts = getProductsByCategory(product.category);
-    const thumbProducts = (categoryProducts && categoryProducts.length > 0) ? categoryProducts : [product];
-    
-    let activeProductIndex = thumbProducts.findIndex(p => p.id === product.id);
-    if (activeProductIndex === -1) activeProductIndex = 0;
+    // --- Product Gallery Thumbnails & Carousel ---
+    // Extract images for THIS product only (max 1 main + 4 extra = 5 images max)
+    let galleryImages = [];
+    if (Array.isArray(product.images) && product.images.length > 0) {
+      galleryImages = Array.from(new Set(product.images.filter(Boolean)));
+    } else if (product.image) {
+      galleryImages = [product.image];
+    }
+    galleryImages = galleryImages.slice(0, 5);
+
+    let activeImageIndex = 0;
 
     const mainArtContainer = document.getElementById("pd-main-art");
     const thumbsContainer = document.getElementById("pd-thumbnails");
 
+    function updateGalleryView(index) {
+      if (index < 0 || index >= galleryImages.length) return;
+      activeImageIndex = index;
+      const currentSrc = galleryImages[activeImageIndex];
+
+      const mainImg = document.getElementById("pd-main-img");
+      if (mainImg) mainImg.src = currentSrc;
+
+      const counter = mainArtContainer ? mainArtContainer.querySelector(".gallery-counter") : null;
+      if (counter) counter.textContent = `${activeImageIndex + 1} / ${galleryImages.length}`;
+
+      if (thumbsContainer) {
+        thumbsContainer.querySelectorAll(".thumb-btn").forEach((btn, idx) => {
+          if (idx === activeImageIndex) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+      }
+    }
+
     // Render Main Art Container
-    if(mainArtContainer){
+    if (mainArtContainer) {
+      const initialSrc = galleryImages[0] || product.image;
       mainArtContainer.innerHTML = `
         <div class="art-frame art-${product.art || 1} pd-main-frame">
-          <img id="pd-main-img" src="${product.image}" alt="${product.name}">
-          ${thumbProducts.length > 1 ? `
-            <button class="gallery-nav prev" id="pd-prev-btn" type="button" aria-label="Previous product">&#10094;</button>
-            <button class="gallery-nav next" id="pd-next-btn" type="button" aria-label="Next product">&#10095;</button>
-            <div class="gallery-counter">${activeProductIndex + 1} / ${thumbProducts.length}</div>
+          <img id="pd-main-img" src="${initialSrc}" alt="${product.name}">
+          ${galleryImages.length > 1 ? `
+            <button class="gallery-nav prev" id="pd-prev-btn" type="button" aria-label="Previous image">&#10094;</button>
+            <button class="gallery-nav next" id="pd-next-btn" type="button" aria-label="Next image">&#10095;</button>
+            <div class="gallery-counter">1 / ${galleryImages.length}</div>
           ` : ''}
         </div>
       `;
 
       const prevBtn = document.getElementById("pd-prev-btn");
       const nextBtn = document.getElementById("pd-next-btn");
-      if(prevBtn) prevBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const prevIndex = (activeProductIndex - 1 + thumbProducts.length) % thumbProducts.length;
-        loadActiveProduct(thumbProducts[prevIndex]);
-      });
-      if(nextBtn) nextBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const nextIndex = (activeProductIndex + 1) % thumbProducts.length;
-        loadActiveProduct(thumbProducts[nextIndex]);
-      });
+      if (prevBtn) {
+        prevBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const prevIndex = (activeImageIndex - 1 + galleryImages.length) % galleryImages.length;
+          updateGalleryView(prevIndex);
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const nextIndex = (activeImageIndex + 1) % galleryImages.length;
+          updateGalleryView(nextIndex);
+        });
+      }
     }
 
-    // Render Category Product Thumbnails
-    if(thumbsContainer){
-      if(thumbProducts.length > 1){
-        thumbsContainer.innerHTML = thumbProducts.map((p, idx) => `
-          <button class="thumb-btn ${p.id === product.id ? 'active' : ''}" type="button" data-product-id="${p.id}" title="${p.name}">
-            <img src="${p.image}" alt="${p.name} thumbnail">
+    // Render Product Gallery Thumbnails (Only if product has > 1 image)
+    if (thumbsContainer) {
+      if (galleryImages.length > 1) {
+        thumbsContainer.innerHTML = galleryImages.map((imgSrc, idx) => `
+          <button class="thumb-btn ${idx === 0 ? 'active' : ''}" type="button" data-img-index="${idx}" title="${product.name} View ${idx + 1}">
+            <img src="${imgSrc}" alt="${product.name} thumbnail ${idx + 1}">
           </button>
         `).join("");
 
         thumbsContainer.querySelectorAll(".thumb-btn").forEach(btn => {
           btn.addEventListener("click", (e) => {
             e.preventDefault();
-            const targetId = btn.getAttribute("data-product-id");
-            const targetProd = getProductById(targetId);
-            if(targetProd && targetProd.id !== product.id){
-              loadActiveProduct(targetProd);
+            const targetIdx = parseInt(btn.getAttribute("data-img-index"), 10);
+            if (!isNaN(targetIdx)) {
+              updateGalleryView(targetIdx);
             }
           });
         });

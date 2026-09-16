@@ -623,10 +623,7 @@ var PRODUCTS = [
     price: 899,
     image: "assets/coord-sets/floral-coord-set.png",
     images: [
-      "assets/coord-sets/floral-coord-set.png",
-      "assets/coord-sets/printed-comfort-coord.png",
-      "assets/coord-sets/casual-home-coord.png",
-      "assets/coord-sets/image.png"
+      "assets/coord-sets/floral-coord-set.png"
     ],
     pattern: "floral",
     name: "Floral Co-ord Set",
@@ -645,10 +642,7 @@ var PRODUCTS = [
     price: 849,
     image: "assets/coord-sets/printed-comfort-coord.png",
     images: [
-      "assets/coord-sets/printed-comfort-coord.png",
-      "assets/coord-sets/floral-coord-set.png",
-      "assets/coord-sets/casual-home-coord.png",
-      "assets/coord-sets/image copy.png"
+      "assets/coord-sets/printed-comfort-coord.png"
     ],
     pattern: "dots",
     name: "Printed Comfort Co-ord",
@@ -667,10 +661,7 @@ var PRODUCTS = [
     price: 949,
     image: "assets/coord-sets/casual-home-coord.png",
     images: [
-      "assets/coord-sets/casual-home-coord.png",
-      "assets/coord-sets/floral-coord-set.png",
-      "assets/coord-sets/printed-comfort-coord.png",
-      "assets/coord-sets/image.png"
+      "assets/coord-sets/casual-home-coord.png"
     ],
     pattern: "plain",
     name: "Soft Cotton Co-ord",
@@ -689,10 +680,7 @@ var PRODUCTS = [
     price: 899,
     image: "assets/coord-sets/image.png",
     images: [
-      "assets/coord-sets/image.png",
-      "assets/coord-sets/image copy.png",
-      "assets/coord-sets/floral-coord-set.png",
-      "assets/coord-sets/printed-comfort-coord.png"
+      "assets/coord-sets/image.png"
     ],
     pattern: "plain",
     name: "Everyday Lounge Co-ord",
@@ -711,10 +699,7 @@ var PRODUCTS = [
     price: 799,
     image: "assets/coord-sets/image copy.png",
     images: [
-      "assets/coord-sets/image copy.png",
-      "assets/coord-sets/casual-home-coord.png",
-      "assets/coord-sets/printed-comfort-coord.png",
-      "assets/coord-sets/floral-coord-set.png"
+      "assets/coord-sets/image copy.png"
     ],
     pattern: "stripes",
     name: "Casual Home Co-ord",
@@ -735,10 +720,7 @@ var PRODUCTS = [
     price: 999,
     image: "assets/customized/customized-nighty.png",
     images: [
-      "assets/customized/customized-nighty.png",
-      "assets/customized/customized-nighty-2.png",
-      "assets/customized/customized-nighty-3.png",
-      "assets/customized/banner-nighties.png"
+      "assets/customized/customized-nighty.png"
     ],
     pattern: "plain",
     name: "Customized Nighty",
@@ -758,10 +740,7 @@ var PRODUCTS = [
     price: 1099,
     image: "assets/customized/customized-nighty-2.png",
     images: [
-      "assets/customized/customized-nighty-2.png",
-      "assets/customized/customized-nighty-3.png",
-      "assets/customized/customized-nighty.png",
-      "assets/customized/banner-nighties.png"
+      "assets/customized/customized-nighty-2.png"
     ],
     pattern: "floral",
     name: "Customized Designer Nighty",
@@ -781,10 +760,7 @@ var PRODUCTS = [
     price: 949,
     image: "assets/customized/customized-nighty-3.png",
     images: [
-      "assets/customized/customized-nighty-3.png",
-      "assets/customized/customized-nighty.png",
-      "assets/customized/customized-nighty-2.png",
-      "assets/customized/banner-nighties.png"
+      "assets/customized/customized-nighty-3.png"
     ],
     pattern: "pleated",
     name: "Customized Pleated Nighty",
@@ -806,10 +782,7 @@ var PRODUCTS = [
     price: 1199,
     image: "assets/customized/customized-coord-set.png",
     images: [
-      "assets/customized/customized-coord-set.png",
-      "assets/customized/customized-coord-set-2.png",
-      "assets/customized/customized-coord-set-3.png",
-      "assets/customized/banner-coord-sets.png"
+      "assets/customized/customized-coord-set.png"
     ],
     pattern: "plain",
     name: "Customized Co-ord Set",
@@ -829,10 +802,7 @@ var PRODUCTS = [
     price: 1149,
     image: "assets/customized/customized-coord-set-2.png",
     images: [
-      "assets/customized/customized-coord-set-2.png",
-      "assets/customized/customized-coord-set-3.png",
-      "assets/customized/customized-coord-set.png",
-      "assets/customized/banner-coord-sets.png"
+      "assets/customized/customized-coord-set-2.png"
     ],
     pattern: "dots",
     name: "Customized Printed Co-ord",
@@ -852,10 +822,7 @@ var PRODUCTS = [
     price: 1249,
     image: "assets/customized/customized-coord-set-3.png",
     images: [
-      "assets/customized/customized-coord-set-3.png",
-      "assets/customized/customized-coord-set.png",
-      "assets/customized/customized-coord-set-2.png",
-      "assets/customized/banner-coord-sets.png"
+      "assets/customized/customized-coord-set-3.png"
     ],
     pattern: "plain",
     name: "Customized Lounge Twin-Set",
@@ -877,10 +844,7 @@ var PRODUCTS = [
     price: 499,
     image: "assets/girls-kids/girls-floral-nighty.png",
     images: [
-      "assets/girls-kids/girls-floral-nighty.png",
-      "assets/girls-kids/girls-printed-nighty.png",
-      "assets/girls-kids/girls-comfort-set.png",
-      "assets/girls-kids/girls-coord-set.png"
+      "assets/girls-kids/girls-floral-nighty.png"
     ],
     pattern: "floral",
     name: "Girls' Floral Nighty",
@@ -899,10 +863,7 @@ var PRODUCTS = [
     price: 449,
     image: "assets/girls-kids/girls-printed-nighty.png",
     images: [
-      "assets/girls-kids/girls-printed-nighty.png",
-      "assets/girls-kids/girls-floral-nighty.png",
-      "assets/girls-kids/girls-comfort-set.png",
-      "assets/girls-kids/girls-coord-set.png"
+      "assets/girls-kids/girls-printed-nighty.png"
     ],
     pattern: "floral",
     name: "Girls' Printed Nighty",
@@ -921,10 +882,7 @@ var PRODUCTS = [
     price: 549,
     image: "assets/girls-kids/girls-comfort-set.png",
     images: [
-      "assets/girls-kids/girls-comfort-set.png",
-      "assets/girls-kids/girls-coord-set.png",
-      "assets/girls-kids/girls-floral-nighty.png",
-      "assets/girls-kids/girls-printed-nighty.png"
+      "assets/girls-kids/girls-comfort-set.png"
     ],
     pattern: "plain",
     name: "Girls' Comfort Set",
@@ -943,10 +901,7 @@ var PRODUCTS = [
     price: 599,
     image: "assets/girls-kids/girls-coord-set.png",
     images: [
-      "assets/girls-kids/girls-coord-set.png",
-      "assets/girls-kids/girls-comfort-set.png",
-      "assets/girls-kids/girls-floral-nighty.png",
-      "assets/girls-kids/girls-printed-nighty.png"
+      "assets/girls-kids/girls-coord-set.png"
     ],
     pattern: "dots",
     name: "Girls' Co-ord Set",
