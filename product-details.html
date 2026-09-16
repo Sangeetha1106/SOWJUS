@@ -23,10 +23,10 @@
         <li class="has-dropdown">
           <a href="women.html">Women</a>
           <ul class="dropdown">
-            <li><a href="women.html?category=Nighties">Nighties</a></li>
-            <li><a href="women.html?category=Co-ord%20Sets">Co-ord Sets</a></li>
-            <li><a href="women.html?category=Customized%20Nighties">Customized Nighties</a></li>
-            <li><a href="women.html?category=Customized%20Co-ord%20Sets">Customized Co-ord Sets</a></li>
+            <li><a href="nighties.html">Nighties</a></li>
+            <li><a href="coord-sets.html">Co-ord Sets</a></li>
+            <li><a href="customized-wear.html?category=customized-nighties">Customized Nighties</a></li>
+            <li><a href="customized-wear.html?category=customized-coord-sets">Customized Co-ord Sets</a></li>
           </ul>
         </li>
         <li class="has-dropdown">
@@ -93,17 +93,29 @@
       <div class="pd-info">
         <h1 id="pd-name"></h1>
         <div class="pd-sku-bar">
-          <span class="pd-sku">SKU: <span id="pd-sku-val">NTY-0101-FLR</span></span>
+          <span class="pd-sku">SKU: <span id="pd-sku-val"></span></span>
+          <span id="pd-category-badge" class="badge" style="margin-left:10px; background:var(--dusty-rose-light,#f4e8e8); color:var(--maroon); padding:2px 8px; border-radius:4px; font-size:13px; font-weight:500;"></span>
         </div>
         <div class="pd-price-row">
-          <span class="pd-price" id="pd-price-val">Rs. 699.00</span>
+          <span class="pd-price" id="pd-price-val"></span>
+        </div>
+
+        <div class="pd-block" id="pd-fabric-block" style="display:none; margin-bottom:12px;">
+          <span class="label-title">Fabric: <b id="pd-fabric-val"></b></span>
         </div>
 
         <div class="pd-block" id="pd-sizes-block">
           <div class="size-head-row">
-            <span class="label-title">Size: <b id="pd-selected-size-label">M</b></span>
+            <span class="label-title">Size: <b id="pd-selected-size-label"></b></span>
           </div>
           <div class="swatch-row-box" id="pd-sizes"></div>
+        </div>
+
+        <div class="pd-block" id="pd-colours-block">
+          <div class="size-head-row">
+            <span class="label-title">Colour: <b id="pd-selected-color-label"></b></span>
+          </div>
+          <div class="swatch-row-box" id="pd-colours"></div>
         </div>
 
         <div class="pd-block">

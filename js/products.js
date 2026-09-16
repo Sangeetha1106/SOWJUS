@@ -19,7 +19,7 @@
    until real photos are supplied — see assets/README notes.
    ========================================================= */
 
-const CATEGORY_LABELS = {
+var CATEGORY_LABELS = {
   "Nighties": "Nighties",
   "Co-ord Sets": "Co-ord Sets",
   "Customized Nighties": "Customized Nighties",
@@ -27,19 +27,28 @@ const CATEGORY_LABELS = {
   "Girls' Nightwear": "Girls' Nightwear",
   "Girls' Comfort Wear": "Girls' Comfort Wear",
   "nighties": "Nighties",
+  "nighty": "Nighties",
+  "co-ord-sets": "Co-ord Sets",
   "coord-sets": "Co-ord Sets",
+  "coord-set": "Co-ord Sets",
+  "co-ord": "Co-ord Sets",
+  "coord": "Co-ord Sets",
   "customized-nighties": "Customized Nighties",
+  "customized-nighty": "Customized Nighties",
+  "customized-co-ord-sets": "Customized Co-ord Sets",
   "customized-coord-sets": "Customized Co-ord Sets",
+  "customized-coord": "Customized Co-ord Sets",
   "girls-nightwear": "Girls' Nightwear",
   "girls-comfort-wear": "Girls' Comfort Wear"
 };
+if (typeof window !== "undefined") { window.CATEGORY_LABELS = CATEGORY_LABELS; }
 
-const PRODUCTS = [
+var PRODUCTS = [
   // ---------------- WOMEN — NIGHTIES ----------------
   {
     id: "floral-cotton-nighty",
     sku: "NTY-0101-FLR",
-    price: "Rs. 699.00",
+    price: 699,
     image: "assets/nighties/image.png",
     images: [
       "assets/nighties/image.png",
@@ -61,13 +70,13 @@ const PRODUCTS = [
   {
     id: "printed-cotton-nighty",
     sku: "NTY-0102-PRT",
-    price: "Rs. 649.00",
+    price: 649,
     image: "assets/nighties/image copy.png",
     images: [
       "assets/nighties/image copy.png",
+      "assets/nighties/image.png",
       "assets/nighties/image copy 2.png",
-      "assets/nighties/image copy 3.png",
-      "assets/nighties/image copy 5.png"
+      "assets/nighties/image copy 3.png"
     ],
     pattern: "dots",
     name: "Printed Cotton Nighty",
@@ -83,13 +92,13 @@ const PRODUCTS = [
   {
     id: "soft-comfort-nighty",
     sku: "NTY-0103-SFT",
-    price: "Rs. 799.00",
+    price: 799,
     image: "assets/nighties/image copy 2.png",
     images: [
       "assets/nighties/image copy 2.png",
-      "assets/nighties/image copy 3.png",
-      "assets/nighties/image copy 5.png",
-      "assets/nighties/image copy 6.png"
+      "assets/nighties/image.png",
+      "assets/nighties/image copy.png",
+      "assets/nighties/image copy 3.png"
     ],
     pattern: "plain",
     name: "Soft Comfort Nighty",
@@ -105,13 +114,13 @@ const PRODUCTS = [
   {
     id: "elegant-printed-nighty",
     sku: "NTY-0104-ELG",
-    price: "Rs. 749.00",
+    price: 749,
     image: "assets/nighties/image copy 3.png",
     images: [
       "assets/nighties/image copy 3.png",
-      "assets/nighties/image copy 5.png",
-      "assets/nighties/image copy 6.png",
-      "assets/nighties/image.png"
+      "assets/nighties/image.png",
+      "assets/nighties/image copy.png",
+      "assets/nighties/image copy 2.png"
     ],
     pattern: "floral",
     name: "Elegant Printed Nighty",
@@ -127,13 +136,13 @@ const PRODUCTS = [
   {
     id: "floral-night-dress",
     sku: "NTY-0105-FLD",
-    price: "Rs. 899.00",
-    image: "assets/nighties/image copy 6.png",
+    price: 899,
+    image: "assets/nighties/image copy 5.png",
     images: [
-      "assets/nighties/image copy 6.png",
       "assets/nighties/image copy 5.png",
-      "assets/nighties/image copy 3.png",
-      "assets/nighties/image copy 2.png"
+      "assets/nighties/image copy 6.png",
+      "assets/nighties/image.png",
+      "assets/nighties/image copy.png"
     ],
     pattern: "floral",
     name: "Floral Night Dress",
@@ -149,13 +158,13 @@ const PRODUCTS = [
   {
     id: "everyday-cotton-nightwear",
     sku: "NTY-0106-EVD",
-    price: "Rs. 599.00",
-    image: "assets/nighties/image copy 5.png",
+    price: 599,
+    image: "assets/nighties/image copy 6.png",
     images: [
-      "assets/nighties/image copy 5.png",
       "assets/nighties/image copy 6.png",
-      "assets/nighties/image copy 3.png",
-      "assets/nighties/image copy.png"
+      "assets/nighties/image copy 5.png",
+      "assets/nighties/image copy 2.png",
+      "assets/nighties/image copy 3.png"
     ],
     pattern: "plain",
     name: "Everyday Cotton Nightwear",
@@ -173,13 +182,13 @@ const PRODUCTS = [
   {
     id: "floral-coord-set",
     sku: "CRD-0201-FLR",
-    price: "Rs. 899.00",
+    price: 899,
     image: "assets/coord-sets/floral-coord-set.png",
     images: [
       "assets/coord-sets/floral-coord-set.png",
       "assets/coord-sets/printed-comfort-coord.png",
-      "assets/coord-sets/image.png",
-      "assets/coord-sets/image copy.png"
+      "assets/coord-sets/casual-home-coord.png",
+      "assets/coord-sets/image.png"
     ],
     pattern: "floral",
     name: "Floral Co-ord Set",
@@ -195,13 +204,13 @@ const PRODUCTS = [
   {
     id: "printed-comfort-coord",
     sku: "CRD-0202-PRT",
-    price: "Rs. 849.00",
+    price: 849,
     image: "assets/coord-sets/printed-comfort-coord.png",
     images: [
       "assets/coord-sets/printed-comfort-coord.png",
-      "assets/coord-sets/image.png",
-      "assets/coord-sets/image copy.png",
-      "assets/coord-sets/casual-home-coord.png"
+      "assets/coord-sets/floral-coord-set.png",
+      "assets/coord-sets/casual-home-coord.png",
+      "assets/coord-sets/image copy.png"
     ],
     pattern: "dots",
     name: "Printed Comfort Co-ord",
@@ -217,13 +226,13 @@ const PRODUCTS = [
   {
     id: "soft-cotton-coord",
     sku: "CRD-0203-SFT",
-    price: "Rs. 949.00",
-    image: "assets/coord-sets/image.png",
+    price: 949,
+    image: "assets/coord-sets/casual-home-coord.png",
     images: [
-      "assets/coord-sets/image.png",
-      "assets/coord-sets/image copy.png",
       "assets/coord-sets/casual-home-coord.png",
-      "assets/coord-sets/floral-coord-set.png"
+      "assets/coord-sets/floral-coord-set.png",
+      "assets/coord-sets/printed-comfort-coord.png",
+      "assets/coord-sets/image.png"
     ],
     pattern: "plain",
     name: "Soft Cotton Co-ord",
@@ -239,11 +248,11 @@ const PRODUCTS = [
   {
     id: "everyday-lounge-coord",
     sku: "CRD-0204-LNG",
-    price: "Rs. 899.00",
-    image: "assets/coord-sets/image copy.png",
+    price: 899,
+    image: "assets/coord-sets/image.png",
     images: [
+      "assets/coord-sets/image.png",
       "assets/coord-sets/image copy.png",
-      "assets/coord-sets/casual-home-coord.png",
       "assets/coord-sets/floral-coord-set.png",
       "assets/coord-sets/printed-comfort-coord.png"
     ],
@@ -261,13 +270,13 @@ const PRODUCTS = [
   {
     id: "casual-home-coord",
     sku: "CRD-0205-CSL",
-    price: "Rs. 799.00",
-    image: "assets/coord-sets/casual-home-coord.png",
+    price: 799,
+    image: "assets/coord-sets/image copy.png",
     images: [
+      "assets/coord-sets/image copy.png",
       "assets/coord-sets/casual-home-coord.png",
-      "assets/coord-sets/floral-coord-set.png",
       "assets/coord-sets/printed-comfort-coord.png",
-      "assets/coord-sets/image.png"
+      "assets/coord-sets/floral-coord-set.png"
     ],
     pattern: "stripes",
     name: "Casual Home Co-ord",
@@ -285,7 +294,7 @@ const PRODUCTS = [
   {
     id: "customized-nighty",
     sku: "CST-0301-NGT",
-    price: "Rs. 999.00",
+    price: 999,
     image: "assets/customized/customized-nighty.png",
     images: [
       "assets/customized/customized-nighty.png",
@@ -308,13 +317,13 @@ const PRODUCTS = [
   {
     id: "customized-designer-nighty",
     sku: "CST-0302-DSG",
-    price: "Rs. 1099.00",
+    price: 1099,
     image: "assets/customized/customized-nighty-2.png",
     images: [
       "assets/customized/customized-nighty-2.png",
       "assets/customized/customized-nighty-3.png",
-      "assets/customized/banner-nighties.png",
-      "assets/customized/customized-nighty.png"
+      "assets/customized/customized-nighty.png",
+      "assets/customized/banner-nighties.png"
     ],
     pattern: "floral",
     name: "Customized Designer Nighty",
@@ -331,13 +340,13 @@ const PRODUCTS = [
   {
     id: "customized-pleated-nighty",
     sku: "CST-0303-PLT",
-    price: "Rs. 949.00",
+    price: 949,
     image: "assets/customized/customized-nighty-3.png",
     images: [
       "assets/customized/customized-nighty-3.png",
-      "assets/customized/banner-nighties.png",
       "assets/customized/customized-nighty.png",
-      "assets/customized/customized-nighty-2.png"
+      "assets/customized/customized-nighty-2.png",
+      "assets/customized/banner-nighties.png"
     ],
     pattern: "pleated",
     name: "Customized Pleated Nighty",
@@ -356,7 +365,7 @@ const PRODUCTS = [
   {
     id: "customized-coord-set",
     sku: "CST-0401-CRD",
-    price: "Rs. 1199.00",
+    price: 1199,
     image: "assets/customized/customized-coord-set.png",
     images: [
       "assets/customized/customized-coord-set.png",
@@ -379,13 +388,13 @@ const PRODUCTS = [
   {
     id: "customized-printed-coord",
     sku: "CST-0402-PRT",
-    price: "Rs. 1149.00",
+    price: 1149,
     image: "assets/customized/customized-coord-set-2.png",
     images: [
       "assets/customized/customized-coord-set-2.png",
       "assets/customized/customized-coord-set-3.png",
-      "assets/customized/banner-coord-sets.png",
-      "assets/customized/customized-coord-set.png"
+      "assets/customized/customized-coord-set.png",
+      "assets/customized/banner-coord-sets.png"
     ],
     pattern: "dots",
     name: "Customized Printed Co-ord",
@@ -402,13 +411,13 @@ const PRODUCTS = [
   {
     id: "customized-lounge-coord",
     sku: "CST-0403-LNG",
-    price: "Rs. 1249.00",
+    price: 1249,
     image: "assets/customized/customized-coord-set-3.png",
     images: [
       "assets/customized/customized-coord-set-3.png",
-      "assets/customized/banner-coord-sets.png",
       "assets/customized/customized-coord-set.png",
-      "assets/customized/customized-coord-set-2.png"
+      "assets/customized/customized-coord-set-2.png",
+      "assets/customized/banner-coord-sets.png"
     ],
     pattern: "plain",
     name: "Customized Lounge Twin-Set",
@@ -427,13 +436,13 @@ const PRODUCTS = [
   {
     id: "girls-floral-nighty",
     sku: "KID-0501-FLR",
-    price: "Rs. 499.00",
+    price: 499,
     image: "assets/girls-kids/girls-floral-nighty.png",
     images: [
       "assets/girls-kids/girls-floral-nighty.png",
       "assets/girls-kids/girls-printed-nighty.png",
-      "assets/girls-kids/banner-girls-nightwear.png",
-      "assets/girls-kids/girls-comfort-set.png"
+      "assets/girls-kids/girls-comfort-set.png",
+      "assets/girls-kids/girls-coord-set.png"
     ],
     pattern: "floral",
     name: "Girls' Floral Nighty",
@@ -449,12 +458,12 @@ const PRODUCTS = [
   {
     id: "girls-printed-nighty",
     sku: "KID-0502-PRT",
-    price: "Rs. 449.00",
+    price: 449,
     image: "assets/girls-kids/girls-printed-nighty.png",
     images: [
       "assets/girls-kids/girls-printed-nighty.png",
-      "assets/girls-kids/banner-girls-nightwear.png",
       "assets/girls-kids/girls-floral-nighty.png",
+      "assets/girls-kids/girls-comfort-set.png",
       "assets/girls-kids/girls-coord-set.png"
     ],
     pattern: "floral",
@@ -471,13 +480,13 @@ const PRODUCTS = [
   {
     id: "girls-comfort-set",
     sku: "KID-0503-CMF",
-    price: "Rs. 549.00",
+    price: 549,
     image: "assets/girls-kids/girls-comfort-set.png",
     images: [
       "assets/girls-kids/girls-comfort-set.png",
       "assets/girls-kids/girls-coord-set.png",
-      "assets/girls-kids/banner-girls-comfort.png",
-      "assets/girls-kids/girls-floral-nighty.png"
+      "assets/girls-kids/girls-floral-nighty.png",
+      "assets/girls-kids/girls-printed-nighty.png"
     ],
     pattern: "plain",
     name: "Girls' Comfort Set",
@@ -493,12 +502,12 @@ const PRODUCTS = [
   {
     id: "girls-coord-set",
     sku: "KID-0504-CRD",
-    price: "Rs. 599.00",
+    price: 599,
     image: "assets/girls-kids/girls-coord-set.png",
     images: [
       "assets/girls-kids/girls-coord-set.png",
-      "assets/girls-kids/banner-girls-comfort.png",
       "assets/girls-kids/girls-comfort-set.png",
+      "assets/girls-kids/girls-floral-nighty.png",
       "assets/girls-kids/girls-printed-nighty.png"
     ],
     pattern: "dots",
@@ -519,13 +528,38 @@ const PRODUCTS = [
 function getProductById(id){
   if(!id) return null;
   const cleanId = String(id).trim().toLowerCase();
-  return PRODUCTS.find(p => p.id.toLowerCase() === cleanId || p.id === id);
+  
+  // 1. Match exact or lowercased id
+  let found = PRODUCTS.find(p => String(p.id).trim().toLowerCase() === cleanId);
+  if(found) return found;
+
+  // 2. Match SKU
+  found = PRODUCTS.find(p => p.sku && String(p.sku).trim().toLowerCase() === cleanId);
+  if(found) return found;
+
+  // 3. Match nighty-001 / product-001 style IDs if passed
+  if(cleanId.startsWith("nighty-") || cleanId.startsWith("product-")){
+    const numPart = parseInt(cleanId.replace(/[^0-9]/g, ""), 10);
+    if(!isNaN(numPart) && numPart > 0 && numPart <= PRODUCTS.length){
+      return PRODUCTS[numPart - 1];
+    }
+  }
+
+  // 4. Match 0-indexed or 1-indexed pure numeric ID
+  const index = parseInt(cleanId, 10);
+  if(!isNaN(index) && String(index) === cleanId){
+    if(index >= 0 && index < PRODUCTS.length) return PRODUCTS[index];
+    if(index > 0 && index <= PRODUCTS.length) return PRODUCTS[index - 1];
+  }
+
+  return null;
 }
 
 function getProductsByCategory(cat){
   if(!cat) return [];
   const cleanCat = String(cat).trim().toLowerCase();
-  return PRODUCTS.filter(p => p.category === cat || p.category.toLowerCase() === cleanCat);
+  const targetCategory = CATEGORY_LABELS[cat] || CATEGORY_LABELS[cleanCat] || cat;
+  return PRODUCTS.filter(p => p.category === targetCategory || p.category === cat || p.category.toLowerCase() === cleanCat);
 }
 
 function getProductsBySection(section){
@@ -560,7 +594,21 @@ function parsePrice(priceStr){
 }
 
 function formatPrice(amount){
-  const num = typeof amount === "number" ? amount : parsePrice(amount);
-  return "Rs. " + num.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if(amount === undefined || amount === null || amount === "" || amount === 0) return "Price on Enquiry";
+  if(typeof amount === "number"){
+    return `₹${amount}`;
+  }
+  if(typeof amount === "string"){
+    const trimmed = amount.trim();
+    if(!trimmed) return "Price on Enquiry";
+    if(trimmed.startsWith("₹")) return trimmed;
+    if(trimmed.startsWith("Rs.")) return trimmed.replace(/^Rs\.\s*/i, "₹");
+    const num = parseFloat(trimmed.replace(/[^0-9.]/g, ""));
+    return isNaN(num) || num <= 0 ? "Price on Enquiry" : `₹${num}`;
+  }
+  return "Price on Enquiry";
 }
+
+if (typeof window !== "undefined") { window.PRODUCTS = PRODUCTS; }
+
 

@@ -1,16 +1,15 @@
 /* =========================================================
    PRODUCT-DETAILS.JS
    Renders product-details.html?id=<product-id> using the
-   data in js/products.js
+   product object matching URL id from js/products.js
    ========================================================= */
 
 function renderProductDetails(){
-  // Extract product ID from URL query string (?id=...), URLSearchParams, hash, or path
+  // Extract product ID from URL query string (?id=...), searchParams, sessionStorage, hash, or pathname
   const urlObj = new URL(window.location.href);
-  let id = urlObj.searchParams.get("id");
+  let id = urlObj.searchParams.get("id") || urlObj.searchParams.get("productId") || urlObj.searchParams.get("product");
   
   if (!id) {
-    // Check all query parameters in case URL formatted as ?product-id or ?id
     for (const [key, val] of urlObj.searchParams.entries()) {
       if (val && getProductById(val)) {
         id = val;
@@ -23,6 +22,14 @@ function renderProductDetails(){
     }
   }
 
+  // Check sessionStorage if URL query param was stripped or clean route /product-details opened
+  if (!id) {
+    const storedId = sessionStorage.getItem("selectedProductId");
+    if (storedId && getProductById(storedId)) {
+      id = storedId;
+    }
+  }
+
   if (!id && window.location.hash) {
     const hashId = window.location.hash.replace('#', '').trim();
     if (getProductById(hashId)) {
@@ -31,7 +38,6 @@ function renderProductDetails(){
   }
   
   if (!id) {
-    // Fallback: check pathname for clean routing /product-details/<id>
     const pathParts = window.location.pathname.split('/').filter(Boolean);
     const lastPart = pathParts[pathParts.length - 1];
     if (lastPart && lastPart !== "product-details" && lastPart !== "product-details.html") {
@@ -39,225 +45,275 @@ function renderProductDetails(){
     }
   }
 
-  let product = id ? getProductById(id) : null;
-  if(!product && !id && typeof PRODUCTS !== "undefined" && PRODUCTS.length > 0){
-    // Default fallback to first product if user opens /product-details without any query param
-    product = PRODUCTS[0];
+  let initialProduct = id ? getProductById(id) : null;
+  if (!initialProduct && !id && typeof PRODUCTS !== "undefined" && PRODUCTS.length > 0) {
+    initialProduct = PRODUCTS[0];
   }
 
-  const wrap = document.getElementById("pd-wrap");
-  const notFound = document.getElementById("pd-not-found");
+  function loadActiveProduct(targetProduct){
+    if(!targetProduct) return;
+    const product = targetProduct;
+    sessionStorage.setItem("selectedProductId", product.id);
 
-  if(!product){
-    if(wrap) wrap.style.display = "none";
-    if(notFound) notFound.style.display = "block";
-    return;
-  }
-  if(wrap) wrap.style.display = "grid";
-  if(notFound) notFound.style.display = "none";
+    // Update URL query string without reloading page
+    if (window.history && window.history.replaceState) {
+      const newUrl = `${window.location.pathname}?id=${encodeURIComponent(product.id)}`;
+      window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
 
-  document.title = `${product.name} — Sowju's Comfort Wear`;
+    const wrap = document.getElementById("pd-wrap");
+    const notFound = document.getElementById("pd-not-found");
 
-  // --- Dynamic Breadcrumb ---
-  const breadcrumbEl = document.getElementById("pd-breadcrumb");
-  if(breadcrumbEl){
-    const catLabel = CATEGORY_LABELS[product.category] || "Collection";
-    const sectionName = product.section === "girls" ? "Kids" : "Women";
-    const sectionUrl = product.section === "girls" 
-      ? `kids.html?category=${product.category}` 
-      : `women.html?category=${product.category}`;
-      
-    breadcrumbEl.innerHTML = `
-      <a href="index.html">Home</a> / 
-      <a href="${sectionUrl}">${sectionName}</a> / 
-      <a href="${sectionUrl}">${catLabel}</a> / 
-      <span>${product.name}</span>
-    `;
-  }
+    if(!product){
+      if(wrap) wrap.style.display = "none";
+      if(notFound) notFound.style.display = "block";
+      return;
+    }
+    if(wrap) wrap.style.display = "grid";
+    if(notFound) notFound.style.display = "none";
 
-  // --- Image Gallery Logic ---
-  const galleryImages = (product.images && product.images.length > 0) 
-    ? product.images 
-    : (product.image ? [product.image] : []);
+    // Page Title
+    document.title = `${product.name} — Sowju's Comfort Wear`;
 
-  const mainArtContainer = document.getElementById("pd-main-art");
-  const thumbsContainer = document.getElementById("pd-thumbnails");
-  let currentImageIndex = 0;
+    // --- Dynamic Breadcrumb ---
+    const breadcrumbEl = document.getElementById("pd-breadcrumb");
+    if(breadcrumbEl){
+      const catLabel = (typeof CATEGORY_LABELS !== "undefined" && CATEGORY_LABELS[product.category]) || product.category || "Collection";
+      const sectionName = product.section === "girls" ? "Kids" : "Women";
+      const sectionUrl = product.section === "girls" 
+        ? `kids.html?category=${encodeURIComponent(product.category)}` 
+        : `women.html?category=${encodeURIComponent(product.category)}`;
+        
+      breadcrumbEl.innerHTML = `
+        <a href="index.html">Home</a> / 
+        <a href="${sectionUrl}">${sectionName}</a> / 
+        <a href="${sectionUrl}">${catLabel}</a> / 
+        <span>${product.name}</span>
+      `;
+    }
 
-  function updateGalleryView(index){
-    if(galleryImages.length === 0) return;
-    currentImageIndex = (index + galleryImages.length) % galleryImages.length;
-    const imgSrc = galleryImages[currentImageIndex];
+    // --- Product Information Fields ---
+    const nameEl = document.getElementById("pd-name");
+    if(nameEl) nameEl.textContent = product.name;
 
+    const skuEl = document.getElementById("pd-sku-val");
+    if(skuEl) skuEl.textContent = product.sku || product.id.toUpperCase();
+
+    const priceEl = document.getElementById("pd-price-val");
+    if(priceEl) priceEl.textContent = formatPrice(product.price);
+
+    const catBadgeEl = document.getElementById("pd-category-badge");
+    if(catBadgeEl) catBadgeEl.textContent = product.category || "";
+
+    const descEl = document.getElementById("pd-description");
+    if(descEl) descEl.textContent = product.description || "";
+
+    const fabricBlock = document.getElementById("pd-fabric-block");
+    const fabricVal = document.getElementById("pd-fabric-val");
+    if(product.fabric && fabricVal){
+      fabricVal.textContent = product.fabric;
+      if(fabricBlock) fabricBlock.style.display = "block";
+    } else if(fabricBlock){
+      fabricBlock.style.display = "none";
+    }
+
+    // Selected State
+    let selectedSize = (product.sizes && product.sizes.length) ? product.sizes[0] : "Free Size";
+    let selectedColor = (product.colours && product.colours.length) ? product.colours[0] : "Default";
+    let currentQty = 1;
+
+    const sizeLabelEl = document.getElementById("pd-selected-size-label");
+    if(sizeLabelEl) sizeLabelEl.textContent = selectedSize;
+
+    const colorLabelEl = document.getElementById("pd-selected-color-label");
+    if(colorLabelEl) colorLabelEl.textContent = selectedColor;
+
+    // Render Sizes as selectable boxes
+    const sizesBlock = document.getElementById("pd-sizes-block");
+    const sizesEl = document.getElementById("pd-sizes");
+    if(sizesEl && product.sizes && product.sizes.length){
+      sizesEl.innerHTML = product.sizes.map((s, idx) => `
+        <button class="swatch-btn ${idx === 0 ? 'active' : ''}" type="button" data-size="${s}">${s}</button>
+      `).join("");
+      sizesEl.querySelectorAll(".swatch-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          sizesEl.querySelectorAll(".swatch-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedSize = btn.getAttribute("data-size");
+          if(sizeLabelEl) sizeLabelEl.textContent = selectedSize;
+          updateWhatsAppLink();
+        });
+      });
+      if(sizesBlock) sizesBlock.style.display = "block";
+    } else if(sizesBlock){
+      sizesBlock.style.display = "none";
+    }
+
+    // Render Colours as selectable chips
+    const coloursBlock = document.getElementById("pd-colours-block");
+    const coloursEl = document.getElementById("pd-colours");
+    if(coloursEl && product.colours && product.colours.length){
+      coloursEl.innerHTML = product.colours.map((c, idx) => `
+        <button class="color-chip ${idx === 0 ? 'active' : ''}" type="button" data-color="${c}">${c}</button>
+      `).join("");
+      coloursEl.querySelectorAll(".color-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          coloursEl.querySelectorAll(".color-chip").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedColor = btn.getAttribute("data-color");
+          if(colorLabelEl) colorLabelEl.textContent = selectedColor;
+          updateWhatsAppLink();
+        });
+      });
+      if(coloursBlock) coloursBlock.style.display = "block";
+    } else if(coloursBlock){
+      coloursBlock.style.display = "none";
+    }
+
+    // Quantity Selector Controls (+ / -)
+    const qtyInput = document.getElementById("qty-input");
+    const qtyMinus = document.getElementById("qty-minus");
+    const qtyPlus = document.getElementById("qty-plus");
+
+    if(qtyInput) qtyInput.value = currentQty;
+
+    if(qtyMinus && qtyPlus && qtyInput){
+      const newMinus = qtyMinus.cloneNode(true);
+      const newPlus = qtyPlus.cloneNode(true);
+      qtyMinus.parentNode.replaceChild(newMinus, qtyMinus);
+      qtyPlus.parentNode.replaceChild(newPlus, qtyPlus);
+
+      newMinus.addEventListener("click", () => {
+        if(currentQty > 1){
+          currentQty--;
+          qtyInput.value = currentQty;
+          updateWhatsAppLink();
+        }
+      });
+      newPlus.addEventListener("click", () => {
+        currentQty++;
+        qtyInput.value = currentQty;
+        updateWhatsAppLink();
+      });
+    }
+
+    // Highlights / Features
+    const featuresBlock = document.getElementById("pd-features-block");
+    const featuresEl = document.getElementById("pd-features");
+    if(featuresEl && product.features && product.features.length){
+      featuresEl.innerHTML = product.features.map(f => `<li>${f}</li>`).join("");
+      if(featuresBlock) featuresBlock.style.display = "block";
+    } else if(featuresBlock){
+      featuresBlock.style.display = "none";
+    }
+
+    // --- Dynamic WhatsApp Link Builder ---
+    function updateWhatsAppLink(){
+      const priceText = formatPrice(product.price);
+      const msg = `Hi Sowju's Comfort Wear, I would like to order / enquire about ${product.name} (SKU: ${product.sku || product.id}).\n` +
+        `Price: ${priceText}\n` +
+        `Size: ${selectedSize}\n` +
+        `Colour: ${selectedColor}\n` +
+        `Quantity: ${currentQty}\n` +
+        `Please share availability and order confirmation details.`;
+
+      const enquireBtn = document.getElementById("pd-enquire-btn");
+      if(enquireBtn) enquireBtn.href = buildWhatsAppLink(msg);
+    }
+
+    // Add to Cart handler
+    const addToCartBtn = document.getElementById("pd-add-to-cart-btn");
+    if(addToCartBtn){
+      const newAddToCartBtn = addToCartBtn.cloneNode(true);
+      addToCartBtn.parentNode.replaceChild(newAddToCartBtn, addToCartBtn);
+      newAddToCartBtn.addEventListener("click", () => {
+        if(typeof addToCart === "function"){
+          addToCart(product.id, currentQty, selectedSize);
+          showToast(`Added ${product.name} (Qty: ${currentQty}, Size: ${selectedSize}) to your cart!`);
+        }
+      });
+    }
+
+    // Initial Link Update
+    updateWhatsAppLink();
+
+    // --- Category Product Thumbnails & Carousel ---
+    // Fetch all products in the same category so each thumbnail represents its own product
+    const categoryProducts = getProductsByCategory(product.category);
+    const thumbProducts = (categoryProducts && categoryProducts.length > 0) ? categoryProducts : [product];
+    
+    let activeProductIndex = thumbProducts.findIndex(p => p.id === product.id);
+    if (activeProductIndex === -1) activeProductIndex = 0;
+
+    const mainArtContainer = document.getElementById("pd-main-art");
+    const thumbsContainer = document.getElementById("pd-thumbnails");
+
+    // Render Main Art Container
     if(mainArtContainer){
       mainArtContainer.innerHTML = `
         <div class="art-frame art-${product.art || 1} pd-main-frame">
-          <img src="${imgSrc}" alt="${product.name} view ${currentImageIndex + 1}">
-          ${galleryImages.length > 1 ? `
-            <button class="gallery-nav prev" id="pd-prev-btn" aria-label="Previous view">&#10094;</button>
-            <button class="gallery-nav next" id="pd-next-btn" aria-label="Next view">&#10095;</button>
-            <div class="gallery-counter">${currentImageIndex + 1} / ${galleryImages.length}</div>
+          <img id="pd-main-img" src="${product.image}" alt="${product.name}">
+          ${thumbProducts.length > 1 ? `
+            <button class="gallery-nav prev" id="pd-prev-btn" type="button" aria-label="Previous product">&#10094;</button>
+            <button class="gallery-nav next" id="pd-next-btn" type="button" aria-label="Next product">&#10095;</button>
+            <div class="gallery-counter">${activeProductIndex + 1} / ${thumbProducts.length}</div>
           ` : ''}
         </div>
       `;
 
       const prevBtn = document.getElementById("pd-prev-btn");
       const nextBtn = document.getElementById("pd-next-btn");
-      if(prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); updateGalleryView(currentImageIndex - 1); });
-      if(nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); updateGalleryView(currentImageIndex + 1); });
+      if(prevBtn) prevBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const prevIndex = (activeProductIndex - 1 + thumbProducts.length) % thumbProducts.length;
+        loadActiveProduct(thumbProducts[prevIndex]);
+      });
+      if(nextBtn) nextBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const nextIndex = (activeProductIndex + 1) % thumbProducts.length;
+        loadActiveProduct(thumbProducts[nextIndex]);
+      });
     }
 
+    // Render Category Product Thumbnails
     if(thumbsContainer){
-      thumbsContainer.querySelectorAll(".thumb-btn").forEach((btn, idx) => {
-        if(idx === currentImageIndex){
-          btn.classList.add("active");
-          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
-  }
+      if(thumbProducts.length > 1){
+        thumbsContainer.innerHTML = thumbProducts.map((p, idx) => `
+          <button class="thumb-btn ${p.id === product.id ? 'active' : ''}" type="button" data-product-id="${p.id}" title="${p.name}">
+            <img src="${p.image}" alt="${p.name} thumbnail">
+          </button>
+        `).join("");
 
-  // Render Thumbnails
-  if(thumbsContainer){
-    if(galleryImages.length > 1){
-      thumbsContainer.innerHTML = galleryImages.map((img, idx) => `
-        <button class="thumb-btn ${idx === 0 ? 'active' : ''}" data-index="${idx}">
-          <img src="${img}" alt="${product.name} thumbnail ${idx + 1}">
-        </button>
-      `).join("");
-
-      thumbsContainer.querySelectorAll(".thumb-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const idx = parseInt(btn.getAttribute("data-index"), 10);
-          updateGalleryView(idx);
+        thumbsContainer.querySelectorAll(".thumb-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetId = btn.getAttribute("data-product-id");
+            const targetProd = getProductById(targetId);
+            if(targetProd && targetProd.id !== product.id){
+              loadActiveProduct(targetProd);
+            }
+          });
         });
-      });
-      thumbsContainer.style.display = "flex";
-    } else {
-      thumbsContainer.style.display = "none";
+        thumbsContainer.style.display = "flex";
+      } else {
+        thumbsContainer.style.display = "none";
+      }
     }
-  }
 
-  // Initial gallery view render
-  updateGalleryView(0);
+    // --- Related Products (STRICTLY FROM THE SAME CATEGORY, EXCLUDING ACTIVE PRODUCT) ---
+    const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+    const relatedSection = document.getElementById("pd-related-section");
+    const relatedGrid = document.getElementById("pd-related-grid");
+    if(related.length && relatedGrid){
+      relatedGrid.innerHTML = related.map(productCardHTML).join("");
+      if(relatedSection) relatedSection.style.display = "block";
+    } else if(relatedSection){
+      relatedSection.style.display = "none";
+    }
 
-  // --- Product Information Fields ---
-  const skuEl = document.getElementById("pd-sku-val");
-  if(skuEl) skuEl.textContent = product.sku || `NTY-0101-${(product.id || 'N').slice(0,3).toUpperCase()}`;
-
-  const priceEl = document.getElementById("pd-price-val");
-  if(priceEl) priceEl.textContent = product.price || "Rs. 699.00";
-
-  document.getElementById("pd-name").textContent = product.name;
-  document.getElementById("pd-description").textContent = product.description;
-
-  // Selected State
-  let selectedSize = (product.sizes && product.sizes.length) ? product.sizes[0] : "Free Size";
-  let selectedColor = (product.colours && product.colours.length) ? product.colours[0] : "Default";
-  let currentQty = 1;
-
-  const sizeLabelEl = document.getElementById("pd-selected-size-label");
-  if(sizeLabelEl) sizeLabelEl.textContent = selectedSize;
-
-  const colorLabelEl = document.getElementById("pd-selected-color-label");
-  if(colorLabelEl) colorLabelEl.textContent = selectedColor;
-
-  // Render Sizes as selectable boxes
-  const sizesBlock = document.getElementById("pd-sizes-block");
-  const sizesEl = document.getElementById("pd-sizes");
-  if(product.sizes && product.sizes.length){
-    sizesEl.innerHTML = product.sizes.map((s, idx) => `
-      <button class="swatch-btn ${idx === 0 ? 'active' : ''}" data-size="${s}">${s}</button>
-    `).join("");
-    sizesEl.querySelectorAll(".swatch-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        sizesEl.querySelectorAll(".swatch-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedSize = btn.getAttribute("data-size");
-        if(sizeLabelEl) sizeLabelEl.textContent = selectedSize;
-        updateWhatsAppLink();
-      });
-    });
-    if(sizesBlock) sizesBlock.style.display = "block";
-  } else if(sizesBlock){
-    sizesBlock.style.display = "none";
-  }
-
-  // Render Colors as selectable chips (if present in DOM)
-  const coloursBlock = document.getElementById("pd-colours-block");
-  const coloursEl = document.getElementById("pd-colours");
-  if(coloursEl && product.colours && product.colours.length){
-    coloursEl.innerHTML = product.colours.map((c, idx) => `
-      <button class="color-chip ${idx === 0 ? 'active' : ''}" data-color="${c}">${c}</button>
-    `).join("");
-    coloursEl.querySelectorAll(".color-chip").forEach(btn => {
-      btn.addEventListener("click", () => {
-        coloursEl.querySelectorAll(".color-chip").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedColor = btn.getAttribute("data-color");
-        if(colorLabelEl) colorLabelEl.textContent = selectedColor;
-        updateWhatsAppLink();
-      });
-    });
-    if(coloursBlock) coloursBlock.style.display = "block";
-  } else if(coloursBlock){
-    coloursBlock.style.display = "none";
-  }
-
-  // Quantity Selector Controls (+ / -)
-  const qtyInput = document.getElementById("qty-input");
-  const qtyMinus = document.getElementById("qty-minus");
-  const qtyPlus = document.getElementById("qty-plus");
-
-  if(qtyMinus && qtyPlus && qtyInput){
-    qtyMinus.addEventListener("click", () => {
-      if(currentQty > 1){
-        currentQty--;
-        qtyInput.value = currentQty;
-        updateWhatsAppLink();
-      }
-    });
-    qtyPlus.addEventListener("click", () => {
-      currentQty++;
-      qtyInput.value = currentQty;
-      updateWhatsAppLink();
-    });
-  }
-
-  // Highlights
-  const featuresBlock = document.getElementById("pd-features-block");
-  const featuresEl = document.getElementById("pd-features");
-  if(product.features && product.features.length){
-    featuresEl.innerHTML = product.features.map(f => `<li>${f}</li>`).join("");
-    if(featuresBlock) featuresBlock.style.display = "block";
-  } else if(featuresBlock){
-    featuresBlock.style.display = "none";
-  }
-
-  // --- Dynamic WhatsApp Link Builder ---
-  function updateWhatsAppLink(){
-    const priceText = product.price || "Rs. 699.00";
-    const msg = `Hi Sowju's Comfort Wear, I would like to order / enquire about ${product.name} (SKU: ${product.sku || 'NTY'}).\n` +
-      `Price: ${priceText}\n` +
-      `Size: ${selectedSize}\n` +
-      `Quantity: ${currentQty}\n` +
-      `Please share availability and order confirmation details.`;
-
-    const enquireBtn = document.getElementById("pd-enquire-btn");
-    if(enquireBtn) enquireBtn.href = buildWhatsAppLink(msg);
-  }
-
-  // Add to Cart handler
-  const addToCartBtn = document.getElementById("pd-add-to-cart-btn");
-  if(addToCartBtn){
-    addToCartBtn.addEventListener("click", () => {
-      if(typeof addToCart === "function"){
-        addToCart(product.id, currentQty, selectedSize);
-        showToast(`Added ${product.name} (Qty: ${currentQty}) to your cart!`);
-      }
-    });
+    if(typeof observeReveals === "function") observeReveals();
   }
 
   function showToast(message) {
@@ -274,20 +330,9 @@ function renderProductDetails(){
     }, 3000);
   }
 
-  // Initial Link Update
-  updateWhatsAppLink();
-
-  // --- Related Products (STRICTLY FROM THE SAME EXACT CATEGORY ONLY) ---
-  const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
-  const relatedSection = document.getElementById("pd-related-section");
-  if(related.length){
-    document.getElementById("pd-related-grid").innerHTML = related.map(productCardHTML).join("");
-    if(relatedSection) relatedSection.style.display = "block";
-  } else if(relatedSection){
-    relatedSection.style.display = "none";
-  }
-
-  observeReveals();
+  // Initial render
+  loadActiveProduct(initialProduct);
 }
 
 document.addEventListener("DOMContentLoaded", renderProductDetails);
+

@@ -95,14 +95,15 @@ function artFrameHTML(product, extraClass){
 
 /* ---------------- product card + category card templates ---------------- */
 function productCardHTML(product){
-  const priceText = product.price || "Rs. 699.00";
+  const priceText = formatPrice(product.price);
+  const detailUrl = `product-details.html?id=${encodeURIComponent(product.id)}`;
   return `
-  <article class="product-card reveal">
-    <a href="product-details.html?id=${product.id}" class="pc-image-link" aria-label="View ${product.name}">
+  <article class="product-card reveal" style="cursor:pointer;" onclick="if(!event.target.closest('a')){ sessionStorage.setItem('selectedProductId', '${product.id}'); window.location.href='${detailUrl}'; }">
+    <a href="${detailUrl}" onclick="sessionStorage.setItem('selectedProductId', '${product.id}');" class="pc-image-link" aria-label="View ${product.name}">
       ${artFrameHTML(product)}
     </a>
     <div class="pc-body">
-      <h3 class="pc-name"><a href="product-details.html?id=${product.id}">${product.name}</a></h3>
+      <h3 class="pc-name"><a href="${detailUrl}" onclick="sessionStorage.setItem('selectedProductId', '${product.id}');">${product.name}</a></h3>
       <div class="pc-price-wrap">
         <span class="pc-price">${priceText}</span>
       </div>
@@ -113,8 +114,8 @@ function productCardHTML(product){
 function renderProductGrid(containerId, products, emptyMsg){
   const el = document.getElementById(containerId);
   if(!el) return;
-  if(!products.length){
-    el.innerHTML = `<div class="empty-state"><h3>No products found</h3><p>${emptyMsg || "Try a different search term or filter."}</p></div>`;
+  if(!products || !products.length){
+    el.innerHTML = `<div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 48px 20px;"><p style="font-size: 1.1rem; color: var(--text-muted);">${emptyMsg || "No products available in this category."}</p></div>`;
     return;
   }
   el.innerHTML = products.map(productCardHTML).join("");

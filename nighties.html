@@ -23,10 +23,10 @@
         <li class="has-dropdown active">
           <a href="women.html">Women</a>
           <ul class="dropdown">
-            <li><a href="women.html?category=nighties">Nighties</a></li>
-            <li><a href="women.html?category=coord-sets">Co-ord Sets</a></li>
-            <li><a href="women.html?category=customized-nighties">Customized Nighties</a></li>
-            <li><a href="women.html?category=customized-coord-sets">Customized Co-ord Sets</a></li>
+            <li><a href="nighties.html">Nighties</a></li>
+            <li><a href="coord-sets.html">Co-ord Sets</a></li>
+            <li><a href="customized-wear.html?category=customized-nighties">Customized Nighties</a></li>
+            <li><a href="customized-wear.html?category=customized-coord-sets">Customized Co-ord Sets</a></li>
           </ul>
         </li>
         <li class="has-dropdown">
@@ -45,6 +45,10 @@
       <button class="icon-btn search-toggle" aria-label="Search products">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
+      <a href="cart.html" class="nav-cart-btn" aria-label="Shopping Cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-badge" id="nav-cart-count">0</span>
+      </a>
       <a class="nav-whatsapp" target="_blank" rel="noopener" href="https://wa.me/919789672893?text=Hi%20Sowju's%20Comfort%20Wear%2C%20I%20would%20like%20to%20know%20more%20about%20your%20products.">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.5C8.4 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
         <span>WhatsApp</span>
@@ -63,7 +67,7 @@
 
 <section class="page-header">
   <div class="container">
-    <h1>Nighties</h1>
+    <h1 id="page-title">Nighties</h1>
   </div>
 </section>
 
@@ -80,13 +84,14 @@
         <img src="assets/logo/logo.png" alt="Sowju's Comfort Wear Logo" class="brand-logo">
         <span>Sowju's Comfort Wear</span>
       </a>
-      <!-- <p>Comfortable, stylish and affordable everyday wear for women and girls — nighties, co-ord sets and customized pieces.</p> -->
+      <p>Comfortable, stylish and affordable everyday wear for women and girls — nighties, co-ord sets and customized pieces.</p>
     </div>
     <div>
       <h4>Shop</h4>
-      <a href="nighties.html">Nighties</a>
-      <a href="coord-sets.html">Co-ord Sets</a>
-      <a href="customized-wear.html">Customized Wear</a>
+      <a href="women.html?category=Nighties">Nighties</a>
+      <a href="women.html?category=Co-ord%20Sets">Co-ord Sets</a>
+      <a href="women.html?category=Customized%20Nighties">Customized Nighties</a>
+      <a href="women.html?category=Customized%20Co-ord%20Sets">Customized Co-ord Sets</a>
       <a href="kids.html">Girls' Kids Collection</a>
       <a href="new-arrivals.html">New Arrivals</a>
     </div>
@@ -112,9 +117,10 @@
 </a>
 
 <script src="js/products.js"></script>
+<script src="js/cart.js"></script>
 <script src="js/main.js"></script>
 <script>
-  window.location.replace("women.html?category=Nighties");
+  renderProductGrid("nighties-grid", getProductsByCategory("Nighties"));
 </script>
 </body>
 </html>

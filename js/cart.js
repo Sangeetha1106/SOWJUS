@@ -72,6 +72,9 @@ function updateCartItemQuantity(index, newQuantity) {
   if (qty > 0) {
     cart[index].quantity = qty;
     saveCart(cart);
+  } else {
+    cart.splice(index, 1);
+    saveCart(cart);
   }
   return cart;
 }

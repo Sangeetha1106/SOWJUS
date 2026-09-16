@@ -870,7 +870,18 @@ footer{
   display:grid; grid-template-columns: 1.3fr 1fr 1fr 1.1fr; gap: 40px;
 }
 .footer-top h4{ color:#fff; font-size:1rem; margin-bottom: 16px; font-family: var(--font-body); font-weight:600; }
-.footer-brand .brand{ color:#fff; }
+.footer-brand .brand{
+  color:#fff;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.footer-brand .brand span{
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
 .footer-brand p{ color: #E3C3CC; font-size:.88rem; max-width: 30ch; margin-top:14px; }
 .footer-top a{ color:#E3C3CC; font-size:.9rem; display:block; padding:6px 0; }
 .footer-top a:hover{ color:#fff; }
