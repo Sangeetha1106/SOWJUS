@@ -22,15 +22,15 @@ function initCustomizedForm(){
     const design = val(form, "design");
     const extra = val(form, "extra");
 
-    let message = `Hi Sowju's Comfort Wear, I would like to enquire about a ${productType || "customized product"}.`;
-    if(size) message += ` My preferred size is ${size}.`;
-    if(colour) message += ` Preferred colour: ${colour}.`;
-    if(design) message += ` Design preference: ${design}.`;
-    if(extra) message += ` Additional requirements: ${extra}.`;
-    if(name) message += ` My name is ${name}.`;
-    if(phone) message += ` Contact number: ${phone}.`;
+    let message = `Hi Sowju's Comfort Wear, I would like to enquire about a ${productType || "customized product"}:\n` +
+      `• Name: ${name || "-"}\n` +
+      `• Phone: ${phone || "-"}\n` +
+      `• Size: ${size || "-"}\n` +
+      `• Colour: ${colour || "-"}\n` +
+      `• Design: ${design || "-"}\n` +
+      `• Additional Notes: ${extra || "None"}`;
 
-    window.open(buildWhatsAppLink(message), "_blank");
+    window.location.href = buildWhatsAppLink(message);
   });
 }
 
@@ -45,12 +45,13 @@ function initContactForm(){
     const email = val(form, "email");
     const msg = val(form, "message");
 
-    let message = `Hi Sowju's Comfort Wear, my name is ${name || "-"}.`;
-    if(phone) message += ` Phone: ${phone}.`;
-    if(email) message += ` Email: ${email}.`;
-    message += ` Message: ${msg || "I would like more information."}`;
+    let message = `Hi Sowju's Comfort Wear, I have a contact enquiry from your website:\n` +
+      `• Name: ${name || "-"}\n` +
+      `• Phone: ${phone || "-"}\n` +
+      `• Email: ${email || "-"}\n` +
+      `• Message: ${msg || "I would like to know more about your products."}`;
 
-    window.open(buildWhatsAppLink(message), "_blank");
+    window.location.href = buildWhatsAppLink(message);
   });
 }
 
