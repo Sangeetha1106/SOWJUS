@@ -281,8 +281,34 @@ function renderProductDetails(){
       }
     }
 
-    // Hide bottom thumbnail container — only main product image display is kept
-    if (thumbsContainer) {
+    // Render Next 4 Category Product Images Below Main Image (clean 4-item grid without carousel buttons)
+    if (thumbsContainer && thumbProducts.length > 1) {
+      const nextProducts = [];
+      const count = Math.min(4, thumbProducts.length - 1);
+      for (let i = 1; i <= count; i++) {
+        const nextIdx = (activeProductIndex + i) % thumbProducts.length;
+        nextProducts.push(thumbProducts[nextIdx]);
+      }
+
+      thumbsContainer.innerHTML = nextProducts.map(p => `
+        <button class="thumb-btn" type="button" data-product-id="${p.id}" title="${p.name}">
+          <img src="${p.image}" alt="${p.name}">
+        </button>
+      `).join("");
+
+      thumbsContainer.querySelectorAll(".thumb-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = btn.getAttribute("data-product-id");
+          const targetProd = getProductById(targetId);
+          if (targetProd) {
+            loadActiveProduct(targetProd);
+          }
+        });
+      });
+
+      thumbsContainer.style.display = "grid";
+    } else if (thumbsContainer) {
       thumbsContainer.style.display = "none";
       thumbsContainer.innerHTML = "";
     }
