@@ -281,54 +281,10 @@ function renderProductDetails(){
       }
     }
 
-    // Render Category Product Thumbnails in Carousel
+    // Hide bottom thumbnail container — only main product image display is kept
     if (thumbsContainer) {
-      if (thumbProducts.length > 1) {
-        thumbsContainer.innerHTML = thumbProducts.map(p => `
-          <button class="thumb-btn ${p.id === product.id ? 'active' : ''}" type="button" data-product-id="${p.id}" title="${p.name}">
-            <img src="${p.image}" alt="${p.name}">
-          </button>
-        `).join("");
-
-        thumbsContainer.querySelectorAll(".thumb-btn").forEach(btn => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const targetId = btn.getAttribute("data-product-id");
-            const targetProd = getProductById(targetId);
-            if (targetProd && targetProd.id !== product.id) {
-              loadActiveProduct(targetProd);
-            }
-          });
-        });
-
-        if (carouselWrapper) carouselWrapper.style.display = "flex";
-
-        // Auto-scroll active product into view inside the 4-item carousel
-        setTimeout(() => {
-          const activeBtn = thumbsContainer.querySelector(".thumb-btn.active");
-          if (activeBtn) {
-            activeBtn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
-          }
-        }, 150);
-      } else {
-        if (carouselWrapper) carouselWrapper.style.display = "none";
-      }
-    }
-
-    // Carousel Left/Right navigation buttons
-    const prevNavBtn = document.getElementById("thumb-carousel-prev");
-    const nextNavBtn = document.getElementById("thumb-carousel-next");
-    if (prevNavBtn && thumbsContainer) {
-      prevNavBtn.onclick = (e) => {
-        e.preventDefault();
-        thumbsContainer.scrollBy({ left: -thumbsContainer.clientWidth, behavior: "smooth" });
-      };
-    }
-    if (nextNavBtn && thumbsContainer) {
-      nextNavBtn.onclick = (e) => {
-        e.preventDefault();
-        thumbsContainer.scrollBy({ left: thumbsContainer.clientWidth, behavior: "smooth" });
-      };
+      thumbsContainer.style.display = "none";
+      thumbsContainer.innerHTML = "";
     }
 
     // --- Related Products (STRICTLY FROM THE SAME CATEGORY, EXCLUDING ACTIVE PRODUCT) ---
