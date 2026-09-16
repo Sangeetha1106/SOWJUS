@@ -712,6 +712,82 @@ var PRODUCTS = [
     features: ["Durable everyday fabric","Wide, comfortable fit","Matching set","Simple styling"],
     isNew: false
   },
+  {
+    id: "chic-printed-coord",
+    sku: "CRD-0206-CHC",
+    price: 879,
+    image: "assets/coord-sets/image copy 2.png",
+    images: [
+      "assets/coord-sets/image copy 2.png"
+    ],
+    pattern: "dots",
+    name: "Chic Printed Co-ord Set",
+    category: "Co-ord Sets",
+    section: "women",
+    art: 2, icon: "coord",
+    sizes: ["S","M","L","XL","XXL"],
+    colours: ["Navy Blue","Soft Rose"],
+    description: "A stylish two-piece printed co-ord set with a relaxed top and comfortable trousers.",
+    features: ["Matching top and bottom set","Premium breathable fabric","Soft elastic waistband","Durable stitching"],
+    isNew: true
+  },
+  {
+    id: "breeze-lounge-coord",
+    sku: "CRD-0207-BRZ",
+    price: 899,
+    image: "assets/coord-sets/image copy 3.png",
+    images: [
+      "assets/coord-sets/image copy 3.png"
+    ],
+    pattern: "floral",
+    name: "Breeze Lounge Co-ord Set",
+    category: "Co-ord Sets",
+    section: "women",
+    art: 3, icon: "coord",
+    sizes: ["S","M","L","XL"],
+    colours: ["Floral Print","Beige"],
+    description: "Lightweight and comfortable co-ord set designed for effortless lounging at home.",
+    features: ["Lightweight cotton knit","Easy-fit trousers","Breathable weave","Color-fast fabric"],
+    isNew: true
+  },
+  {
+    id: "elegant-comfort-coord",
+    sku: "CRD-0208-ELG",
+    price: 929,
+    image: "assets/coord-sets/image copy 4.png",
+    images: [
+      "assets/coord-sets/image copy 4.png"
+    ],
+    pattern: "plain",
+    name: "Elegant Comfort Co-ord Set",
+    category: "Co-ord Sets",
+    section: "women",
+    art: 4, icon: "coord",
+    sizes: ["M","L","XL","XXL"],
+    colours: ["Dusty Pink","Maroon"],
+    description: "Elegant matching lounge set offering supreme softness and relaxed everyday styling.",
+    features: ["Ultra-soft handfeel","Flexible fit waistband","All-day comfort","Machine washable"],
+    isNew: true
+  },
+  {
+    id: "soft-cotton-lounge-set",
+    sku: "CRD-0209-SFT",
+    price: 859,
+    image: "assets/coord-sets/image copy 5.png",
+    images: [
+      "assets/coord-sets/image copy 5.png"
+    ],
+    pattern: "stripes",
+    name: "Soft Cotton Lounge Co-ord",
+    category: "Co-ord Sets",
+    section: "women",
+    art: 5, icon: "coord",
+    sizes: ["S","M","L","XL"],
+    colours: ["Pastel Blue","Cream"],
+    description: "Soft cotton co-ord set with a relaxed cut, perfect for downtime and casual everyday wear.",
+    features: ["100% breathable cotton","Modern neck detail","Easy movement cut","Fade resistant"],
+    isNew: true
+  },
 
   // ---------------- CUSTOMIZED NIGHTIES ----------------
   {
